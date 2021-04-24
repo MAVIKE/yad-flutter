@@ -1,19 +1,19 @@
 part of swagger.api;
 
 class DomainRestaurant {
-  int id = null;
+  int id;
 
-  String image = null;
+  String image;
 
-  DomainLocation location = null;
+  DomainLocation location;
 
-  String name = null;
+  String name;
 
-  String password = null;
+  String password;
 
-  String phone = null;
+  String phone;
 
-  int workingStatus = null;
+  int workingStatus;
 
   DomainRestaurant();
 
@@ -47,7 +47,7 @@ class DomainRestaurant {
 
   static List<DomainRestaurant> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<DomainRestaurant>()
+        ? []
         : json.map((value) => new DomainRestaurant.fromJson(value)).toList();
   }
 

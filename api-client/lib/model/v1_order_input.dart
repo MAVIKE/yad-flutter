@@ -1,7 +1,7 @@
 part of swagger.api;
 
 class V1OrderInput {
-  int restaurantId = null;
+  int restaurantId;
 
   V1OrderInput();
 
@@ -21,7 +21,7 @@ class V1OrderInput {
 
   static List<V1OrderInput> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1OrderInput>()
+        ? []
         : json.map((value) => new V1OrderInput.fromJson(value)).toList();
   }
 

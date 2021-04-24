@@ -99,7 +99,7 @@ class UsersApi {
   ///
   /// get user by id
   Future<DomainUser> usersUidGet(String uid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (uid == null) {

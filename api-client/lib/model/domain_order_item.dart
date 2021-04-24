@@ -1,13 +1,13 @@
 part of swagger.api;
 
 class DomainOrderItem {
-  int count = null;
+  int count;
 
-  int id = null;
+  int id;
 
-  int menuItemId = null;
+  int menuItemId;
 
-  int orderId = null;
+  int orderId;
 
   DomainOrderItem();
 
@@ -35,7 +35,7 @@ class DomainOrderItem {
 
   static List<DomainOrderItem> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<DomainOrderItem>()
+        ? []
         : json.map((value) => new DomainOrderItem.fromJson(value)).toList();
   }
 

@@ -1,11 +1,11 @@
 part of swagger.api;
 
 class DomainCategory {
-  int id = null;
+  int id;
 
-  int restaurantId = null;
+  int restaurantId;
 
-  String title = null;
+  String title;
 
   DomainCategory();
 
@@ -27,7 +27,7 @@ class DomainCategory {
 
   static List<DomainCategory> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<DomainCategory>()
+        ? []
         : json.map((value) => new DomainCategory.fromJson(value)).toList();
   }
 

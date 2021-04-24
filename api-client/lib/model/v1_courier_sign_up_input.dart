@@ -1,17 +1,17 @@
 part of swagger.api;
 
 class V1CourierSignUpInput {
-  V1LocationInput address = null;
+  V1LocationInput address;
 
-  String email = null;
+  String email;
 
-  String name = null;
+  String name;
 
-  String password = null;
+  String password;
 
-  String phone = null;
+  String phone;
 
-  int workingStatus = null;
+  int workingStatus;
 
   V1CourierSignUpInput();
 
@@ -43,7 +43,7 @@ class V1CourierSignUpInput {
 
   static List<V1CourierSignUpInput> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1CourierSignUpInput>()
+        ? []
         : json
             .map((value) => new V1CourierSignUpInput.fromJson(value))
             .toList();

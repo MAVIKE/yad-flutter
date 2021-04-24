@@ -9,7 +9,7 @@ class OrdersApi {
   ///
   /// get active order for courier
   Future<V1Response> couriersCidOrdersGet(String cid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (cid == null) {
@@ -55,7 +55,7 @@ class OrdersApi {
   ///
   /// delete order
   Future<V1Response> ordersOidDelete(String oid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (oid == null) {
@@ -101,7 +101,7 @@ class OrdersApi {
   ///
   /// get order by id
   Future<DomainOrder> ordersOidGet(String oid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (oid == null) {
@@ -147,7 +147,7 @@ class OrdersApi {
   ///
   /// get all order items by order id
   Future<List<DomainOrderItem>> ordersOidItemsGet(String oid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (oid == null) {
@@ -196,7 +196,7 @@ class OrdersApi {
   ///
   /// delete order item
   Future<V1Response> ordersOidItemsIdDelete(String oid, String id) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (oid == null) {
@@ -246,7 +246,7 @@ class OrdersApi {
   ///
   /// get order item by id
   Future<DomainOrderItem> ordersOidItemsIdGet(String oid, String id) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (oid == null) {
@@ -496,7 +496,7 @@ class OrdersApi {
   ///
   /// get all active orders for restaurant
   Future<List<DomainOrder>> restaurantsRidOrdersGet(String rid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (rid == null) {
@@ -545,7 +545,7 @@ class OrdersApi {
   /// get all orders for user
   Future<List<DomainOrder>> usersUidOrdersGet(String uid,
       {String status}) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (uid == null) {

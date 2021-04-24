@@ -1,9 +1,9 @@
 part of swagger.api;
 
 class V1OrderItemInput {
-  int count = null;
+  int count;
 
-  int menuItemId = null;
+  int menuItemId;
 
   V1OrderItemInput();
 
@@ -24,7 +24,7 @@ class V1OrderItemInput {
 
   static List<V1OrderItemInput> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1OrderItemInput>()
+        ? []
         : json.map((value) => new V1OrderItemInput.fromJson(value)).toList();
   }
 

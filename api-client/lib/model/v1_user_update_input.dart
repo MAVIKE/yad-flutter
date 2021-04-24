@@ -1,13 +1,13 @@
 part of swagger.api;
 
 class V1UserUpdateInput {
-  V1LocationInput address = null;
+  V1LocationInput address;
 
-  String email = null;
+  String email;
 
-  String name = null;
+  String name;
 
-  String password = null;
+  String password;
 
   V1UserUpdateInput();
 
@@ -35,7 +35,7 @@ class V1UserUpdateInput {
 
   static List<V1UserUpdateInput> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1UserUpdateInput>()
+        ? []
         : json.map((value) => new V1UserUpdateInput.fromJson(value)).toList();
   }
 

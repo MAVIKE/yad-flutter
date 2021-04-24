@@ -1,15 +1,15 @@
 part of swagger.api;
 
 class V1MenuItemInput {
-  int categoryId = null;
+  int categoryId;
 
-  String description = null;
+  String description;
 
-  String image = null;
+  String image;
 
-  int price = null;
+  int price;
 
-  String title = null;
+  String title;
 
   V1MenuItemInput();
 
@@ -39,7 +39,7 @@ class V1MenuItemInput {
 
   static List<V1MenuItemInput> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1MenuItemInput>()
+        ? []
         : json.map((value) => new V1MenuItemInput.fromJson(value)).toList();
   }
 

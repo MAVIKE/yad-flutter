@@ -10,7 +10,7 @@ class RestaurantsApi {
   ///
   /// get all restaurants for user
   Future<List<DomainRestaurant>> restaurantsGet() async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
 
@@ -54,7 +54,7 @@ class RestaurantsApi {
   ///
   /// get restaurant image
   Future<String> restaurantsImageGet() async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
 
@@ -95,7 +95,7 @@ class RestaurantsApi {
   ///
   /// get menu item image
   Future<String> restaurantsMenuImageGet() async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
 
@@ -136,7 +136,7 @@ class RestaurantsApi {
   ///
   /// get restaurant by id for user
   Future<DomainRestaurant> restaurantsRidGet(String rid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (rid == null) {
@@ -183,7 +183,7 @@ class RestaurantsApi {
   ///
   /// update restaurant image
   Future<DomainRestaurant> restaurantsRidImagePut() async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
 
@@ -225,7 +225,7 @@ class RestaurantsApi {
   ///
   /// get restaurant menu
   Future<List<DomainMenuItem>> restaurantsRidMenuGet(String rid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (rid == null) {
@@ -274,7 +274,7 @@ class RestaurantsApi {
   ///
   /// delete menu item
   Future<V1Response> restaurantsRidMenuIdDelete(String oid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (oid == null) {
@@ -320,7 +320,7 @@ class RestaurantsApi {
   ///
   /// get menu item by id
   Future<DomainMenuItem> restaurantsRidMenuIdGet(String rid, String id) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (rid == null) {
@@ -371,7 +371,7 @@ class RestaurantsApi {
   ///
   /// update menu item image
   Future<DomainMenuItem> restaurantsRidMenuIdImagePut() async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
 

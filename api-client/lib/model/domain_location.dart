@@ -1,9 +1,9 @@
 part of swagger.api;
 
 class DomainLocation {
-  num latitude = null;
+  num latitude;
 
-  num longitude = null;
+  num longitude;
 
   DomainLocation();
 
@@ -24,7 +24,7 @@ class DomainLocation {
 
   static List<DomainLocation> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<DomainLocation>()
+        ? []
         : json.map((value) => new DomainLocation.fromJson(value)).toList();
   }
 

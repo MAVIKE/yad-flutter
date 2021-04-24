@@ -1,7 +1,7 @@
 part of swagger.api;
 
 class V1TokenResponse {
-  String token = null;
+  String token;
 
   V1TokenResponse();
 
@@ -21,7 +21,7 @@ class V1TokenResponse {
 
   static List<V1TokenResponse> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1TokenResponse>()
+        ? []
         : json.map((value) => new V1TokenResponse.fromJson(value)).toList();
   }
 

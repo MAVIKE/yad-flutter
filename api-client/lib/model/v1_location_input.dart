@@ -1,9 +1,9 @@
 part of swagger.api;
 
 class V1LocationInput {
-  num latitude = null;
+  num latitude;
 
-  num longitude = null;
+  num longitude;
 
   V1LocationInput();
 
@@ -24,7 +24,7 @@ class V1LocationInput {
 
   static List<V1LocationInput> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1LocationInput>()
+        ? []
         : json.map((value) => new V1LocationInput.fromJson(value)).toList();
   }
 

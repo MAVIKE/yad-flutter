@@ -11,7 +11,7 @@ class CategoriesApi {
   /// get category by id for restaurant
   Future<DomainCategory> restaurantsRidCategoriesCidGet(
       String rid, String cid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (rid == null) {
@@ -63,7 +63,7 @@ class CategoriesApi {
   /// get menu items by catgory id
   Future<List<DomainMenuItem>> restaurantsRidCategoriesCidMenuGet(
       String rid, String cid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (rid == null) {
@@ -117,7 +117,7 @@ class CategoriesApi {
   /// update category
   Future<V1Response> restaurantsRidCategoriesCidPut(
       String rid, String cid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (rid == null) {
@@ -167,7 +167,7 @@ class CategoriesApi {
   ///
   /// get all categories for user
   Future<List<DomainCategory>> restaurantsRidCategoriesGet(String rid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (rid == null) {
@@ -267,7 +267,7 @@ class CategoriesApi {
   ///
   /// delete category
   Future<V1Response> restaurantsRidMenuCidDelete(String rid, String cid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (rid == null) {

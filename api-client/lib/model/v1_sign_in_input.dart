@@ -1,9 +1,9 @@
 part of swagger.api;
 
 class V1SignInInput {
-  String name = null;
+  String name;
 
-  String password = null;
+  String password;
 
   V1SignInInput();
 
@@ -24,7 +24,7 @@ class V1SignInInput {
 
   static List<V1SignInInput> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1SignInInput>()
+        ? []
         : json.map((value) => new V1SignInInput.fromJson(value)).toList();
   }
 

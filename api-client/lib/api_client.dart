@@ -14,8 +14,8 @@ class ApiClient {
   Map<String, String> _defaultHeaderMap = {};
   Map<String, Authentication> _authentications = {};
 
-  final _RegList = new RegExp(r'^List<(.*)>$');
-  final _RegMap = new RegExp(r'^Map<String,(.*)>$');
+  final _regList = new RegExp(r'^List<(.*)>$');
+  final _regMap = new RegExp(r'^Map<String,(.*)>$');
 
   ApiClient({this.basePath: "https://localhost:9000/api/v1/"}) {
     // Setup authentications (key: authentication name, value: authentication).
@@ -97,11 +97,11 @@ class ApiClient {
           {
             Match match;
             if (value is List &&
-                (match = _RegList.firstMatch(targetType)) != null) {
+                (match = _regList.firstMatch(targetType)) != null) {
               var newTargetType = match[1];
               return value.map((v) => _deserialize(v, newTargetType)).toList();
             } else if (value is Map &&
-                (match = _RegMap.firstMatch(targetType)) != null) {
+                (match = _regMap.firstMatch(targetType)) != null) {
               var newTargetType = match[1];
               return new Map.fromIterables(value.keys,
                   value.values.map((v) => _deserialize(v, newTargetType)));

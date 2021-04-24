@@ -1,19 +1,19 @@
 part of swagger.api;
 
 class DomainCourier {
-  String email = null;
+  String email;
 
-  int id = null;
+  int id;
 
-  DomainLocation location = null;
+  DomainLocation location;
 
-  String name = null;
+  String name;
 
-  String password = null;
+  String password;
 
-  String phone = null;
+  String phone;
 
-  int workingStatus = null;
+  int workingStatus;
 
   DomainCourier();
 
@@ -47,7 +47,7 @@ class DomainCourier {
 
   static List<DomainCourier> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<DomainCourier>()
+        ? []
         : json.map((value) => new DomainCourier.fromJson(value)).toList();
   }
 

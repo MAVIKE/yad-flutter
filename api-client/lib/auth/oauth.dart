@@ -3,7 +3,7 @@ part of swagger.api;
 class OAuth implements Authentication {
   String accessToken;
 
-  OAuth({this.accessToken}) {}
+  OAuth({this.accessToken});
 
   @override
   void applyToParams(

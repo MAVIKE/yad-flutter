@@ -1,7 +1,7 @@
 part of swagger.api;
 
 class V1CategoryInput {
-  String title = null;
+  String title;
 
   V1CategoryInput();
 
@@ -21,7 +21,7 @@ class V1CategoryInput {
 
   static List<V1CategoryInput> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1CategoryInput>()
+        ? []
         : json.map((value) => new V1CategoryInput.fromJson(value)).toList();
   }
 

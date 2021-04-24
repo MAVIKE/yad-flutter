@@ -1,17 +1,17 @@
 part of swagger.api;
 
 class DomainMenuItem {
-  String description = null;
+  String description;
 
-  int id = null;
+  int id;
 
-  String image = null;
+  String image;
 
-  int price = null;
+  int price;
 
-  int restaurantId = null;
+  int restaurantId;
 
-  String title = null;
+  String title;
 
   DomainMenuItem();
 
@@ -43,7 +43,7 @@ class DomainMenuItem {
 
   static List<DomainMenuItem> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<DomainMenuItem>()
+        ? []
         : json.map((value) => new DomainMenuItem.fromJson(value)).toList();
   }
 

@@ -10,7 +10,7 @@ class CouriersApi {
   ///
   /// get courier by id
   Future<DomainCourier> couriersCidGet(String cid) async {
-    Object postBody = null;
+    Object postBody;
 
     // verify required params are set
     if (cid == null) {

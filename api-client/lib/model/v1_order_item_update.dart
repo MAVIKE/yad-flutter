@@ -1,7 +1,7 @@
 part of swagger.api;
 
 class V1OrderItemUpdate {
-  int count = null;
+  int count;
 
   V1OrderItemUpdate();
 
@@ -21,7 +21,7 @@ class V1OrderItemUpdate {
 
   static List<V1OrderItemUpdate> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<V1OrderItemUpdate>()
+        ? []
         : json.map((value) => new V1OrderItemUpdate.fromJson(value)).toList();
   }
 

@@ -1,17 +1,17 @@
 part of swagger.api;
 
 class DomainUser {
-  String email = null;
+  String email;
 
-  int id = null;
+  int id;
 
-  DomainLocation location = null;
+  DomainLocation location;
 
-  String name = null;
+  String name;
 
-  String password = null;
+  String password;
 
-  String phone = null;
+  String phone;
 
   DomainUser();
 
@@ -43,7 +43,7 @@ class DomainUser {
 
   static List<DomainUser> listFromJson(List<dynamic> json) {
     return json == null
-        ? new List<DomainUser>()
+        ? []
         : json.map((value) => new DomainUser.fromJson(value)).toList();
   }
 
