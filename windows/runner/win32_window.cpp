@@ -66,7 +66,7 @@ class WindowClassRegistrar {
   bool class_registered_ = false;
 };
 
-WindowClassRegistrar* WindowClassRegistrar::instance_ptr;
+WindowClassRegistrar* WindowClassRegistrar::instance_ = nullptr;
 
 const wchar_t* WindowClassRegistrar::GetWindowClass() {
   if (!class_registered_) {
@@ -80,7 +80,7 @@ const wchar_t* WindowClassRegistrar::GetWindowClass() {
     window_class.hIcon =
         LoadIcon(window_class.hInstance, MAKEINTRESOURCE(IDI_APP_ICON));
     window_class.hbrBackground = 0;
-    window_class.lpszMenuNameptr;
+    window_class.lpszMenuName = nullptr;
     window_class.lpfnWndProc = Win32Window::WndProc;
     RegisterClass(&window_class);
     class_registered_ = true;
@@ -156,7 +156,7 @@ Win32Window::MessageHandler(HWND hwnd,
                             LPARAM const lparam) noexcept {
   switch (message) {
     case WM_DESTROY:
-      window_handle_ptr;
+      window_handle_ = nullptr;
       Destroy();
       if (quit_on_close_) {
         PostQuitMessage(0);
@@ -198,7 +198,7 @@ void Win32Window::Destroy() {
 
   if (window_handle_) {
     DestroyWindow(window_handle_);
-    window_handle_ptr;
+    window_handle_ = nullptr;
   }
   if (g_active_window_count == 0) {
     WindowClassRegistrar::GetInstance()->UnregisterWindowClass();
