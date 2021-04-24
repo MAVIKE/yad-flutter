@@ -1,4 +1,4 @@
-name: swagger
+name: api_client
 version: 1.0.0
 description: Swagger API client
 environment:
