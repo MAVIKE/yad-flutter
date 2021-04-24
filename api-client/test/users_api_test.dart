@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:api_client/api_client.dart';
 
-
 /// tests for UsersApi
 void main() {
   final instance = ApiClient().getUsersApi();
@@ -42,6 +41,5 @@ void main() {
     test('test usersUidPut', () async {
       // TODO
     });
-
   });
 }

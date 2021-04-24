@@ -7,12 +7,10 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:api_client/src/model/v1_response.dart';
 import 'package:api_client/src/model/v1_token_response.dart';
 import 'package:api_client/src/model/v1_sign_in_input.dart';
 
 class AdminsApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -22,7 +20,7 @@ class AdminsApi {
   /// Admin SignIn
   ///
   /// admin sign in
-  Future<Response<V1TokenResponse>> adminsSignInPost({ 
+  Future<Response<V1TokenResponse>> adminsSignInPost({
     required V1SignInInput input,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -47,18 +45,16 @@ class AdminsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     dynamic _bodyData;
 
     try {
       const _type = FullType(V1SignInInput);
       _bodyData = _serializers.serialize(input, specifiedType: _type);
-
-    } catch(error) {
+    } catch (error) {
       throw DioError(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -86,7 +82,6 @@ class AdminsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as V1TokenResponse;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -107,5 +102,4 @@ class AdminsApi {
       extra: _response.extra,
     );
   }
-
 }

@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:api_client/api_client.dart';
 
-
 /// tests for CategoriesApi
 void main() {
   final instance = ApiClient().getCategoriesApi();
@@ -60,6 +59,5 @@ void main() {
     test('test restaurantsRidMenuCidDelete', () async {
       // TODO
     });
-
   });
 }

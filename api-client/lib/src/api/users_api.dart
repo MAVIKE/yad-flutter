@@ -15,7 +15,6 @@ import 'package:api_client/src/model/v1_user_update_input.dart';
 import 'package:api_client/src/model/domain_user.dart';
 
 class UsersApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -25,7 +24,7 @@ class UsersApi {
   /// User SignIn
   ///
   /// user sign in
-  Future<Response<V1TokenResponse>> usersSignInPost({ 
+  Future<Response<V1TokenResponse>> usersSignInPost({
     required V1SignInInput input,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -50,18 +49,16 @@ class UsersApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     dynamic _bodyData;
 
     try {
       const _type = FullType(V1SignInInput);
       _bodyData = _serializers.serialize(input, specifiedType: _type);
-
-    } catch(error) {
+    } catch (error) {
       throw DioError(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -89,7 +86,6 @@ class UsersApi {
         _response.data!,
         specifiedType: _responseType,
       ) as V1TokenResponse;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -114,7 +110,7 @@ class UsersApi {
   /// User SignUp
   ///
   /// user sign up
-  Future<Response<V1TokenResponse>> usersSignUpPost({ 
+  Future<Response<V1TokenResponse>> usersSignUpPost({
     required V1UserSignUpInput input,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -139,18 +135,16 @@ class UsersApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     dynamic _bodyData;
 
     try {
       const _type = FullType(V1UserSignUpInput);
       _bodyData = _serializers.serialize(input, specifiedType: _type);
-
-    } catch(error) {
+    } catch (error) {
       throw DioError(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -178,7 +172,6 @@ class UsersApi {
         _response.data!,
         specifiedType: _responseType,
       ) as V1TokenResponse;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -203,7 +196,7 @@ class UsersApi {
   /// Get User By Id
   ///
   /// get user by id
-  Future<Response<DomainUser>> usersUidGet({ 
+  Future<Response<DomainUser>> usersUidGet({
     required String uid,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -225,12 +218,14 @@ class UsersApi {
             'name': 'CourierAuth',
             'keyName': 'Authorization',
             'where': 'header',
-          },{
+          },
+          {
             'type': 'apiKey',
             'name': 'RestaurantAuth',
             'keyName': 'Authorization',
             'where': 'header',
-          },{
+          },
+          {
             'type': 'apiKey',
             'name': 'UserAuth',
             'keyName': 'Authorization',
@@ -245,8 +240,7 @@ class UsersApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -265,7 +259,6 @@ class UsersApi {
         _response.data!,
         specifiedType: _responseType,
       ) as DomainUser;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -290,7 +283,7 @@ class UsersApi {
   /// Update User
   ///
   /// update user
-  Future<Response<V1Response>> usersUidPut({ 
+  Future<Response<V1Response>> usersUidPut({
     required String uid,
     required V1UserUpdateInput input,
     CancelToken? cancelToken,
@@ -323,18 +316,16 @@ class UsersApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     dynamic _bodyData;
 
     try {
       const _type = FullType(V1UserUpdateInput);
       _bodyData = _serializers.serialize(input, specifiedType: _type);
-
-    } catch(error) {
+    } catch (error) {
       throw DioError(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -362,7 +353,6 @@ class UsersApi {
         _response.data!,
         specifiedType: _responseType,
       ) as V1Response;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -383,5 +373,4 @@ class UsersApi {
       extra: _response.extra,
     );
   }
-
 }

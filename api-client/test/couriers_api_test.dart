@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:api_client/api_client.dart';
 
-
 /// tests for CouriersApi
 void main() {
   final instance = ApiClient().getCouriersApi();
@@ -42,6 +41,5 @@ void main() {
     test('test couriersSignUpPost', () async {
       // TODO
     });
-
   });
 }

@@ -15,7 +15,6 @@ import 'package:api_client/src/model/v1_category_input.dart';
 import 'package:built_collection/built_collection.dart';
 
 class CategoriesApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -25,7 +24,7 @@ class CategoriesApi {
   /// Get Category By Id
   ///
   /// get category by id for restaurant
-  Future<Response<DomainCategory>> restaurantsRidCategoriesCidGet({ 
+  Future<Response<DomainCategory>> restaurantsRidCategoriesCidGet({
     required String rid,
     required String cid,
     CancelToken? cancelToken,
@@ -35,7 +34,9 @@ class CategoriesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/restaurants/{rid}/categories/{cid}'.replaceAll('{' r'rid' '}', rid.toString()).replaceAll('{' r'cid' '}', cid.toString());
+    final _path = r'/restaurants/{rid}/categories/{cid}'
+        .replaceAll('{' r'rid' '}', rid.toString())
+        .replaceAll('{' r'cid' '}', cid.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -48,7 +49,8 @@ class CategoriesApi {
             'name': 'RestaurantAuth',
             'keyName': 'Authorization',
             'where': 'header',
-          },{
+          },
+          {
             'type': 'apiKey',
             'name': 'UserAuth',
             'keyName': 'Authorization',
@@ -63,8 +65,7 @@ class CategoriesApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -83,7 +84,6 @@ class CategoriesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as DomainCategory;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -108,7 +108,8 @@ class CategoriesApi {
   /// Get Menu By Category Id
   ///
   /// get menu items by catgory id
-  Future<Response<BuiltList<DomainMenuItem>>> restaurantsRidCategoriesCidMenuGet({ 
+  Future<Response<BuiltList<DomainMenuItem>>>
+      restaurantsRidCategoriesCidMenuGet({
     required String rid,
     required String cid,
     CancelToken? cancelToken,
@@ -118,7 +119,9 @@ class CategoriesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/restaurants/{rid}/categories/{cid}/menu'.replaceAll('{' r'rid' '}', rid.toString()).replaceAll('{' r'cid' '}', cid.toString());
+    final _path = r'/restaurants/{rid}/categories/{cid}/menu'
+        .replaceAll('{' r'rid' '}', rid.toString())
+        .replaceAll('{' r'cid' '}', cid.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -131,7 +134,8 @@ class CategoriesApi {
             'name': 'RestaurantAuth',
             'keyName': 'Authorization',
             'where': 'header',
-          },{
+          },
+          {
             'type': 'apiKey',
             'name': 'UserAuth',
             'keyName': 'Authorization',
@@ -146,8 +150,7 @@ class CategoriesApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -166,7 +169,6 @@ class CategoriesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<DomainMenuItem>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -191,7 +193,7 @@ class CategoriesApi {
   /// Update Category
   ///
   /// update category
-  Future<Response<V1Response>> restaurantsRidCategoriesCidPut({ 
+  Future<Response<V1Response>> restaurantsRidCategoriesCidPut({
     required String rid,
     required String cid,
     CancelToken? cancelToken,
@@ -201,7 +203,9 @@ class CategoriesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/restaurants/{rid}/categories/{cid}'.replaceAll('{' r'rid' '}', rid.toString()).replaceAll('{' r'cid' '}', cid.toString());
+    final _path = r'/restaurants/{rid}/categories/{cid}'
+        .replaceAll('{' r'rid' '}', rid.toString())
+        .replaceAll('{' r'cid' '}', cid.toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -224,8 +228,7 @@ class CategoriesApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -244,7 +247,6 @@ class CategoriesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as V1Response;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -269,7 +271,7 @@ class CategoriesApi {
   /// Get All Categories
   ///
   /// get all categories for user
-  Future<Response<BuiltList<DomainCategory>>> restaurantsRidCategoriesGet({ 
+  Future<Response<BuiltList<DomainCategory>>> restaurantsRidCategoriesGet({
     required String rid,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -278,7 +280,8 @@ class CategoriesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/restaurants/{rid}/categories/'.replaceAll('{' r'rid' '}', rid.toString());
+    final _path = r'/restaurants/{rid}/categories/'
+        .replaceAll('{' r'rid' '}', rid.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -291,7 +294,8 @@ class CategoriesApi {
             'name': 'RestaurantAuth',
             'keyName': 'Authorization',
             'where': 'header',
-          },{
+          },
+          {
             'type': 'apiKey',
             'name': 'UserAuth',
             'keyName': 'Authorization',
@@ -306,8 +310,7 @@ class CategoriesApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -326,7 +329,6 @@ class CategoriesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<DomainCategory>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -351,7 +353,7 @@ class CategoriesApi {
   /// Create Category
   ///
   /// create category
-  Future<Response<V1IdResponse>> restaurantsRidCategoriesPost({ 
+  Future<Response<V1IdResponse>> restaurantsRidCategoriesPost({
     required String rid,
     required V1CategoryInput input,
     CancelToken? cancelToken,
@@ -361,7 +363,8 @@ class CategoriesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/restaurants/{rid}/categories/'.replaceAll('{' r'rid' '}', rid.toString());
+    final _path = r'/restaurants/{rid}/categories/'
+        .replaceAll('{' r'rid' '}', rid.toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -384,18 +387,16 @@ class CategoriesApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     dynamic _bodyData;
 
     try {
       const _type = FullType(V1CategoryInput);
       _bodyData = _serializers.serialize(input, specifiedType: _type);
-
-    } catch(error) {
+    } catch (error) {
       throw DioError(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -423,7 +424,6 @@ class CategoriesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as V1IdResponse;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -448,7 +448,7 @@ class CategoriesApi {
   /// Delete Category
   ///
   /// delete category
-  Future<Response<V1Response>> restaurantsRidMenuCidDelete({ 
+  Future<Response<V1Response>> restaurantsRidMenuCidDelete({
     required String rid,
     required String cid,
     CancelToken? cancelToken,
@@ -458,7 +458,9 @@ class CategoriesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/restaurants/{rid}/menu/{cid}'.replaceAll('{' r'rid' '}', rid.toString()).replaceAll('{' r'cid' '}', cid.toString());
+    final _path = r'/restaurants/{rid}/menu/{cid}'
+        .replaceAll('{' r'rid' '}', rid.toString())
+        .replaceAll('{' r'cid' '}', cid.toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -481,8 +483,7 @@ class CategoriesApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -501,7 +502,6 @@ class CategoriesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as V1Response;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -522,5 +522,4 @@ class CategoriesApi {
       extra: _response.extra,
     );
   }
-
 }
