@@ -47,5 +47,4 @@ part 'model/v1_token_response.dart';
 part 'model/v1_user_sign_up_input.dart';
 part 'model/v1_user_update_input.dart';
 
-
 ApiClient defaultApiClient = new ApiClient();

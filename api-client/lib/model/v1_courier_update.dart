@@ -1,21 +1,16 @@
 part of swagger.api;
 
 class V1CourierUpdate {
-  
-  V1LocationInput address = null;
-  
+  V1LocationInput address;
 
-  String email = null;
-  
+  String email;
 
-  String name = null;
-  
+  String name;
 
-  String password = null;
-  
+  String password;
 
-  int workingStatus = null;
-  
+  int workingStatus;
+
   V1CourierUpdate();
 
   @override
@@ -25,23 +20,11 @@ class V1CourierUpdate {
 
   V1CourierUpdate.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    address =
-      
-      
-      new V1LocationInput.fromJson(json['address'])
-;
-    email =
-        json['email']
-    ;
-    name =
-        json['name']
-    ;
-    password =
-        json['password']
-    ;
-    workingStatus =
-        json['working_status']
-    ;
+    address = new V1LocationInput.fromJson(json['address']);
+    email = json['email'];
+    name = json['name'];
+    password = json['password'];
+    workingStatus = json['working_status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,19 +34,22 @@ class V1CourierUpdate {
       'name': name,
       'password': password,
       'working_status': workingStatus
-     };
+    };
   }
 
   static List<V1CourierUpdate> listFromJson(List<dynamic> json) {
-    return json == null ? new List<V1CourierUpdate>() : json.map((value) => new V1CourierUpdate.fromJson(value)).toList();
+    return json == null
+        ? []
+        : json.map((value) => new V1CourierUpdate.fromJson(value)).toList();
   }
 
-  static Map<String, V1CourierUpdate> mapFromJson(Map<String, Map<String, dynamic>> json) {
+  static Map<String, V1CourierUpdate> mapFromJson(
+      Map<String, Map<String, dynamic>> json) {
     var map = new Map<String, V1CourierUpdate>();
     if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new V1CourierUpdate.fromJson(value));
+      json.forEach((String key, Map<String, dynamic> value) =>
+          map[key] = new V1CourierUpdate.fromJson(value));
     }
     return map;
   }
 }
-
