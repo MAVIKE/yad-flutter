@@ -16,6 +16,6 @@ void main() {
 
 void testArithmetic() {
   test("Test + operator", () {
-    expect(4 + 6, 10);
+    expect(4 + 6, 11);
   });
 }
