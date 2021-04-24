@@ -1,9 +1,8 @@
 part of swagger.api;
 
 class V1OrderUpdate {
-  
   int status = null;
-  
+
   V1OrderUpdate();
 
   @override
@@ -13,27 +12,26 @@ class V1OrderUpdate {
 
   V1OrderUpdate.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    status =
-        json['status']
-    ;
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'status': status
-     };
+    return {'status': status};
   }
 
   static List<V1OrderUpdate> listFromJson(List<dynamic> json) {
-    return json == null ? new List<V1OrderUpdate>() : json.map((value) => new V1OrderUpdate.fromJson(value)).toList();
+    return json == null
+        ? new List<V1OrderUpdate>()
+        : json.map((value) => new V1OrderUpdate.fromJson(value)).toList();
   }
 
-  static Map<String, V1OrderUpdate> mapFromJson(Map<String, Map<String, dynamic>> json) {
+  static Map<String, V1OrderUpdate> mapFromJson(
+      Map<String, Map<String, dynamic>> json) {
     var map = new Map<String, V1OrderUpdate>();
     if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new V1OrderUpdate.fromJson(value));
+      json.forEach((String key, Map<String, dynamic> value) =>
+          map[key] = new V1OrderUpdate.fromJson(value));
     }
     return map;
   }
 }
-

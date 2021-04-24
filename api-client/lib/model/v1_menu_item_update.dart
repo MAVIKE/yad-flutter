@@ -1,21 +1,16 @@
 part of swagger.api;
 
 class V1MenuItemUpdate {
-  
   int categoryId = null;
-  
 
   String description = null;
-  
 
   String image = null;
-  
 
   int price = null;
-  
 
   String title = null;
-  
+
   V1MenuItemUpdate();
 
   @override
@@ -25,21 +20,11 @@ class V1MenuItemUpdate {
 
   V1MenuItemUpdate.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    categoryId =
-        json['category_id']
-    ;
-    description =
-        json['description']
-    ;
-    image =
-        json['image']
-    ;
-    price =
-        json['price']
-    ;
-    title =
-        json['title']
-    ;
+    categoryId = json['category_id'];
+    description = json['description'];
+    image = json['image'];
+    price = json['price'];
+    title = json['title'];
   }
 
   Map<String, dynamic> toJson() {
@@ -49,19 +34,22 @@ class V1MenuItemUpdate {
       'image': image,
       'price': price,
       'title': title
-     };
+    };
   }
 
   static List<V1MenuItemUpdate> listFromJson(List<dynamic> json) {
-    return json == null ? new List<V1MenuItemUpdate>() : json.map((value) => new V1MenuItemUpdate.fromJson(value)).toList();
+    return json == null
+        ? new List<V1MenuItemUpdate>()
+        : json.map((value) => new V1MenuItemUpdate.fromJson(value)).toList();
   }
 
-  static Map<String, V1MenuItemUpdate> mapFromJson(Map<String, Map<String, dynamic>> json) {
+  static Map<String, V1MenuItemUpdate> mapFromJson(
+      Map<String, Map<String, dynamic>> json) {
     var map = new Map<String, V1MenuItemUpdate>();
     if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new V1MenuItemUpdate.fromJson(value));
+      json.forEach((String key, Map<String, dynamic> value) =>
+          map[key] = new V1MenuItemUpdate.fromJson(value));
     }
     return map;
   }
 }
-

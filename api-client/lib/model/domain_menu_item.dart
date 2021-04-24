@@ -1,24 +1,18 @@
 part of swagger.api;
 
 class DomainMenuItem {
-  
   String description = null;
-  
 
   int id = null;
-  
 
   String image = null;
-  
 
   int price = null;
-  
 
   int restaurantId = null;
-  
 
   String title = null;
-  
+
   DomainMenuItem();
 
   @override
@@ -28,24 +22,12 @@ class DomainMenuItem {
 
   DomainMenuItem.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    description =
-        json['description']
-    ;
-    id =
-        json['id']
-    ;
-    image =
-        json['image']
-    ;
-    price =
-        json['price']
-    ;
-    restaurantId =
-        json['restaurant_id']
-    ;
-    title =
-        json['title']
-    ;
+    description = json['description'];
+    id = json['id'];
+    image = json['image'];
+    price = json['price'];
+    restaurantId = json['restaurant_id'];
+    title = json['title'];
   }
 
   Map<String, dynamic> toJson() {
@@ -56,19 +38,22 @@ class DomainMenuItem {
       'price': price,
       'restaurant_id': restaurantId,
       'title': title
-     };
+    };
   }
 
   static List<DomainMenuItem> listFromJson(List<dynamic> json) {
-    return json == null ? new List<DomainMenuItem>() : json.map((value) => new DomainMenuItem.fromJson(value)).toList();
+    return json == null
+        ? new List<DomainMenuItem>()
+        : json.map((value) => new DomainMenuItem.fromJson(value)).toList();
   }
 
-  static Map<String, DomainMenuItem> mapFromJson(Map<String, Map<String, dynamic>> json) {
+  static Map<String, DomainMenuItem> mapFromJson(
+      Map<String, Map<String, dynamic>> json) {
     var map = new Map<String, DomainMenuItem>();
     if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new DomainMenuItem.fromJson(value));
+      json.forEach((String key, Map<String, dynamic> value) =>
+          map[key] = new DomainMenuItem.fromJson(value));
     }
     return map;
   }
 }
-

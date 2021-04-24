@@ -1,11 +1,10 @@
 part of swagger.api;
 
-
-
 class CouriersApi {
   final ApiClient apiClient;
 
-  CouriersApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  CouriersApi([ApiClient apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   /// Get Courier By Id
   ///
@@ -14,51 +13,46 @@ class CouriersApi {
     Object postBody = null;
 
     // verify required params are set
-    if(cid == null) {
-     throw new ApiException(400, "Missing required param: cid");
+    if (cid == null) {
+      throw new ApiException(400, "Missing required param: cid");
     }
 
     // create path and map variables
-    String path = "/couriers/{cid}".replaceAll("{format}","json").replaceAll("{" + "cid" + "}", cid.toString());
+    String path = "/couriers/{cid}"
+        .replaceAll("{format}", "json")
+        .replaceAll("{" + "cid" + "}", cid.toString());
 
     // query params
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
+
     List<String> contentTypes = ["application/json"];
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    String contentType =
+        contentTypes.length > 0 ? contentTypes[0] : "application/json";
     List<String> authNames = ["RestaurantAuth", "UserAuth"];
 
-    if(contentType.startsWith("multipart/form-data")) {
+    if (contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
       MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+      if (hasFields) postBody = mp;
+    } else {}
 
-    if(response.statusCode >= 400) {
+    var response = await apiClient.invokeAPI(path, 'GET', queryParams, postBody,
+        headerParams, formParams, contentType, authNames);
+
+    if (response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'DomainCourier') as DomainCourier ;
+    } else if (response.body != null) {
+      return apiClient.deserialize(response.body, 'DomainCourier')
+          as DomainCourier;
     } else {
       return null;
     }
   }
+
   /// Update Courier
   ///
   /// update courier
@@ -66,54 +60,48 @@ class CouriersApi {
     Object postBody = input;
 
     // verify required params are set
-    if(cid == null) {
-     throw new ApiException(400, "Missing required param: cid");
+    if (cid == null) {
+      throw new ApiException(400, "Missing required param: cid");
     }
-    if(input == null) {
-     throw new ApiException(400, "Missing required param: input");
+    if (input == null) {
+      throw new ApiException(400, "Missing required param: input");
     }
 
     // create path and map variables
-    String path = "/couriers/{cid}".replaceAll("{format}","json").replaceAll("{" + "cid" + "}", cid.toString());
+    String path = "/couriers/{cid}"
+        .replaceAll("{format}", "json")
+        .replaceAll("{" + "cid" + "}", cid.toString());
 
     // query params
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
+
     List<String> contentTypes = ["application/json"];
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    String contentType =
+        contentTypes.length > 0 ? contentTypes[0] : "application/json";
     List<String> authNames = ["AdminAuth", "CourierAuth"];
 
-    if(contentType.startsWith("multipart/form-data")) {
+    if (contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
       MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'PUT',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+      if (hasFields) postBody = mp;
+    } else {}
 
-    if(response.statusCode >= 400) {
+    var response = await apiClient.invokeAPI(path, 'PUT', queryParams, postBody,
+        headerParams, formParams, contentType, authNames);
+
+    if (response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'V1Response') as V1Response ;
+    } else if (response.body != null) {
+      return apiClient.deserialize(response.body, 'V1Response') as V1Response;
     } else {
       return null;
     }
   }
+
   /// Courier SignIn
   ///
   /// courier sign in
@@ -121,51 +109,44 @@ class CouriersApi {
     Object postBody = input;
 
     // verify required params are set
-    if(input == null) {
-     throw new ApiException(400, "Missing required param: input");
+    if (input == null) {
+      throw new ApiException(400, "Missing required param: input");
     }
 
     // create path and map variables
-    String path = "/couriers/sign-in".replaceAll("{format}","json");
+    String path = "/couriers/sign-in".replaceAll("{format}", "json");
 
     // query params
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
+
     List<String> contentTypes = ["application/json"];
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    String contentType =
+        contentTypes.length > 0 ? contentTypes[0] : "application/json";
     List<String> authNames = [];
 
-    if(contentType.startsWith("multipart/form-data")) {
+    if (contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
       MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+      if (hasFields) postBody = mp;
+    } else {}
 
-    if(response.statusCode >= 400) {
+    var response = await apiClient.invokeAPI(path, 'POST', queryParams,
+        postBody, headerParams, formParams, contentType, authNames);
+
+    if (response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'V1TokenResponse') as V1TokenResponse ;
+    } else if (response.body != null) {
+      return apiClient.deserialize(response.body, 'V1TokenResponse')
+          as V1TokenResponse;
     } else {
       return null;
     }
   }
+
   /// Courier SignUp
   ///
   /// courier sign up
@@ -173,47 +154,39 @@ class CouriersApi {
     Object postBody = input;
 
     // verify required params are set
-    if(input == null) {
-     throw new ApiException(400, "Missing required param: input");
+    if (input == null) {
+      throw new ApiException(400, "Missing required param: input");
     }
 
     // create path and map variables
-    String path = "/couriers/sign-up".replaceAll("{format}","json");
+    String path = "/couriers/sign-up".replaceAll("{format}", "json");
 
     // query params
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
+
     List<String> contentTypes = ["application/json"];
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    String contentType =
+        contentTypes.length > 0 ? contentTypes[0] : "application/json";
     List<String> authNames = [];
 
-    if(contentType.startsWith("multipart/form-data")) {
+    if (contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
       MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+      if (hasFields) postBody = mp;
+    } else {}
 
-    if(response.statusCode >= 400) {
+    var response = await apiClient.invokeAPI(path, 'POST', queryParams,
+        postBody, headerParams, formParams, contentType, authNames);
+
+    if (response.statusCode >= 400) {
       throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return 
-          apiClient.deserialize(response.body, 'V1TokenResponse') as V1TokenResponse ;
+    } else if (response.body != null) {
+      return apiClient.deserialize(response.body, 'V1TokenResponse')
+          as V1TokenResponse;
     } else {
       return null;
     }
