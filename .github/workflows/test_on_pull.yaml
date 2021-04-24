@@ -1,0 +1,103 @@
+name: Test on pull request
+on: [pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.base.ref }}
+    - run: git rebase ${{ github.event.pull_request.base.ref }}
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '2.0.5'
+    - run: flutter analyze
+  
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+      - run: git rebase ${{ github.event.pull_request.base.ref }}
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.5'
+      - run: flutter pub get
+      - run: flutter test
+    needs: [lint]
+
+  build_user_app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+      - run: git rebase ${{ github.event.pull_request.base.ref }}
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.5'
+      - run: flutter pub get
+      - run: flutter build apk
+      - uses: actions/upload-artifact@v2
+        with:
+          name: yad.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+    needs: [test]
+  
+  build_delivery_boy_app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+      - run: git rebase ${{ github.event.pull_request.base.ref }}
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.5'
+      - run: flutter pub get
+      - run: flutter build apk -t lib/main_db.dart
+      - uses: actions/upload-artifact@v2
+        with:
+          name: yad_db.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+    needs: [test]
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+      - run: git rebase ${{ github.event.pull_request.base.ref }}
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.5'
+      - run: flutter pub get
+      - run: dart pub global activate dartdoc
+      - run: $HOME/.pub-cache/bin/dartdoc
+      - uses: actions/upload-artifact@v2
+        with:
+          name: docs
+          path: doc/api/
+    needs: [build_delivery_boy_app, build_user_app]
