@@ -1,9 +1,8 @@
 part of swagger.api;
 
 class V1OrderInput {
-  
-  int restaurantId = null;
-  
+  int restaurantId;
+
   V1OrderInput();
 
   @override
@@ -13,27 +12,26 @@ class V1OrderInput {
 
   V1OrderInput.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    restaurantId =
-        json['restaurant_id']
-    ;
+    restaurantId = json['restaurant_id'];
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'restaurant_id': restaurantId
-     };
+    return {'restaurant_id': restaurantId};
   }
 
   static List<V1OrderInput> listFromJson(List<dynamic> json) {
-    return json == null ? new List<V1OrderInput>() : json.map((value) => new V1OrderInput.fromJson(value)).toList();
+    return json == null
+        ? []
+        : json.map((value) => new V1OrderInput.fromJson(value)).toList();
   }
 
-  static Map<String, V1OrderInput> mapFromJson(Map<String, Map<String, dynamic>> json) {
+  static Map<String, V1OrderInput> mapFromJson(
+      Map<String, Map<String, dynamic>> json) {
     var map = new Map<String, V1OrderInput>();
     if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new V1OrderInput.fromJson(value));
+      json.forEach((String key, Map<String, dynamic> value) =>
+          map[key] = new V1OrderInput.fromJson(value));
     }
     return map;
   }
 }
-

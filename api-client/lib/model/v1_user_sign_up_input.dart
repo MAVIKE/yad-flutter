@@ -1,21 +1,16 @@
 part of swagger.api;
 
 class V1UserSignUpInput {
-  
-  V1LocationInput address = null;
-  
+  V1LocationInput address;
 
-  String email = null;
-  
+  String email;
 
-  String name = null;
-  
+  String name;
 
-  String password = null;
-  
+  String password;
 
-  String phone = null;
-  
+  String phone;
+
   V1UserSignUpInput();
 
   @override
@@ -25,23 +20,11 @@ class V1UserSignUpInput {
 
   V1UserSignUpInput.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    address =
-      
-      
-      new V1LocationInput.fromJson(json['address'])
-;
-    email =
-        json['email']
-    ;
-    name =
-        json['name']
-    ;
-    password =
-        json['password']
-    ;
-    phone =
-        json['phone']
-    ;
+    address = new V1LocationInput.fromJson(json['address']);
+    email = json['email'];
+    name = json['name'];
+    password = json['password'];
+    phone = json['phone'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,19 +34,22 @@ class V1UserSignUpInput {
       'name': name,
       'password': password,
       'phone': phone
-     };
+    };
   }
 
   static List<V1UserSignUpInput> listFromJson(List<dynamic> json) {
-    return json == null ? new List<V1UserSignUpInput>() : json.map((value) => new V1UserSignUpInput.fromJson(value)).toList();
+    return json == null
+        ? []
+        : json.map((value) => new V1UserSignUpInput.fromJson(value)).toList();
   }
 
-  static Map<String, V1UserSignUpInput> mapFromJson(Map<String, Map<String, dynamic>> json) {
+  static Map<String, V1UserSignUpInput> mapFromJson(
+      Map<String, Map<String, dynamic>> json) {
     var map = new Map<String, V1UserSignUpInput>();
     if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new V1UserSignUpInput.fromJson(value));
+      json.forEach((String key, Map<String, dynamic> value) =>
+          map[key] = new V1UserSignUpInput.fromJson(value));
     }
     return map;
   }
 }
-

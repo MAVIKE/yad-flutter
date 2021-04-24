@@ -1,27 +1,20 @@
 part of swagger.api;
 
 class DomainCourier {
-  
-  String email = null;
-  
+  String email;
 
-  int id = null;
-  
+  int id;
 
-  DomainLocation location = null;
-  
+  DomainLocation location;
 
-  String name = null;
-  
+  String name;
 
-  String password = null;
-  
+  String password;
 
-  String phone = null;
-  
+  String phone;
 
-  int workingStatus = null;
-  
+  int workingStatus;
+
   DomainCourier();
 
   @override
@@ -31,29 +24,13 @@ class DomainCourier {
 
   DomainCourier.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    email =
-        json['email']
-    ;
-    id =
-        json['id']
-    ;
-    location =
-      
-      
-      new DomainLocation.fromJson(json['location'])
-;
-    name =
-        json['name']
-    ;
-    password =
-        json['password']
-    ;
-    phone =
-        json['phone']
-    ;
-    workingStatus =
-        json['working_status']
-    ;
+    email = json['email'];
+    id = json['id'];
+    location = new DomainLocation.fromJson(json['location']);
+    name = json['name'];
+    password = json['password'];
+    phone = json['phone'];
+    workingStatus = json['working_status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -65,19 +42,22 @@ class DomainCourier {
       'password': password,
       'phone': phone,
       'working_status': workingStatus
-     };
+    };
   }
 
   static List<DomainCourier> listFromJson(List<dynamic> json) {
-    return json == null ? new List<DomainCourier>() : json.map((value) => new DomainCourier.fromJson(value)).toList();
+    return json == null
+        ? []
+        : json.map((value) => new DomainCourier.fromJson(value)).toList();
   }
 
-  static Map<String, DomainCourier> mapFromJson(Map<String, Map<String, dynamic>> json) {
+  static Map<String, DomainCourier> mapFromJson(
+      Map<String, Map<String, dynamic>> json) {
     var map = new Map<String, DomainCourier>();
     if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new DomainCourier.fromJson(value));
+      json.forEach((String key, Map<String, dynamic> value) =>
+          map[key] = new DomainCourier.fromJson(value));
     }
     return map;
   }
 }
-
