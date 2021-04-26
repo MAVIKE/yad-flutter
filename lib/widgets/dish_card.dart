@@ -77,7 +77,7 @@ class _CountingDishesState extends State<CountingDishes> {
     return Row(
       children: [
         Text((dishCost * dishesCount).toString()),
-        FlatButton(
+        TextButton(
             onPressed: () {
               setState(() {
                 dishesCount -= 1;
@@ -85,7 +85,7 @@ class _CountingDishesState extends State<CountingDishes> {
             },
             child: const Text('-')
         ),
-        FlatButton(
+        TextButton(
             onPressed: () {
               setState(() {
                 dishesCount += 1;
@@ -124,7 +124,7 @@ class _OrderedOrNotState extends State<OrderedOrNot> {
     return Row(
       children: [
         Text('$dishCost'),
-        FlatButton(
+        TextButton(
             onPressed: () {
               setState(() {
                 this.isOrdered = !this.isOrdered;
