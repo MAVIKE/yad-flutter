@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+// ignore: unused_import
 import 'package:api_client/src/model/v1_response.dart';
 import 'package:api_client/src/model/v1_token_response.dart';
 import 'package:api_client/src/model/v1_admin_sign_in_input.dart';
