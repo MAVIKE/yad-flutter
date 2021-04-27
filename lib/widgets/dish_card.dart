@@ -42,8 +42,8 @@ class DishCard extends StatelessWidget {
             title: Text(this.header),
             subtitle: Column(
               children: [Text(this.description),
-                isCountingDishes? CountingDishes(dishCost: this.dishCost) :
-                OrderedOrNot(dishCost: this.dishCost),
+                isCountingDishes? _CountingDishes(dishCost: this.dishCost) :
+                _OrderedOrNot(dishCost: this.dishCost),
               ],
             ),
         ),
@@ -52,12 +52,12 @@ class DishCard extends StatelessWidget {
   }
 }
 
-class CountingDishes extends StatefulWidget {
+class _CountingDishes extends StatefulWidget {
 
   final double dishCost;
   final int dishesCount;
 
-  CountingDishes(
+  _CountingDishes(
       {this.dishCost = 0.0, this.dishesCount = 0,
   });
 
@@ -65,7 +65,7 @@ class CountingDishes extends StatefulWidget {
   _CountingDishesState createState() => _CountingDishesState(dishCost, dishesCount);
 }
 
-class _CountingDishesState extends State<CountingDishes> {
+class _CountingDishesState extends State<_CountingDishes> {
 
   double dishCost;
   int dishesCount;
@@ -99,12 +99,12 @@ class _CountingDishesState extends State<CountingDishes> {
   }
 }
 
-class OrderedOrNot extends StatefulWidget {
+class _OrderedOrNot extends StatefulWidget {
 
   final double dishCost;
   final bool isOrdered;
 
-  OrderedOrNot(
+  _OrderedOrNot(
       {this.dishCost = 0.0, this.isOrdered = false,
       });
 
@@ -112,7 +112,7 @@ class OrderedOrNot extends StatefulWidget {
   _OrderedOrNotState createState() => _OrderedOrNotState(dishCost, isOrdered);
 }
 
-class _OrderedOrNotState extends State<OrderedOrNot> {
+class _OrderedOrNotState extends State<_OrderedOrNot> {
 
   double dishCost;
   bool isOrdered;
