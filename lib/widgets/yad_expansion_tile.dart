@@ -1,28 +1,51 @@
 import 'package:flutter/material.dart';
 
+typedef Widget OnExpansionChangedBuilder(BuildContext ctx, bool isExpanded, _);
+typedef void OnExpansionChangedCallback(bool isExpanded);
+
 class YadExpansionTile extends StatelessWidget {
-  final String title;
-  final Widget _trailing;
+  final OnExpansionChangedBuilder _titleBuilder;
+  final OnExpansionChangedBuilder _trailingBuilder;
+  final OnExpansionChangedCallback _onExpansionChanged;
   final Widget _body;
+  final ValueNotifier<bool> _collapsed;
+  final Decoration _decoration;
+
+
+  static Widget emptyBuilder(BuildContext ctx, bool isExpanded, _) {
+    return Container();
+  }
+
+  static void emptyCallback(bool isExpanded) {
+  }
 
   YadExpansionTile(
     {
-      required this.title,
-      Widget? trailing,
+      OnExpansionChangedBuilder? titleBuilder,
+      OnExpansionChangedBuilder? trailingBuilder,
+      OnExpansionChangedCallback? onExpansionChanged,
       Widget? body,
-    }) : _trailing = trailing ?? Icon(Icons.settings), _body = body ?? Container();
+      Decoration? decoration,
+      bool collapsed = true,
+    }) : 
+        _titleBuilder = titleBuilder ?? emptyBuilder,
+        _trailingBuilder = trailingBuilder ?? emptyBuilder,
+        _onExpansionChanged = onExpansionChanged ?? emptyCallback, 
+        _body = body ?? Container(),
+        _collapsed = ValueNotifier(collapsed),
+        _decoration = decoration ?? BoxDecoration();
   
   @override
   Widget build(BuildContext context) => Container(
-    color: Colors.orange,
+    decoration: _decoration,
     child: ExpansionTile(
-      title: Text(this.title, 
-        style: TextStyle(
-          color: Colors.deepPurple, 
-          fontWeight: FontWeight.bold
-        )),
-      trailing: _trailing,
+      title: ValueListenableBuilder(valueListenable: _collapsed, builder: _titleBuilder),
+      trailing: ValueListenableBuilder(valueListenable: _collapsed, builder: _trailingBuilder),
       children: [_body],
+      onExpansionChanged: (collapsed) {
+        _collapsed.value = !collapsed;
+        _onExpansionChanged(collapsed);
+      },
     ),
   );
 }
