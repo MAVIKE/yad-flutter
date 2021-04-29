@@ -3,6 +3,8 @@
 //
 
 import 'package:built_collection/built_collection.dart';
+// ignore: unused_import
+import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
 import 'package:built_value/iso_8601_date_time_serializer.dart';
@@ -15,7 +17,9 @@ import 'package:api_client/src/model/domain_order.dart';
 import 'package:api_client/src/model/domain_order_item.dart';
 import 'package:api_client/src/model/domain_restaurant.dart';
 import 'package:api_client/src/model/domain_user.dart';
+import 'package:api_client/src/model/v1_admin_sign_in_input.dart';
 import 'package:api_client/src/model/v1_category_input.dart';
+import 'package:api_client/src/model/v1_courier_sign_in_input.dart';
 import 'package:api_client/src/model/v1_courier_sign_up_input.dart';
 import 'package:api_client/src/model/v1_courier_update.dart';
 import 'package:api_client/src/model/v1_id_response.dart';
@@ -29,8 +33,9 @@ import 'package:api_client/src/model/v1_order_update.dart';
 import 'package:api_client/src/model/v1_response.dart';
 import 'package:api_client/src/model/v1_restaurant_sign_up_input.dart';
 import 'package:api_client/src/model/v1_restaurant_update_input.dart';
-import 'package:api_client/src/model/v1_sign_in_input.dart';
+import 'package:api_client/src/model/v1_restaurants_sign_in_input.dart';
 import 'package:api_client/src/model/v1_token_response.dart';
+import 'package:api_client/src/model/v1_user_sign_in_input.dart';
 import 'package:api_client/src/model/v1_user_sign_up_input.dart';
 import 'package:api_client/src/model/v1_user_update_input.dart';
 
@@ -45,7 +50,9 @@ part 'serializers.g.dart';
   DomainOrderItem,
   DomainRestaurant,
   DomainUser,
+  V1AdminSignInInput,
   V1CategoryInput,
+  V1CourierSignInInput,
   V1CourierSignUpInput,
   V1CourierUpdate,
   V1IdResponse,
@@ -59,8 +66,9 @@ part 'serializers.g.dart';
   V1Response,
   V1RestaurantSignUpInput,
   V1RestaurantUpdateInput,
-  V1SignInInput,
+  V1RestaurantsSignInInput,
   V1TokenResponse,
+  V1UserSignInInput,
   V1UserSignUpInput,
   V1UserUpdateInput,
 ])

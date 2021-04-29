@@ -24,7 +24,7 @@ admin sign in
 import 'package:api_client/api.dart';
 
 var api_instance = new AdminsApi();
-var input = new V1SignInInput(); // V1SignInInput | sign in info
+var input = new V1AdminSignInInput(); // V1AdminSignInInput | sign in info
 
 try { 
     var result = api_instance.adminsSignInPost(input);
@@ -38,7 +38,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **input** | [**V1SignInInput**](V1SignInInput.md)| sign in info | 
+ **input** | [**V1AdminSignInInput**](V1AdminSignInInput.md)| sign in info | 
 
 ### Return type
 

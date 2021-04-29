@@ -131,7 +131,7 @@ courier sign in
 import 'package:api_client/api.dart';
 
 var api_instance = new CouriersApi();
-var input = new V1SignInInput(); // V1SignInInput | sign in info
+var input = new V1CourierSignInInput(); // V1CourierSignInInput | sign in info
 
 try { 
     var result = api_instance.couriersSignInPost(input);
@@ -145,7 +145,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **input** | [**V1SignInInput**](V1SignInInput.md)| sign in info | 
+ **input** | [**V1CourierSignInInput**](V1CourierSignInInput.md)| sign in info | 
 
 ### Return type
 

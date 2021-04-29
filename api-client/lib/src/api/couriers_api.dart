@@ -9,8 +9,8 @@ import 'package:dio/dio.dart';
 
 import 'package:api_client/src/model/v1_response.dart';
 import 'package:api_client/src/model/v1_token_response.dart';
-import 'package:api_client/src/model/v1_sign_in_input.dart';
 import 'package:api_client/src/model/v1_courier_sign_up_input.dart';
+import 'package:api_client/src/model/v1_courier_sign_in_input.dart';
 import 'package:api_client/src/model/v1_courier_update.dart';
 import 'package:api_client/src/model/domain_courier.dart';
 
@@ -206,7 +206,7 @@ class CouriersApi {
   ///
   /// courier sign in
   Future<Response<V1TokenResponse>> couriersSignInPost({
-    required V1SignInInput input,
+    required V1CourierSignInInput input,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -235,7 +235,7 @@ class CouriersApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(V1SignInInput);
+      const _type = FullType(V1CourierSignInInput);
       _bodyData = _serializers.serialize(input, specifiedType: _type);
     } catch (error) {
       throw DioError(

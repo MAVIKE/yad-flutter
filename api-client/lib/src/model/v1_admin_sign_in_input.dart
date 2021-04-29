@@ -5,37 +5,39 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'v1_sign_in_input.g.dart';
+part 'v1_admin_sign_in_input.g.dart';
 
-abstract class V1SignInInput
-    implements Built<V1SignInInput, V1SignInInputBuilder> {
+abstract class V1AdminSignInInput
+    implements Built<V1AdminSignInInput, V1AdminSignInInputBuilder> {
   @BuiltValueField(wireName: r'name')
   String? get name;
 
   @BuiltValueField(wireName: r'password')
   String? get password;
 
-  V1SignInInput._();
+  V1AdminSignInInput._();
 
-  static void _initializeBuilder(V1SignInInputBuilder b) => b;
+  static void _initializeBuilder(V1AdminSignInInputBuilder b) => b;
 
-  factory V1SignInInput([void updates(V1SignInInputBuilder b)]) =
-      _$V1SignInInput;
+  factory V1AdminSignInInput([void updates(V1AdminSignInInputBuilder b)]) =
+      _$V1AdminSignInInput;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<V1SignInInput> get serializer =>
-      _$V1SignInInputSerializer();
+  static Serializer<V1AdminSignInInput> get serializer =>
+      _$V1AdminSignInInputSerializer();
 }
 
-class _$V1SignInInputSerializer implements StructuredSerializer<V1SignInInput> {
+class _$V1AdminSignInInputSerializer
+    implements StructuredSerializer<V1AdminSignInInput> {
   @override
-  final Iterable<Type> types = const [V1SignInInput, _$V1SignInInput];
+  final Iterable<Type> types = const [V1AdminSignInInput, _$V1AdminSignInInput];
 
   @override
-  final String wireName = r'V1SignInInput';
+  final String wireName = r'V1AdminSignInInput';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, V1SignInInput object,
+  Iterable<Object?> serialize(
+      Serializers serializers, V1AdminSignInInput object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     if (object.name != null) {
@@ -54,10 +56,10 @@ class _$V1SignInInputSerializer implements StructuredSerializer<V1SignInInput> {
   }
 
   @override
-  V1SignInInput deserialize(
+  V1AdminSignInInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = V1SignInInputBuilder();
+    final result = V1AdminSignInInputBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {

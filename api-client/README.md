@@ -43,7 +43,7 @@ import 'package:api_client/api_client.dart';
 
 
 final api = AdminsApi();
-final input = V1SignInInput(); // V1SignInInput | sign in info
+final input = V1AdminSignInInput(); // V1AdminSignInInput | sign in info
 
 try {
     final response = await api.adminsSignInPost(input);
@@ -113,7 +113,9 @@ Class | Method | HTTP request | Description
  - [DomainOrderItem](doc/DomainOrderItem.md)
  - [DomainRestaurant](doc/DomainRestaurant.md)
  - [DomainUser](doc/DomainUser.md)
+ - [V1AdminSignInInput](doc/V1AdminSignInInput.md)
  - [V1CategoryInput](doc/V1CategoryInput.md)
+ - [V1CourierSignInInput](doc/V1CourierSignInInput.md)
  - [V1CourierSignUpInput](doc/V1CourierSignUpInput.md)
  - [V1CourierUpdate](doc/V1CourierUpdate.md)
  - [V1IdResponse](doc/V1IdResponse.md)
@@ -127,8 +129,9 @@ Class | Method | HTTP request | Description
  - [V1Response](doc/V1Response.md)
  - [V1RestaurantSignUpInput](doc/V1RestaurantSignUpInput.md)
  - [V1RestaurantUpdateInput](doc/V1RestaurantUpdateInput.md)
- - [V1SignInInput](doc/V1SignInInput.md)
+ - [V1RestaurantsSignInInput](doc/V1RestaurantsSignInInput.md)
  - [V1TokenResponse](doc/V1TokenResponse.md)
+ - [V1UserSignInInput](doc/V1UserSignInInput.md)
  - [V1UserSignUpInput](doc/V1UserSignUpInput.md)
  - [V1UserUpdateInput](doc/V1UserUpdateInput.md)
 

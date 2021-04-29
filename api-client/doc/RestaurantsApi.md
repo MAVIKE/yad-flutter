@@ -607,7 +607,7 @@ restaurant sign in
 import 'package:api_client/api.dart';
 
 var api_instance = new RestaurantsApi();
-var input = new V1SignInInput(); // V1SignInInput | sign up info
+var input = new V1RestaurantsSignInInput(); // V1RestaurantsSignInInput | sign up info
 
 try { 
     var result = api_instance.restaurantsSignInPost(input);
@@ -621,7 +621,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **input** | [**V1SignInInput**](V1SignInInput.md)| sign up info | 
+ **input** | [**V1RestaurantsSignInInput**](V1RestaurantsSignInInput.md)| sign up info | 
 
 ### Return type
 

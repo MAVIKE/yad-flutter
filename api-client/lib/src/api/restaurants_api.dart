@@ -13,10 +13,10 @@ import 'package:api_client/src/model/v1_menu_item_update.dart';
 import 'package:api_client/src/model/v1_restaurant_update_input.dart';
 import 'package:api_client/src/model/v1_token_response.dart';
 import 'package:api_client/src/model/v1_id_response.dart';
-import 'package:api_client/src/model/v1_sign_in_input.dart';
 import 'package:api_client/src/model/domain_menu_item.dart';
 import 'package:api_client/src/model/v1_menu_item_input.dart';
 import 'package:api_client/src/model/v1_restaurant_sign_up_input.dart';
+import 'package:api_client/src/model/v1_restaurants_sign_in_input.dart';
 import 'package:built_collection/built_collection.dart';
 
 class RestaurantsApi {
@@ -85,7 +85,9 @@ class RestaurantsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<DomainRestaurant>;
-    } catch (error) {
+    } catch (error, s) {
+      print(error);
+      print(s);
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
@@ -1008,7 +1010,7 @@ class RestaurantsApi {
   ///
   /// restaurant sign in
   Future<Response<V1TokenResponse>> restaurantsSignInPost({
-    required V1SignInInput input,
+    required V1RestaurantsSignInInput input,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1037,7 +1039,7 @@ class RestaurantsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(V1SignInInput);
+      const _type = FullType(V1RestaurantsSignInInput);
       _bodyData = _serializers.serialize(input, specifiedType: _type);
     } catch (error) {
       throw DioError(

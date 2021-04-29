@@ -7,8 +7,10 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+// ignore: unused_import
+import 'package:api_client/src/model/v1_response.dart';
 import 'package:api_client/src/model/v1_token_response.dart';
-import 'package:api_client/src/model/v1_sign_in_input.dart';
+import 'package:api_client/src/model/v1_admin_sign_in_input.dart';
 
 class AdminsApi {
   final Dio _dio;
@@ -21,7 +23,7 @@ class AdminsApi {
   ///
   /// admin sign in
   Future<Response<V1TokenResponse>> adminsSignInPost({
-    required V1SignInInput input,
+    required V1AdminSignInInput input,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -50,7 +52,7 @@ class AdminsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(V1SignInInput);
+      const _type = FullType(V1AdminSignInInput);
       _bodyData = _serializers.serialize(input, specifiedType: _type);
     } catch (error) {
       throw DioError(
