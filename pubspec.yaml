@@ -34,6 +34,9 @@ dependencies:
   flutter_riverpod:
   bloc:
   flutter_bloc:
+  formz:
+  equatable:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
