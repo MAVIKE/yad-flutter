@@ -42,7 +42,7 @@ class RestaurantCard extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => _somewhere,
+                    builder: (context) => DishCard(header: 'header', description: 'description', isCountingDishes: true, dishCost: 150),
                   ),
                 );
               },
