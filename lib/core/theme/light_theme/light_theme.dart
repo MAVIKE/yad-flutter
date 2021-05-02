@@ -52,5 +52,4 @@ class LightTheme implements ITheme {
 
   @override
   IDishCardTheme get dishCardTheme => _dishCardTheme;
-
 }

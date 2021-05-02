@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:yad/core/theme/light_theme/light_theme.dart';
 import 'package:yad/widgets/dish_card.dart';
 
 class RestaurantCard extends StatelessWidget {
-
   final ImageProvider _photo;
   final String header;
 
-  RestaurantCard({
-    ImageProvider? photo,
-    required this.header
-
-  }) : _photo = photo ?? AssetImage('assets/restaurant_0.jpg');
+  RestaurantCard({ImageProvider? photo, required this.header})
+      : _photo = photo ?? AssetImage('assets/restaurant_0.jpg');
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +31,22 @@ class RestaurantCard extends StatelessWidget {
                   ),
                 ),
               ),
-              subtitle: Text(this.header, style: TextStyle(fontSize: 36),
+              subtitle: Text(
+                this.header,
+                style: TextStyle(fontSize: 36),
               ),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DishCard(header: 'header', description: 'description', isCountingDishes: true, dishCost: 150),
+                    builder: (context) => DishCard(
+                        header: 'header',
+                        description: 'description',
+                        isCountingDishes: true,
+                        dishCost: 150),
                   ),
                 );
               },
-            )
-        )
-    );
+            )));
   }
 }

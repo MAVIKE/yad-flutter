@@ -14,17 +14,21 @@ import 'package:yad/widgets/yad_expansion_tile.dart';
 
 void main() {
   testArithmetic();
-  testWidgets('ExpansionWidget has changable title and trailing widgets', (WidgetTester tester) async {
+  testWidgets('ExpansionWidget has changable title and trailing widgets',
+      (WidgetTester tester) async {
     var state = true; // Variable to check callback to be called
     await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-      body:YadExpansionTile(
-        titleBuilder: (context, collapsed, _) => collapsed ? Text("A") : Text("B"),
-        trailingBuilder: (context, collapsed, _) => collapsed ? Icon(Icons.settings) : Icon(Icons.save),
-        body: Text("Text"),
-        onExpansionChanged: (val) { state = false; },
-      )
-    )));
+        home: Scaffold(
+            body: YadExpansionTile(
+      titleBuilder: (context, collapsed, _) =>
+          collapsed ? Text("A") : Text("B"),
+      trailingBuilder: (context, collapsed, _) =>
+          collapsed ? Icon(Icons.settings) : Icon(Icons.save),
+      body: Text("Text"),
+      onExpansionChanged: (val) {
+        state = false;
+      },
+    ))));
 
     // Widget in collapsed state
     var titleFinder = find.text("A");
