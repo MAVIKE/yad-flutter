@@ -28,7 +28,7 @@ void main() {
     //
     // courier sign in
     //
-    //Future<V1TokenResponse> couriersSignInPost(V1SignInInput input) async
+    //Future<V1TokenResponse> couriersSignInPost(V1CourierSignInInput input) async
     test('test couriersSignInPost', () async {
       // TODO
     });

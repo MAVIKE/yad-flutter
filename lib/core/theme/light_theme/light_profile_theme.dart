@@ -30,4 +30,7 @@ class LightProfileTheme implements IProfileTheme {
 
   @override
   Color get foreground => _purple;
+
+  @override
+  BorderRadius get formsBorderRadius => BorderRadius.all(Radius.circular(18.0));
 }

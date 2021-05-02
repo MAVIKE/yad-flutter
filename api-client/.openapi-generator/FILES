@@ -16,7 +16,9 @@ doc/DomainUser.md
 doc/OrdersApi.md
 doc/RestaurantsApi.md
 doc/UsersApi.md
+doc/V1AdminSignInInput.md
 doc/V1CategoryInput.md
+doc/V1CourierSignInInput.md
 doc/V1CourierSignUpInput.md
 doc/V1CourierUpdate.md
 doc/V1IdResponse.md
@@ -30,8 +32,9 @@ doc/V1OrderUpdate.md
 doc/V1Response.md
 doc/V1RestaurantSignUpInput.md
 doc/V1RestaurantUpdateInput.md
-doc/V1SignInInput.md
+doc/V1RestaurantsSignInInput.md
 doc/V1TokenResponse.md
+doc/V1UserSignInInput.md
 doc/V1UserSignUpInput.md
 doc/V1UserUpdateInput.md
 lib/api_client.dart
@@ -55,7 +58,9 @@ lib/src/model/domain_order.dart
 lib/src/model/domain_order_item.dart
 lib/src/model/domain_restaurant.dart
 lib/src/model/domain_user.dart
+lib/src/model/v1_admin_sign_in_input.dart
 lib/src/model/v1_category_input.dart
+lib/src/model/v1_courier_sign_in_input.dart
 lib/src/model/v1_courier_sign_up_input.dart
 lib/src/model/v1_courier_update.dart
 lib/src/model/v1_id_response.dart
@@ -69,8 +74,9 @@ lib/src/model/v1_order_update.dart
 lib/src/model/v1_response.dart
 lib/src/model/v1_restaurant_sign_up_input.dart
 lib/src/model/v1_restaurant_update_input.dart
-lib/src/model/v1_sign_in_input.dart
+lib/src/model/v1_restaurants_sign_in_input.dart
 lib/src/model/v1_token_response.dart
+lib/src/model/v1_user_sign_in_input.dart
 lib/src/model/v1_user_sign_up_input.dart
 lib/src/model/v1_user_update_input.dart
 lib/src/serializers.dart
@@ -89,7 +95,9 @@ test/domain_user_test.dart
 test/orders_api_test.dart
 test/restaurants_api_test.dart
 test/users_api_test.dart
+test/v1_admin_sign_in_input_test.dart
 test/v1_category_input_test.dart
+test/v1_courier_sign_in_input_test.dart
 test/v1_courier_sign_up_input_test.dart
 test/v1_courier_update_test.dart
 test/v1_id_response_test.dart
@@ -103,7 +111,8 @@ test/v1_order_update_test.dart
 test/v1_response_test.dart
 test/v1_restaurant_sign_up_input_test.dart
 test/v1_restaurant_update_input_test.dart
-test/v1_sign_in_input_test.dart
+test/v1_restaurants_sign_in_input_test.dart
 test/v1_token_response_test.dart
+test/v1_user_sign_in_input_test.dart
 test/v1_user_sign_up_input_test.dart
 test/v1_user_update_input_test.dart

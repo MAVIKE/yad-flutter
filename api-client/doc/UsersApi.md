@@ -27,7 +27,7 @@ user sign in
 import 'package:api_client/api.dart';
 
 var api_instance = new UsersApi();
-var input = new V1SignInInput(); // V1SignInInput | sign in info
+var input = new V1UserSignInInput(); // V1UserSignInInput | sign in info
 
 try { 
     var result = api_instance.usersSignInPost(input);
@@ -41,7 +41,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **input** | [**V1SignInInput**](V1SignInInput.md)| sign in info | 
+ **input** | [**V1UserSignInInput**](V1UserSignInInput.md)| sign in info | 
 
 ### Return type
 

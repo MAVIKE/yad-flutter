@@ -118,7 +118,7 @@ void main() {
     //
     // restaurant sign in
     //
-    //Future<V1TokenResponse> restaurantsSignInPost(V1SignInInput input) async
+    //Future<V1TokenResponse> restaurantsSignInPost(V1RestaurantsSignInInput input) async
     test('test restaurantsSignInPost', () async {
       // TODO
     });

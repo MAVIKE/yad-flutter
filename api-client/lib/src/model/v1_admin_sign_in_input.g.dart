@@ -1,33 +1,36 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'v1_sign_in_input.dart';
+part of 'v1_admin_sign_in_input.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$V1SignInInput extends V1SignInInput {
+class _$V1AdminSignInInput extends V1AdminSignInInput {
   @override
   final String? name;
   @override
   final String? password;
 
-  factory _$V1SignInInput([void Function(V1SignInInputBuilder)? updates]) =>
-      (new V1SignInInputBuilder()..update(updates)).build();
+  factory _$V1AdminSignInInput(
+          [void Function(V1AdminSignInInputBuilder)? updates]) =>
+      (new V1AdminSignInInputBuilder()..update(updates)).build();
 
-  _$V1SignInInput._({this.name, this.password}) : super._();
+  _$V1AdminSignInInput._({this.name, this.password}) : super._();
 
   @override
-  V1SignInInput rebuild(void Function(V1SignInInputBuilder) updates) =>
+  V1AdminSignInInput rebuild(
+          void Function(V1AdminSignInInputBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  V1SignInInputBuilder toBuilder() => new V1SignInInputBuilder()..replace(this);
+  V1AdminSignInInputBuilder toBuilder() =>
+      new V1AdminSignInInputBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is V1SignInInput &&
+    return other is V1AdminSignInInput &&
         name == other.name &&
         password == other.password;
   }
@@ -39,16 +42,16 @@ class _$V1SignInInput extends V1SignInInput {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('V1SignInInput')
+    return (newBuiltValueToStringHelper('V1AdminSignInInput')
           ..add('name', name)
           ..add('password', password))
         .toString();
   }
 }
 
-class V1SignInInputBuilder
-    implements Builder<V1SignInInput, V1SignInInputBuilder> {
-  _$V1SignInInput? _$v;
+class V1AdminSignInInputBuilder
+    implements Builder<V1AdminSignInInput, V1AdminSignInInputBuilder> {
+  _$V1AdminSignInInput? _$v;
 
   String? _name;
   String? get name => _$this._name;
@@ -58,11 +61,11 @@ class V1SignInInputBuilder
   String? get password => _$this._password;
   set password(String? password) => _$this._password = password;
 
-  V1SignInInputBuilder() {
-    V1SignInInput._initializeBuilder(this);
+  V1AdminSignInInputBuilder() {
+    V1AdminSignInInput._initializeBuilder(this);
   }
 
-  V1SignInInputBuilder get _$this {
+  V1AdminSignInInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _name = $v.name;
@@ -73,20 +76,20 @@ class V1SignInInputBuilder
   }
 
   @override
-  void replace(V1SignInInput other) {
+  void replace(V1AdminSignInInput other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$V1SignInInput;
+    _$v = other as _$V1AdminSignInInput;
   }
 
   @override
-  void update(void Function(V1SignInInputBuilder)? updates) {
+  void update(void Function(V1AdminSignInInputBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$V1SignInInput build() {
+  _$V1AdminSignInInput build() {
     final _$result =
-        _$v ?? new _$V1SignInInput._(name: name, password: password);
+        _$v ?? new _$V1AdminSignInInput._(name: name, password: password);
     replace(_$result);
     return _$result;
   }

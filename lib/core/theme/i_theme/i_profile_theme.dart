@@ -12,4 +12,6 @@ abstract class IProfileTheme {
   Color get addressForeground;
   Color get ordersBackground;
   Color get ordersForeground;
+
+  BorderRadius get formsBorderRadius;
 }

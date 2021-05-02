@@ -10,7 +10,7 @@ void main() {
     //
     // user sign in
     //
-    //Future<V1TokenResponse> usersSignInPost(V1SignInInput input) async
+    //Future<V1TokenResponse> usersSignInPost(V1UserSignInInput input) async
     test('test usersSignInPost', () async {
       // TODO
     });

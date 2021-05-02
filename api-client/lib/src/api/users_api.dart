@@ -9,8 +9,8 @@ import 'package:dio/dio.dart';
 
 import 'package:api_client/src/model/v1_response.dart';
 import 'package:api_client/src/model/v1_token_response.dart';
+import 'package:api_client/src/model/v1_user_sign_in_input.dart';
 import 'package:api_client/src/model/v1_user_sign_up_input.dart';
-import 'package:api_client/src/model/v1_sign_in_input.dart';
 import 'package:api_client/src/model/v1_user_update_input.dart';
 import 'package:api_client/src/model/domain_user.dart';
 
@@ -25,7 +25,7 @@ class UsersApi {
   ///
   /// user sign in
   Future<Response<V1TokenResponse>> usersSignInPost({
-    required V1SignInInput input,
+    required V1UserSignInInput input,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -54,7 +54,7 @@ class UsersApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(V1SignInInput);
+      const _type = FullType(V1UserSignInInput);
       _bodyData = _serializers.serialize(input, specifiedType: _type);
     } catch (error) {
       throw DioError(
