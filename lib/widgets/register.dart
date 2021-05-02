@@ -191,7 +191,7 @@ class RegistrationCard extends StatelessWidget {
                   Text(
                     'Building',
                     style:
-                    _lightTheme.registrationCardTheme.textStyleHouseNumber,
+                        _lightTheme.registrationCardTheme.textStyleHouseNumber,
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 20),
@@ -236,8 +236,7 @@ class RegistrationCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 35),
                   child: SizedBox(
-                      width: _lightTheme
-                          .registrationCardTheme.smallInputWidth,
+                      width: _lightTheme.registrationCardTheme.smallInputWidth,
                       height: _lightTheme.registrationCardTheme.inputHeight,
                       child: TextField(
                           decoration:
@@ -249,12 +248,11 @@ class RegistrationCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 35),
                   child: SizedBox(
-                      width: _lightTheme
-                          .registrationCardTheme.smallInputWidth,
+                      width: _lightTheme.registrationCardTheme.smallInputWidth,
                       height: _lightTheme.registrationCardTheme.inputHeight,
                       child: TextField(
                           decoration:
-                          _lightTheme.registrationCardTheme.inputDecoration,
+                              _lightTheme.registrationCardTheme.inputDecoration,
                           onSubmitted: (text) {
                             _addressData.setFlat(text);
                           })),
@@ -262,12 +260,11 @@ class RegistrationCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 35),
                   child: SizedBox(
-                      width: _lightTheme
-                          .registrationCardTheme.smallInputWidth,
+                      width: _lightTheme.registrationCardTheme.smallInputWidth,
                       height: _lightTheme.registrationCardTheme.inputHeight,
                       child: TextField(
                           decoration:
-                          _lightTheme.registrationCardTheme.inputDecoration,
+                              _lightTheme.registrationCardTheme.inputDecoration,
                           onSubmitted: (text) {
                             _addressData.setEntrance(text);
                           })),
