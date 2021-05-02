@@ -38,6 +38,14 @@ class RestaurantCard extends StatelessWidget {
               ),
               subtitle: Text(this.header, style: TextStyle(fontSize: 36),
               ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => _somewhere,
+                  ),
+                );
+              },
             )
         )
     );
