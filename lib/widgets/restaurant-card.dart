@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:yad/core/theme/light_theme/light_theme.dart';
 import 'package:yad/widgets/dish_card.dart';
 
 class RestaurantCard extends StatelessWidget {
   final ImageProvider _photo;
   final String header;
+  final LightTheme _lightTheme;
 
   RestaurantCard({ImageProvider? photo, required this.header})
-      : _photo = photo ?? AssetImage('assets/restaurant_0.jpg');
+      : _photo = photo ?? AssetImage('assets/restaurant_0.jpg'),
+        _lightTheme = LightTheme();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 190,
+        height: _lightTheme.restaurantCardTheme.cardHeight,
         child: Card(
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            elevation: 10,
+            color: _lightTheme.restaurantCardTheme.colorCard,
+            shape: _lightTheme.restaurantCardTheme.shapeCard,
             child: ListTile(
               title: Container(
-                width: 330,
-                height: 130,
+                width: _lightTheme.restaurantCardTheme.photoWidth,
+                height: _lightTheme.restaurantCardTheme.photoHeight,
                 decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius:
+                      _lightTheme.restaurantCardTheme.widgetBorderRadius,
                   image: DecorationImage(
                     image: _photo,
                     fit: BoxFit.cover,
@@ -33,7 +34,7 @@ class RestaurantCard extends StatelessWidget {
               ),
               subtitle: Text(
                 this.header,
-                style: TextStyle(fontSize: 36),
+                style: _lightTheme.restaurantCardTheme.subtitleTextStyle,
               ),
               onTap: () {
                 Navigator.push(

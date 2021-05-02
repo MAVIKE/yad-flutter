@@ -4,6 +4,7 @@ import 'package:yad/core/theme/i_theme/i_theme.dart';
 part 'light_profile_theme.dart';
 part 'light_login_theme.dart';
 part 'light_dish_card_theme.dart';
+part 'light_restaurant_card_theme.dart';
 
 const Color _yellow = Color.fromRGBO(251, 187, 0, 1);
 const Color _orange = Color.fromRGBO(248, 113, 34, 1);
@@ -17,6 +18,8 @@ class LightTheme implements ITheme {
   static LightProfileTheme _profileTheme = LightProfileTheme();
   static LightLoginTheme _loginTheme = LightLoginTheme();
   static LightDishCardTheme _dishCardTheme = LightDishCardTheme();
+  static LightRestaurantCardTheme _restaurantCardTheme =
+      LightRestaurantCardTheme();
 
   Color get appBarForeground => _purple;
   Color get appBarBackground => _yellow;
@@ -52,4 +55,7 @@ class LightTheme implements ITheme {
 
   @override
   IDishCardTheme get dishCardTheme => _dishCardTheme;
+
+  @override
+  IRestaurantCardTheme get restaurantCardTheme => _restaurantCardTheme;
 }
