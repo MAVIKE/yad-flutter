@@ -7,7 +7,7 @@ abstract class IDataInputCardTheme {
   double get leftInputWidth;
   TextStyle get textStyleHeaderInput;
   double get inputHeight;
-  InputDecoration get inputDecoration;
+  InputDecoration inputDecoration(String hintText, bool invalid);
   double get expirationDateInputWidth;
   double get rightInputWidth;
   TextStyle get textStyleButton;

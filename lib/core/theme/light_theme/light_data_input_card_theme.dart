@@ -28,16 +28,18 @@ class LightDataInputCardTheme implements IDataInputCardTheme {
   double get inputHeight => 25;
 
   @override
-  InputDecoration get inputDecoration =>  InputDecoration(
-    border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18.0),
-        borderSide: BorderSide.none
-    ),
+  InputDecoration inputDecoration(String hintText, bool invalid) =>  InputDecoration(
     fillColor: Colors.white,
+    border: OutlineInputBorder(
+        borderSide: invalid ? BorderSide(color: Colors.redAccent) : BorderSide.none,
+        borderRadius: BorderRadius.circular(18.0),
+    ),
     filled: true,
     labelStyle: TextStyle(
         fontSize: 12
     ),
+    labelText: '$hintText',
+    //errorText: invalid ? 'invalid ' + '$hintText' : null,
   );
 
   @override
