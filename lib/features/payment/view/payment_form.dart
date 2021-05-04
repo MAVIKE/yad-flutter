@@ -10,6 +10,7 @@ import 'package:yad/core/theme/i_theme/i_theme.dart';
 class PaymentForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = context.read<ITheme>();
     return BlocListener<PaymentBloc, PaymentState>(
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
@@ -21,24 +22,24 @@ class PaymentForm extends StatelessWidget {
         }
       },
       child: Container(
-        height: context.read<ITheme>().dataInputCardTheme.cardHeight,
-        width: context.read<ITheme>().dataInputCardTheme.cardWidth,
-        decoration: context.read<ITheme>().dataInputCardTheme.decorationCard,
+        height: theme.dataInputCardTheme.cardHeight,
+        width: theme.dataInputCardTheme.cardWidth,
+        decoration: theme.dataInputCardTheme.decorationCard,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-                width: context.read<ITheme>().dataInputCardTheme.leftInputWidth,
+                width: theme.dataInputCardTheme.leftInputWidth,
                 child:
                 Container(
-                    margin: context.read<ITheme>().dataInputCardTheme.marginTopLeftInput,
+                    margin: theme.dataInputCardTheme.marginTopLeftInput,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Card number',
-                          style: context.read<ITheme>().dataInputCardTheme.textStyleHeaderInput,
+                          style: theme.dataInputCardTheme.textStyleHeaderInput,
                         ),
                         CardNumberInput()
                       ],
@@ -46,16 +47,16 @@ class PaymentForm extends StatelessWidget {
                 )
             ),
             SizedBox(
-              width: context.read<ITheme>().dataInputCardTheme.leftInputWidth,
+              width: theme.dataInputCardTheme.leftInputWidth,
               child:
               Container(
-                  margin: context.read<ITheme>().dataInputCardTheme.marginLeftInput,
+                  margin: theme.dataInputCardTheme.marginLeftInput,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Expiration date',
-                        style: context.read<ITheme>().dataInputCardTheme.textStyleHeaderInput,
+                        style: theme.dataInputCardTheme.textStyleHeaderInput,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,10 +70,10 @@ class PaymentForm extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: context.read<ITheme>().dataInputCardTheme.leftInputWidth,
+              width: theme.dataInputCardTheme.leftInputWidth,
               child:
               Container(
-                  margin: context.read<ITheme>().dataInputCardTheme.marginLeftInput,
+                  margin: theme.dataInputCardTheme.marginLeftInput,
                   child:
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +81,7 @@ class PaymentForm extends StatelessWidget {
                       Text(
                         'Card holder',
                         style:
-                        context.read<ITheme>().dataInputCardTheme.textStyleHeaderInput,
+                        theme.dataInputCardTheme.textStyleHeaderInput,
                       ),
                       CardHolderInput()
                     ],
@@ -96,7 +97,7 @@ class PaymentForm extends StatelessWidget {
                       children: [
                         Text(
                           'CVC/CVV',
-                          style: context.read<ITheme>().dataInputCardTheme.textStyleHeaderInput,
+                          style: theme.dataInputCardTheme.textStyleHeaderInput,
                         ),
                         CvcCvvInput()
                       ],

@@ -11,12 +11,13 @@ class CardNumberInput extends StatelessWidget {
       buildWhen: (previous, current) =>
       previous.cardNumber != current.cardNumber,
       builder: (context, state) {
+        final theme = context.read<ITheme>();
         return SizedBox(
-            height: context.read<ITheme>().dataInputCardTheme.inputHeight,
+            height: theme.dataInputCardTheme.inputHeight,
             child: TextField(
               key: const Key('paymentForm_cardNumberInput_textField'),
               decoration:
-              context.read<ITheme>().dataInputCardTheme.inputDecoration(
+              theme.dataInputCardTheme.inputDecoration(
                 'Card Number', state.cardNumber.invalid),
               onChanged: (cardNumber) =>
                   context.read<PaymentBloc>().add(PaymentCardNumberChanged(cardNumber)),
@@ -34,14 +35,15 @@ class ExpirationMonthInput extends StatelessWidget {
       buildWhen: (previous, current) =>
       previous.expirationMonth != current.expirationMonth,
       builder: (context, state) {
+        final theme = context.read<ITheme>();
         return SizedBox(
             width:
-            context.read<ITheme>().dataInputCardTheme.expirationDateInputWidth,
-            height: context.read<ITheme>().dataInputCardTheme.inputHeight,
+            theme.dataInputCardTheme.expirationDateInputWidth,
+            height: theme.dataInputCardTheme.inputHeight,
             child: TextField(
               key: const Key('paymentForm_expirationMonthInput_textField'),
               decoration:
-              context.read<ITheme>().dataInputCardTheme.inputDecoration(
+              theme.dataInputCardTheme.inputDecoration(
                   'Expiration Month', state.expirationMonth.invalid
               ),
               onChanged: (expirationMonth) =>
@@ -60,14 +62,15 @@ class ExpirationYearInput extends StatelessWidget {
       buildWhen: (previous, current) =>
       previous.expirationYear != current.expirationYear,
       builder: (context, state) {
+        final theme = context.read<ITheme>();
         return SizedBox(
             width:
-            context.read<ITheme>().dataInputCardTheme.expirationDateInputWidth,
-            height: context.read<ITheme>().dataInputCardTheme.inputHeight,
+            theme.dataInputCardTheme.expirationDateInputWidth,
+            height: theme.dataInputCardTheme.inputHeight,
             child: TextField(
               key: const Key('paymentForm_expirationYearInput_textField'),
               decoration:
-              context.read<ITheme>().dataInputCardTheme.inputDecoration(
+              theme.dataInputCardTheme.inputDecoration(
                   'Expiration Year', state.expirationYear.invalid
               ),
               onChanged: (expirationYear) =>
@@ -86,12 +89,13 @@ class CardHolderInput extends StatelessWidget {
       buildWhen: (previous, current) =>
       previous.cardHolder != current.cardHolder,
       builder: (context, state) {
+        final theme = context.read<ITheme>();
         return SizedBox(
-            height: context.read<ITheme>().dataInputCardTheme.inputHeight,
+            height: theme.dataInputCardTheme.inputHeight,
             child: TextField(
               key: const Key('paymentForm_cardHolderInput_textField'),
               decoration:
-              context.read<ITheme>().dataInputCardTheme.inputDecoration(
+              theme.dataInputCardTheme.inputDecoration(
                   'Card Holder', state.cardHolder.invalid
               ),
               onChanged: (cardHolder) =>
@@ -110,13 +114,14 @@ class CvcCvvInput extends StatelessWidget {
       buildWhen: (previous, current) =>
       previous.cvcCvv != current.cvcCvv,
       builder: (context, state) {
+        final theme = context.read<ITheme>();
         return SizedBox(
-            width: context.read<ITheme>().dataInputCardTheme.rightInputWidth,
-            height: context.read<ITheme>().dataInputCardTheme.inputHeight,
+            width: theme.dataInputCardTheme.rightInputWidth,
+            height: theme.dataInputCardTheme.inputHeight,
             child: TextField(
               key: const Key('paymentForm_cvcCvvInput_textField'),
               decoration:
-              context.read<ITheme>().dataInputCardTheme.inputDecoration(
+              theme.dataInputCardTheme.inputDecoration(
                   'Cvc/Cvv', state.cvcCvv.invalid
               ),
               onChanged: (cvcCvv) =>
