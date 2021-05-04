@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
-import 'package:yad/core/theme/light_theme/light_theme.dart';
 import 'package:yad/features/payment/payment.dart';
 
 import 'apps/delivery_user/delivery_user_app.dart';

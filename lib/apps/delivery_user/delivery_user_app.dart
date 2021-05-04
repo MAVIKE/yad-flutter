@@ -41,15 +41,15 @@ class AppView extends StatefulWidget {
 
 
 class _AppViewState extends State<AppView> {
-  final _navigatorKey = GlobalKey<NavigatorState>();
+  //final _navigatorKey = GlobalKey<NavigatorState>();
 
-  NavigatorState get _navigator => _navigatorKey.currentState!;
+  //NavigatorState get _navigator => _navigatorKey.currentState!;
 
   @override
   Widget build(BuildContext context) {
     (() async {})();
     return MaterialApp(
-      navigatorKey: _navigatorKey,
+      //navigatorKey: _navigatorKey,
       debugShowCheckedModeBanner: false,
       // Вовин builder с проверкой BlocListener<AuthBloc, AuthState>
       // вместо старого home
