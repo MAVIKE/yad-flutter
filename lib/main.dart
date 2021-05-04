@@ -29,23 +29,3 @@ class SimpleBlocObserver extends BlocObserver {
     super.onError(bloc, error, stackTrace);
   }
 }
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final theme = context.read<ITheme>();
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: theme.themeData,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("YAD Delivery boy app"),
-        ),
-        body: Center(
-          child: PaymentPage(),
-        ),
-      ),
-    );
-  }
-}
