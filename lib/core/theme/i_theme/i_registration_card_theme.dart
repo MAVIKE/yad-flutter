@@ -20,4 +20,7 @@ abstract class IRegistrationCardTheme {
   EdgeInsetsGeometry get marginRightInput;
   EdgeInsetsGeometry get marginLeftInput;
   EdgeInsetsGeometry get marginTopLeftInput;
+  TextStyle get textStyleRegistration;
+  EdgeInsetsGeometry get marginRegistration;
+  EdgeInsetsGeometry get marginTextRegistration;
 }

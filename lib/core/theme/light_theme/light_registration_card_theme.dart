@@ -38,7 +38,7 @@ class LightRegistrationCardTheme implements IRegistrationCardTheme {
         fillColor: Colors.white,
         border: OutlineInputBorder(
           borderSide:
-          invalid ? BorderSide(color: Colors.redAccent) : BorderSide.none,
+              invalid ? BorderSide(color: Colors.redAccent) : BorderSide.none,
           borderRadius: BorderRadius.circular(18.0),
         ),
         filled: true,
@@ -86,4 +86,18 @@ class LightRegistrationCardTheme implements IRegistrationCardTheme {
   @override
   EdgeInsetsGeometry get marginTopLeftInput =>
       EdgeInsets.only(left: 8, top: 21);
+
+  @override
+  TextStyle get textStyleRegistration => TextStyle(
+        fontSize: 30,
+        color: Color.fromRGBO(65, 14, 130, 1),
+        fontFamily: "Roboto",
+        fontWeight: FontWeight.bold,
+      );
+
+  @override
+  EdgeInsetsGeometry get marginRegistration => EdgeInsets.only(top: 28);
+
+  @override
+  EdgeInsetsGeometry get marginTextRegistration => EdgeInsets.only(bottom: 11);
 }
