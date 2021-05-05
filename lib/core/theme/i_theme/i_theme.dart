@@ -3,6 +3,7 @@ part 'i_profile_theme.dart';
 part 'i_login_theme.dart';
 part 'i_dish_card_theme.dart';
 part 'i_registration_card.dart';
+part 'i_data_input_card_theme.dart';
 
 abstract class ITheme {
   Color get inputBackground;
@@ -13,5 +14,6 @@ abstract class ITheme {
   AppBarTheme get appBarTheme;
   ThemeData get themeData;
   IDishCardTheme get dishCardTheme;
+  IDataInputCardTheme get dataInputCardTheme;
   IRegistrationCardTheme get registrationCardTheme;
 }
