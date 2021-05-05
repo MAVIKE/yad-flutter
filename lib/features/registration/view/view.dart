@@ -1,2 +1,2 @@
-export 'payment_form.dart';
-export 'payment_page.dart';
+export 'registration_form.dart';
+export 'registration_page.dart';
