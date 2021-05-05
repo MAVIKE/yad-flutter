@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum FlatValidationError {empty, invalid}
+enum FlatValidationError { empty, invalid }
 
 class Flat extends FormzInput<String, FlatValidationError> {
   const Flat.pure() : super.pure('');

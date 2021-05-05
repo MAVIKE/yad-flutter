@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum BuildingValidationError {empty, invalid}
+enum BuildingValidationError { empty, invalid }
 
 class Building extends FormzInput<String, BuildingValidationError> {
   const Building.pure() : super.pure('');

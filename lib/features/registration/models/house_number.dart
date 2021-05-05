@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum HouseNumberValidationError {empty, invalid}
+enum HouseNumberValidationError { empty, invalid }
 
 class HouseNumber extends FormzInput<String, HouseNumberValidationError> {
   const HouseNumber.pure() : super.pure('');

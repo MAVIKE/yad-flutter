@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum CityValidationError {empty, invalid}
+enum CityValidationError { empty, invalid }
 
 class City extends FormzInput<String, CityValidationError> {
   const City.pure() : super.pure('');

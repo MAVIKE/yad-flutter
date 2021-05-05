@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum FloorValidationError {empty, invalid}
+enum FloorValidationError { empty, invalid }
 
 class Floor extends FormzInput<String, FloorValidationError> {
   const Floor.pure() : super.pure('');

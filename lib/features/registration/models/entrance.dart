@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum EntranceValidationError {empty, invalid}
+enum EntranceValidationError { empty, invalid }
 
 class Entrance extends FormzInput<String, EntranceValidationError> {
   const Entrance.pure() : super.pure('');

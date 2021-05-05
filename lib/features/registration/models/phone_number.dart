@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum PhoneNumberValidationError {empty, short, long, invalid}
+enum PhoneNumberValidationError { empty, short, long, invalid }
 
 class PhoneNumber extends FormzInput<String, PhoneNumberValidationError> {
   const PhoneNumber.pure() : super.pure('');

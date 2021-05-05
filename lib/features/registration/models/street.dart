@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum StreetValidationError {empty, invalid}
+enum StreetValidationError { empty, invalid }
 
 class Street extends FormzInput<String, StreetValidationError> {
   const Street.pure() : super.pure('');
