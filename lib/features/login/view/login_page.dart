@@ -1,6 +1,4 @@
-import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:yad/features/login/bloc/login_bloc.dart';
-import 'package:yad/features/auth/auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:yad/widgets/yad_scaffold.dart';
