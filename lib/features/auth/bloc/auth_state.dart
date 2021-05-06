@@ -4,8 +4,6 @@ enum AuthStatus {
   unknown,
   authenticated,
   unauthenticated,
-  loginInProgress,
-  logoutInProgress
 }
 
 class AuthState extends Equatable {
@@ -21,12 +19,6 @@ class AuthState extends Equatable {
 
   const AuthState.unauthenticated()
       : this._(status: AuthStatus.unauthenticated);
-
-  const AuthState.loginInProgress()
-      : this._(status: AuthStatus.loginInProgress);
-
-  const AuthState.logoutInProgress()
-      : this._(status: AuthStatus.logoutInProgress);
 
   final AuthStatus status;
   final String token;

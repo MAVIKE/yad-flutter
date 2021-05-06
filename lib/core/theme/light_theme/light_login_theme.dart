@@ -2,18 +2,14 @@ part of 'light_theme.dart';
 
 class LightLoginTheme implements ILoginTheme {
   @override
-  // TODO: implement buttonBackground
-  Color get buttonBackground => throw UnimplementedError();
+  Color get buttonBackground => _purple;
 
   @override
-  // TODO: implement buttonForeground
-  Color get buttonForeground => throw UnimplementedError();
+  Color get buttonForeground => Colors.white;
 
   @override
-  // TODO: implement cardBackground
-  Color get cardBackground => throw UnimplementedError();
+  Color get cardBackground => _yellow;
 
   @override
-  // TODO: implement cardForeground
-  Color get cardForeground => throw UnimplementedError();
+  Color get cardForeground => _purple;
 }

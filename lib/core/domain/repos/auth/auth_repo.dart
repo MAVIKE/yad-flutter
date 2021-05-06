@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'package:yad/core/domain/repos/result.dart';
 
 abstract class AuthRepo {
-  Future<String> logIn({
+  Future<Result<String>> signIn({
     required String username,
     required String password,
   });
 
-  Future<void> logOut();
+  Future<Result<void>> signOut();
+
+  Future<Result<void>> setToken(String token);
 }

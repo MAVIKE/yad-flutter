@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:yad/core/domain/repos/auth/auth_repo.dart';
 import 'package:yad/features/auth/auth.dart';
 import 'package:yad/features/login/models/models.dart';
 import 'package:bloc/bloc.dart';
@@ -10,12 +11,13 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc({
-    required AuthBloc authBloc,
-  })   : _authBloc = authBloc,
+  LoginBloc({required AuthBloc authBloc, required AuthRepo authRepo})
+      : _authBloc = authBloc,
+        _authRepo = authRepo,
         super(const LoginState());
 
   final AuthBloc _authBloc;
+  final AuthRepo _authRepo;
 
   @override
   Stream<LoginState> mapEventToState(
@@ -37,7 +39,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final phoneNumber = PhoneNumber.dirty(event.username);
     return state.copyWith(
       phoneNumber: phoneNumber,
-      status: Formz.validate([state.password, phoneNumber]),
     );
   }
 
@@ -48,7 +49,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final password = Password.dirty(event.password);
     return state.copyWith(
       password: password,
-      status: Formz.validate([password, state.phoneNumber]),
     );
   }
 
@@ -58,13 +58,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async* {
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
-      try {
-        _authBloc.login(
-          state.phoneNumber.value,
-          state.password.value,
-        );
+      final result = await _authRepo.signIn(
+        username: state.phoneNumber.value,
+        password: state.password.value,
+      );
+      final token = result.value;
+      if (token != null) {
         yield state.copyWith(status: FormzStatus.submissionSuccess);
-      } on Exception catch (_) {
+        _authBloc.authenticated(token);
+      } else {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }
     }

@@ -17,7 +17,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final instance = await SharedPreferences.getInstance();
       final token = instance.getString("token");
       if (token != null) {
-        provideToken(token);
+        _authRepo.setToken(token);
+        authenticated(token);
       } else {
         unauthenticated();
       }
@@ -26,49 +27,42 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   final AuthRepo _authRepo;
 
-  void logout() {
-    add(AuthLogoutRequested());
-  }
-
-  void login(String phoneNumber, String password) {
-    add(AuthLoginRequested(phoneNumber, password));
-  }
-
-  void provideToken(String token) {
-    add(AuthTokenProvided(token));
-  }
-
   void unauthenticated() {
     add(AuthUnauthenticated());
+  }
+
+  void authenticated(String token) {
+    add(AuthAuthenticated(token));
+  }
+
+  void requestSignout() {
+    add(AuthSignoutRequested());
   }
 
   @override
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
-    if (event is AuthLoginRequested) {
-      yield AuthState.loginInProgress();
-      yield await _mapAuthLoginRequested(event);
-    } else if (event is AuthLogoutRequested) {
-      yield AuthState.logoutInProgress();
-      yield await _mapAuthLogoutRequested(event);
-    } else if (event is AuthTokenProvided) {
-      yield AuthState.authenticated(event.token);
+    if (event is AuthSignoutRequested) {
+      yield await _mapAuthSignoutRequested(event);
     } else if (event is AuthUnauthenticated) {
       yield AuthState.unauthenticated();
+    } else if (event is AuthAuthenticated) {
+      yield await _mapAuthAuthenticated(event);
     }
   }
 
-  Future<AuthState> _mapAuthLoginRequested(AuthLoginRequested event) async {
-    return await _authRepo
-        .logIn(username: event.phoneNumber, password: event.password)
-        .then((token) => AuthState.authenticated(token),
-            onError: (_) => AuthState.unauthenticated());
+  Future<AuthState> _mapAuthAuthenticated(AuthAuthenticated event) async {
+    final instance = await SharedPreferences.getInstance();
+    instance.setString("token", event.token);
+    return AuthState.authenticated(event.token);
   }
 
-  Future<AuthState> _mapAuthLogoutRequested(AuthLogoutRequested event) async {
-    return await _authRepo.logOut().then((_) {
-      return AuthState.unauthenticated();
+  Future<AuthState> _mapAuthSignoutRequested(AuthSignoutRequested event) async {
+    return await _authRepo.signOut().then((result) {
+      return result.error == null
+          ? AuthState.unauthenticated()
+          : AuthState.unknown();
     }, onError: (_) {
       return AuthState.unknown();
     });

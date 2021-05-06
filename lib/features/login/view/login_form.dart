@@ -16,24 +16,28 @@ class LoginForm extends StatelessWidget {
             );
         }
       },
-      child: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: Container(
-          decoration: BoxDecoration(
-              color: Colors.orange, borderRadius: BorderRadius.circular(30)),
-          padding: EdgeInsets.all(20),
-          margin: EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Login"),
-              _UsernameInput(),
-              const Padding(padding: EdgeInsets.all(12)),
-              _PasswordInput(),
-              const Padding(padding: EdgeInsets.all(12)),
-              _LoginButton(),
-            ],
-          ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text("Sign In"),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.orange,
+                  borderRadius: BorderRadius.circular(30)),
+              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _UsernameInput(),
+                  const Padding(padding: EdgeInsets.all(12)),
+                  _PasswordInput(),
+                  const Padding(padding: EdgeInsets.all(12)),
+                  _LoginButton(),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -59,7 +63,8 @@ class _UsernameInput extends StatelessWidget {
               borderRadius: BorderRadius.circular(25),
             ),
             labelText: 'username',
-            errorText: state.phoneNumber.invalid ? 'invalid username' : null,
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            errorText: state.phoneNumber.errorString(),
           ),
         );
       },

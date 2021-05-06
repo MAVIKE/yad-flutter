@@ -6,6 +6,19 @@ class Password extends FormzInput<String, PasswordValidationError> {
   const Password.pure() : super.pure('');
   const Password.dirty([String value = '']) : super.dirty(value);
 
+  String? errorString() {
+    switch (error) {
+      case PasswordValidationError.empty:
+        return "Password is empty";
+      case PasswordValidationError.short:
+        return "Password too short";
+      case PasswordValidationError.simple:
+        return "Password too simple";
+      default:
+        return null;
+    }
+  }
+
   @override
   PasswordValidationError? validator(String? value) {
     if (value == null) {

@@ -1,14 +1,27 @@
+import 'package:api_client/api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yad/core/domain/repos/auth/auth_repo.dart';
 import 'package:yad/core/domain/repos/auth/delivery_boy_auth_repo.dart';
+import 'package:yad/core/theme/i_theme/i_theme.dart';
+import 'package:yad/core/theme/light_theme/light_theme.dart';
 import 'package:yad/features/auth/auth.dart';
 import 'package:yad/features/login/login.dart';
 import 'pages/pages.dart';
 
 void runDeliveryBoyApp() async {
-  runApp(ProviderScope(child: App()));
+  final api = ApiClient();
+  runApp(MultiRepositoryProvider(providers: [
+    RepositoryProvider.value(
+      value: api,
+    ),
+    RepositoryProvider<ITheme>.value(
+      value: LightTheme(),
+    ),
+    RepositoryProvider<AuthRepo>.value(
+      value: DeliveryBoyAuthenticationRepository(api),
+    ),
+  ], child: App()));
 }
 
 class App extends StatelessWidget {
@@ -18,18 +31,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<AuthRepo>(
-          create: (context) => DeliveryBoyAuthenticationRepository(),
-        )
-      ],
-      child: BlocProvider(
-        create: (context) => AuthBloc(
-          authRepo: RepositoryProvider.of(context),
-        ),
-        child: AppView(),
+    return BlocProvider(
+      create: (context) => AuthBloc(
+        authRepo: RepositoryProvider.of(context),
       ),
+      child: AppView(),
     );
   }
 }
@@ -46,12 +52,14 @@ class _AppViewState extends State<AppView> {
 
   @override
   Widget build(BuildContext context) {
-    (() async {})();
     return MaterialApp(
       navigatorKey: _navigatorKey,
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return BlocListener<AuthBloc, AuthState>(
+          listenWhen: (previous, current) =>
+              current.status == AuthStatus.authenticated ||
+              current.status == AuthStatus.unauthenticated,
           listener: (context, state) async {
             switch (state.status) {
               case AuthStatus.authenticated:

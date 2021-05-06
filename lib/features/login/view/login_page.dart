@@ -1,3 +1,4 @@
+import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:yad/features/login/bloc/login_bloc.dart';
 import 'package:yad/features/auth/auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,36 +12,19 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YadScaffold(
+    return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: BlocProvider(
           create: (context) {
             return LoginBloc(
-              authBloc: BlocProvider.of<AuthBloc>(context),
+              authRepo: context.read(),
+              authBloc: context.read(),
             );
           },
           child: LoginForm(),
         ),
       ),
-    );
-  }
-}
-
-class YadScaffold extends StatelessWidget {
-  final Widget _body;
-
-  YadScaffold({
-    Key? key,
-    required Widget body,
-  })   : _body = body,
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: _body,
     );
   }
 }

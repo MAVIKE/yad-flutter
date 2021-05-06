@@ -16,10 +16,12 @@ class LoginState extends Equatable {
     PhoneNumber? phoneNumber,
     Password? password,
   }) {
+    final newPhoneNumber = phoneNumber ?? this.phoneNumber;
+    final newPassword = password ?? this.password;
     return LoginState(
-      status: status ?? this.status,
-      phoneNumber: phoneNumber ?? this.phoneNumber,
-      password: password ?? this.password,
+      status: status ?? Formz.validate([newPhoneNumber, newPassword]),
+      phoneNumber: newPhoneNumber,
+      password: newPassword,
     );
   }
 
