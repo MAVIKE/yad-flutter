@@ -8,12 +8,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
+// Следит за текущим состоянием авторизации.
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({
     required AuthRepo authRepo,
   })   : _authRepo = authRepo,
         super(const AuthState.unknown()) {
     (() async {
+      // Ищем токен в хранилище и ставим, если нашелся.
       final instance = await SharedPreferences.getInstance();
       final token = instance.getString("token");
       if (token != null) {
@@ -59,6 +61,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<AuthState> _mapAuthSignoutRequested(AuthSignoutRequested event) async {
+    final instance = await SharedPreferences.getInstance();
+    instance.remove("token");
     return await _authRepo.signOut().then((result) {
       return result.error == null
           ? AuthState.unauthenticated()
