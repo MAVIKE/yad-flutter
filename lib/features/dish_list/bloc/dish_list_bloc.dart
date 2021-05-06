@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:yad/core/domain/repos/load_dish_list/dish_list_repo.dart';
 import 'package:yad/features/dish_list/models/models.dart';

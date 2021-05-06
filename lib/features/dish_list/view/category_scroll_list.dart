@@ -12,12 +12,10 @@ class CategoryScrollList extends StatefulWidget {
 }
 
 class _CategoryScrollListState extends State<CategoryScrollList> {
-  //final _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    //_scrollController.addListener(_onScroll);
   }
 
   @override
@@ -41,17 +39,15 @@ class _CategoryScrollListState extends State<CategoryScrollList> {
                     },
                     itemCount: state.categories.length,
                       scrollDirection: Axis.horizontal
-                    //controller: _scrollController,
                   ));
             default:
               return const Center(child: CircularProgressIndicator());
           }
-        });;
+        });
   }
 
   @override
   void dispose() {
-    //_scrollController.dispose();
     super.dispose();
   }
 }
