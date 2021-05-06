@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:yad/features/login/bloc/login_bloc.dart';
+import 'package:yad/widgets/yad_input.dart';
+import 'package:yad/core/theme/i_theme/i_theme.dart';
 
 class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = context.read<ITheme>();
+    final loginTheme = theme.loginTheme;
+
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
@@ -16,28 +21,32 @@ class LoginForm extends StatelessWidget {
             );
         }
       },
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text("Sign In"),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.orange,
-                  borderRadius: BorderRadius.circular(30)),
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _UsernameInput(),
-                  const Padding(padding: EdgeInsets.all(12)),
-                  _PasswordInput(),
-                  const Padding(padding: EdgeInsets.all(12)),
-                  _LoginButton(),
-                ],
+      child: Container(
+        padding: loginTheme.pagePadding,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Sign In",
+                  style: loginTheme.titleTextStyle,
+                ),
               ),
-            ),
-          ],
+              Container(
+                decoration: loginTheme.cardDecoration,
+                padding: loginTheme.cardPadding,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _UsernameInput(),
+                    _PasswordInput(),
+                    _LoginButton(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -47,25 +56,18 @@ class LoginForm extends StatelessWidget {
 class _UsernameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = context.read<ITheme>();
+    final loginTheme = theme.loginTheme;
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) =>
           previous.phoneNumber != current.phoneNumber,
       builder: (context, state) {
-        return TextField(
-          key: const Key('loginForm_usernameInput_textField'),
+        return YadInput(
           onChanged: (username) =>
               context.read<LoginBloc>().add(LoginUsernameChanged(username)),
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.orange),
-              borderRadius: BorderRadius.circular(25),
-            ),
-            labelText: 'username',
-            floatingLabelBehavior: FloatingLabelBehavior.never,
-            errorText: state.phoneNumber.errorString(),
-          ),
+          error: state.phoneNumber.errorString(),
+          label: "Phone number",
+          width: loginTheme.inputWidth,
         );
       },
     );
@@ -75,24 +77,18 @@ class _UsernameInput extends StatelessWidget {
 class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = context.read<ITheme>();
+    final loginTheme = theme.loginTheme;
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
-        return TextField(
-          key: const Key('loginForm_passwordInput_textField'),
+        return YadInput(
           onChanged: (password) =>
               context.read<LoginBloc>().add(LoginPasswordChanged(password)),
+          error: state.password.errorString(),
+          label: "Password",
           obscureText: true,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.orange),
-              borderRadius: BorderRadius.circular(25),
-            ),
-            labelText: 'password',
-            errorText: state.password.invalid ? 'invalid password' : null,
-          ),
+          width: loginTheme.inputWidth,
         );
       },
     );
@@ -102,20 +98,29 @@ class _PasswordInput extends StatelessWidget {
 class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = context.read<ITheme>();
+    final loginTheme = theme.loginTheme;
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return state.status.isSubmissionInProgress
-            ? const CircularProgressIndicator()
-            : ElevatedButton(
-                key: const Key('loginForm_continue_raisedButton'),
-                child: const Text('Login'),
-                onPressed: state.status.isValidated
-                    ? () {
-                        context.read<LoginBloc>().add(const LoginSubmitted());
-                      }
-                    : null,
-              );
+        return Container(
+          width: double.infinity,
+          decoration: loginTheme.buttonDecoration,
+          padding: loginTheme.buttonPadding,
+          child: state.status.isSubmissionInProgress
+              ? const CircularProgressIndicator()
+              : TextButton(
+                  child: Text(
+                    'Sign in',
+                    style: loginTheme.buttonTextStyle,
+                  ),
+                  onPressed: state.status.isValidated
+                      ? () {
+                          context.read<LoginBloc>().add(const LoginSubmitted());
+                        }
+                      : null,
+                ),
+        );
       },
     );
   }

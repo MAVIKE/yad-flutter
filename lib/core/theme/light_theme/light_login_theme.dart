@@ -2,14 +2,38 @@ part of 'light_theme.dart';
 
 class LightLoginTheme implements ILoginTheme {
   @override
-  Color get buttonBackground => _purple;
+  BoxDecoration get cardDecoration => BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: _yellow,
+      );
 
   @override
-  Color get buttonForeground => Colors.white;
+  TextStyle get titleTextStyle => TextStyle(
+      fontFamily: _primaryFontFamily,
+      fontSize: 30,
+      fontWeight: FontWeight.w700,
+      color: _purple);
 
   @override
-  Color get cardBackground => _yellow;
+  double get inputWidth => 243;
 
   @override
-  Color get cardForeground => _purple;
+  BoxDecoration get buttonDecoration =>
+      BoxDecoration(color: _purple, borderRadius: BorderRadius.circular(18));
+
+  @override
+  EdgeInsets get buttonPadding => EdgeInsets.all(10);
+
+  @override
+  TextStyle get buttonTextStyle => TextStyle(
+      color: Colors.white,
+      fontFamily: _primaryFontFamily,
+      fontSize: 26,
+      fontWeight: FontWeight.w900);
+
+  @override
+  EdgeInsets get cardPadding => EdgeInsets.all(10);
+
+  @override
+  EdgeInsets get pagePadding => EdgeInsets.only(left: 17, right: 28);
 }

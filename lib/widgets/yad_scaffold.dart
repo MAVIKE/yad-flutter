@@ -4,36 +4,40 @@ import 'package:flutter/material.dart';
 
 class YadScaffold extends StatelessWidget {
   final Widget _body;
+  final bool _isCourier;
 
-  YadScaffold({
-    Key? key,
-    required Widget body,
-  })   : _body = body,
+  YadScaffold({Key? key, required Widget body, bool? isCourier})
+      : _body = body,
+        _isCourier = isCourier ?? false,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = context.read<ITheme>();
+    final appBarTheme = theme.appBarTheme;
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: theme.appBarTheme.backgroundColor,
-          foregroundColor: theme.appBarTheme.foregroundColor,
-          titleTextStyle: theme.appBarTheme.titleTextStyle,
-          toolbarHeight: 100,
+          backgroundColor: appBarTheme.background,
+          foregroundColor: appBarTheme.foreground,
+          titleTextStyle: appBarTheme.titleTextStyle,
+          toolbarHeight: appBarTheme.height,
           title: Container(
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    "2jsakjda",
-                  ),
-                ),
+                _isCourier
+                    ? Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "Courier",
+                          style: appBarTheme.subtitleTextStyle,
+                        ),
+                      )
+                    : Container(),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Yet another delivery',
-                    style: theme.appBarTheme.titleTextStyle,
+                    style: appBarTheme.titleTextStyle,
                   ),
                 ),
               ],
