@@ -7,6 +7,9 @@ class Password extends FormzInput<String, PasswordValidationError> {
   const Password.dirty([String value = '']) : super.dirty(value);
 
   String? errorString() {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
     switch (error) {
       case PasswordValidationError.empty:
         return "Password is empty";

@@ -8,6 +8,9 @@ class PhoneNumber extends FormzInput<String, PhoneNumberValidationError> {
   const PhoneNumber.dirty([String value = '']) : super.dirty(value);
 
   String? errorString() {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
     switch (error) {
       case PhoneNumberValidationError.empty:
         return "Phone is empty";
