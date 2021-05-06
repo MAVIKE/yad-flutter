@@ -33,6 +33,7 @@ class LoginForm extends StatelessWidget {
                   style: loginTheme.titleTextStyle,
                 ),
               ),
+              const Padding(padding: EdgeInsets.only(top: 10)),
               Container(
                 decoration: loginTheme.cardDecoration,
                 padding: loginTheme.cardPadding,
