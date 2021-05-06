@@ -12,7 +12,7 @@ class CategoryScrollList extends StatefulWidget {
 }
 
 class _CategoryScrollListState extends State<CategoryScrollList> {
-  final _scrollController = ScrollController();
+  //final _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -28,19 +28,21 @@ class _CategoryScrollListState extends State<CategoryScrollList> {
             case DishListStatus.failure:
               return const Center(child: Text('failed to fetch categories'));
             case DishListStatus.success:
-              if (state.dishes.isEmpty) {
-                return const Center(child: Text('no dishes'));
+              if (state.categories.isEmpty) {
+                return const Center(child: Text('no categories'));
               }
-              return ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  DishCategory category = state.categories[index];
-                  return DishCategoryWidget(
-                      categoryTitle: category.categoryTitle,
-                      categoryId: category.id);
-                },
-                itemCount: state.categories.length,
-                controller: _scrollController,
-              );
+              return Container(height: context.read<ITheme>().dishListTheme.dishCategoryHeight,
+                  child: ListView.builder(
+                    itemBuilder: (BuildContext context, int index) {
+                      DishCategory category = state.categories[index];
+                      return DishCategoryWidget(
+                          categoryTitle: category.categoryTitle,
+                          categoryId: category.id);
+                    },
+                    itemCount: state.categories.length,
+                      scrollDirection: Axis.horizontal
+                    //controller: _scrollController,
+                  ));
             default:
               return const Center(child: CircularProgressIndicator());
           }
@@ -49,7 +51,7 @@ class _CategoryScrollListState extends State<CategoryScrollList> {
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    //_scrollController.dispose();
     super.dispose();
   }
 }

@@ -6,7 +6,8 @@ abstract class IDishListTheme {
   BoxDecoration get dishCategoryDecoration;
   EdgeInsetsGeometry get dishCategoryMargin;
   TextStyle get textStyleCategoryName;
-  EdgeInsetsGeometry get marginDishList;
+  EdgeInsetsGeometry get marginDishListPage;
   TextStyle get textStyleRestaurantName;
+  EdgeInsetsGeometry get marginDishList;
   EdgeInsetsGeometry get marginRestaurantName;
 }

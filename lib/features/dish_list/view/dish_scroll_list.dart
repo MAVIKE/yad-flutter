@@ -8,32 +8,26 @@ import 'package:yad/widgets/dish_card.dart';
 
 class DishScrollList extends StatefulWidget {
 
-  DishScrollList(this.categoryId);
-
-  final int categoryId;
 
   @override
-  _DishScrollListState createState() => _DishScrollListState(categoryId);
+  _DishScrollListState createState() => _DishScrollListState();
 }
 
 class _DishScrollListState extends State<DishScrollList> {
   final _scrollController = ScrollController();
-  final int categoryId;
 
-  _DishScrollListState(this.categoryId);
-
-  late DishListBloc _dishListBloc;
+  //late DishListBloc _dishListBloc;
 
   @override
   void initState() {
     super.initState();
     //_scrollController.addListener(_onScroll);
-    _dishListBloc = context.read<DishListBloc>()
-      ..add(DishListFetched(this.categoryId));
+    //_dishListBloc = context.read<DishListBloc>();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.read<ITheme>();
     return BlocBuilder<DishListBloc, DishListState>(
         builder: (context, state) {
           switch (state.status) {
@@ -43,7 +37,9 @@ class _DishScrollListState extends State<DishScrollList> {
               if (state.dishes.isEmpty) {
                 return const Center(child: Text('no dishes'));
               }
-              return ListView.builder(
+              return Expanded(child: Container(width: theme.dishCardTheme.cardWidth,
+                  margin: theme.dishListTheme.marginDishList,
+                  child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   Dish dish = state.dishes[index];
                   return DishCard(header: dish.title,
@@ -53,7 +49,8 @@ class _DishScrollListState extends State<DishScrollList> {
                 },
                 itemCount: state.dishes.length,
                 controller: _scrollController,
-              );
+                  scrollDirection: Axis.vertical
+              )));
             default:
               return const Center(child: CircularProgressIndicator());
           }

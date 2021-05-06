@@ -37,10 +37,14 @@ class LightDishListTheme implements IDishListTheme {
   );
 
   @override
-  EdgeInsetsGeometry get marginDishList => EdgeInsets.only(top: 8);
+  EdgeInsetsGeometry get marginDishListPage => EdgeInsets.only(top: 8);
 
   @override
-  EdgeInsetsGeometry get marginRestaurantName => EdgeInsets.only(bottom: 28);
+  EdgeInsetsGeometry get marginDishList => EdgeInsets.only(left: 12, top: 22);
+
+  @override
+  EdgeInsetsGeometry get marginRestaurantName => EdgeInsets.only(bottom: 10,
+  left: 12);
 
   @override
   TextStyle get textStyleRestaurantName => TextStyle(

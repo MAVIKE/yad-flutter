@@ -28,7 +28,7 @@ class DishListPage extends StatelessWidget {
           ..add(CategoryListFetched()),
         child:
         Align(alignment: Alignment.topCenter, child: Container(
-          margin: theme.dishListTheme.marginDishList,
+          margin: theme.dishListTheme.marginDishListPage,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -40,7 +40,7 @@ class DishListPage extends StatelessWidget {
                   )
               ),
               CategoryScrollList(),
-              DishScrollList(context.read<DishListBloc>().state.categories[0].id)
+              DishScrollList()
             ],
           ),
         )

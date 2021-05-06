@@ -26,16 +26,27 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
     }
   }
 
+  // при получении категорий,
+  // делается запрос на получение списка блюд первой категории
   Future<DishListState> _mapCategoryListFetchedToState(DishListState state) async {
     try {
       final categories = await _fetchCategories(state.restaurantId.id);
-      return categories.isEmpty
-          ? state.copyWith(
-          status: DishListStatus.failure)
-          : state.copyWith(
-        status: DishListStatus.success,
-        categories: List.of(state.categories)..addAll(categories),
-      );
+      if (categories.isEmpty) {
+        return state.copyWith(status: DishListStatus.failure);
+      }
+      else {
+        final dishes = await _fetchDishes(state.restaurantId.id, categories[0].id);
+        if (dishes.isEmpty) {
+          return state.copyWith(status: DishListStatus.failure);
+        }
+        else {
+          return state.copyWith(
+            status: DishListStatus.success,
+            categories: categories,
+            dishes: dishes
+          );
+        }
+      }
     } on Exception {
       return state.copyWith(status: DishListStatus.failure);
     }
