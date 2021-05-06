@@ -54,23 +54,14 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
 
   Future<DishListState> _mapDishListFetchedToState(DishListFetched event, DishListState state) async {
     try {
-      if (state.status == DishListStatus.initial) {
-        final dishes = await _fetchDishes(state.restaurantId.id, event.categoryId);
-        return state.copyWith(
-          status: DishListStatus.success,
-          dishes: dishes,
-        );
+      final dishes = await _fetchDishes(state.restaurantId.id, event.categoryId);
+      if (dishes.isEmpty) {
+        return state.copyWith(status: DishListStatus.failure);
       }
-      if (state.dishes.isEmpty) {
-        final dishes = await _fetchDishes(state.restaurantId.id, event.categoryId);
-        return state.copyWith(
-          status: DishListStatus.success,
-          dishes: dishes,
-        );
-      }
-      else {
-        return state;
-      }
+      return state.copyWith(
+        status: DishListStatus.success,
+        dishes: dishes,
+      );
     } on Exception {
       return state.copyWith(status: DishListStatus.failure);
     }
