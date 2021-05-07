@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yad/core/domain/repos/load_dish_list/dish_list_repo.dart';
-import 'package:yad/core/domain/repos/load_dish_list/user_dish_list_repo.dart';
+import 'package:yad/core/domain/repos/load_dish_list/mock_dish_list_repo.dart';
 import 'package:yad/core/domain/repos/make_payment/make_payment_repo.dart';
 import 'package:yad/core/domain/repos/make_payment/user_make_payment_repo.dart';
 import '../../core/theme/i_theme/i_theme.dart';
@@ -30,7 +30,7 @@ class App extends StatelessWidget {
           create: (context) => UserMakePaymentRepository(),
         ),
         RepositoryProvider<DishListRepo>(
-          create: (context) => UserDishListRepository(),
+          create: (context) => MockDishListRepository(),
         ),
         // еще тут будет лежать репозиторий Вовы auth
       ],

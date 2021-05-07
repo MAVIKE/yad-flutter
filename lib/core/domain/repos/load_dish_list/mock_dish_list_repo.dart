@@ -4,9 +4,8 @@ import 'package:yad/features/dish_list/models/dish.dart';
 
 import 'dish_list_repo.dart';
 
-class UserDishListRepository implements DishListRepo {
+class MockDishListRepository implements DishListRepo {
 
-  // заглушка.
   // заполнял всякой ерундой, чтоб посмотреть, как выглядеть будет
   @override
   Future<List<DishCategory>> loadCategories({
