@@ -25,7 +25,7 @@ class DishListPage extends StatelessWidget {
             dishListRepo: RepositoryProvider.of(context),
             restaurantId: restaurantId
         )
-          ..add(CategoryListFetched()),
+          ..add(CategoryListRequested()),
         child:
         Align(alignment: Alignment.topCenter, child: Container(
           margin: theme.dishListTheme.marginDishListPage,

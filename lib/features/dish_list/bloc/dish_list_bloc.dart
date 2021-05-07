@@ -18,9 +18,9 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
 
   @override
   Stream<DishListState> mapEventToState(DishListEvent event) async* {
-    if (event is CategoryListFetched) {
+    if (event is CategoryListRequested) {
       yield await _mapCategoryListFetchedToState(state);
-    } else if (event is DishListFetched) {
+    } else if (event is DishListRequestedByCategoryId) {
       yield await _mapDishListFetchedToState(event, state);
     }
   }
@@ -51,7 +51,7 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
     }
   }
 
-  Future<DishListState> _mapDishListFetchedToState(DishListFetched event, DishListState state) async {
+  Future<DishListState> _mapDishListFetchedToState(DishListRequestedByCategoryId event, DishListState state) async {
     try {
       final dishes = await _fetchDishes(state.restaurantId.id, event.categoryId);
       if (dishes.isEmpty) {

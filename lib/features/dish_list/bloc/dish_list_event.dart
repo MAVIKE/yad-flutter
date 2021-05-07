@@ -9,10 +9,10 @@ abstract class DishListEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class CategoryListFetched extends DishListEvent {}
+class CategoryListRequested extends DishListEvent {}
 
-class DishListFetched extends DishListEvent {
-  const DishListFetched(this.categoryId);
+class DishListRequestedByCategoryId extends DishListEvent {
+  const DishListRequestedByCategoryId(this.categoryId);
 
   final int categoryId;
 

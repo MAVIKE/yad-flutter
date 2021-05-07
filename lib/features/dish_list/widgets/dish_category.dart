@@ -34,7 +34,7 @@ class DishCategoryWidget extends StatelessWidget {
               ),
               onPressed: () {
                 context.read<DishListBloc>().add(
-                    DishListFetched(_categoryId)
+                    DishListRequestedByCategoryId(_categoryId)
                 );
               },
             )
