@@ -12,7 +12,9 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
     required DishListRepo dishListRepo,
     required int restaurantId,
   }) : _dishListRepo = dishListRepo,
-        super(DishListState(restaurantId: RestaurantId(id: restaurantId)));
+        super(DishListState(restaurantId: RestaurantId(id: restaurantId))) {
+    this.add(CategoryListRequested());
+  }
 
   final DishListRepo _dishListRepo;
 

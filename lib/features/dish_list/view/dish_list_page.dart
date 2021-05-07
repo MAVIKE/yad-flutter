@@ -24,8 +24,7 @@ class DishListPage extends StatelessWidget {
         DishListBloc(
             dishListRepo: RepositoryProvider.of(context),
             restaurantId: restaurantId
-        )
-          ..add(CategoryListRequested()),
+        ),
         child:
         Align(alignment: Alignment.topCenter, child: Container(
           margin: theme.dishListTheme.marginDishListPage,
