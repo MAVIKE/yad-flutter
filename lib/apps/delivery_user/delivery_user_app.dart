@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yad/core/domain/repos/load_dish_list/dish_list_repo.dart';
 import 'package:yad/core/domain/repos/load_dish_list/mock_dish_list_repo.dart';
 import 'package:yad/core/domain/repos/make_payment/make_payment_repo.dart';

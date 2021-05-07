@@ -50,10 +50,7 @@ class LightTheme implements ITheme {
 
   @override
   IDataInputCardTheme get dataInputCardTheme => _dataInputCardTheme;
-  
-  @override
-  IInputTheme get inputTheme => _inputTheme;
 
   @override
-  IDataInputCardTheme get dataInputCardTheme => _dataInputCardTheme;
+  IInputTheme get inputTheme => _inputTheme;
 }
