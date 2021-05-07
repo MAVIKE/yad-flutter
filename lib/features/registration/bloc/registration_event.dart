@@ -1,4 +1,4 @@
-part of 'registration_bloc';
+part of 'package:yad/features/registration/bloc/registration_bloc.dart';
 
 abstract class RegistrationEvent extends Equatable {
   const RegistrationEvent();
