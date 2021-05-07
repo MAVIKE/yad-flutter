@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:yad/core/domain/repos/register/register_repo.dart';
+//import 'package:yad/core/domain/repos/register/register_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
@@ -9,13 +9,15 @@ part 'register_event.dart';
 part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  RegisterBloc({
+  RegisterBloc(RegisterState initialState, {initialState2}) : super(initialState);
+
+/*  RegisterBloc({
     required RegisterRepo registerRepo,
   })   : _registerRepo = registerRepo,
         super(const RegisterState.unknown()) {
     (() async {})();
   }
-  final RegisterRepo _registerRepo;
+  final RegisterRepo _registerRepo;*/
 
   void register(
       String name,

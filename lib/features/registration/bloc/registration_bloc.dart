@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:yad/features/registration/register.dart';
+//import 'package:yad/features/register/register.dart';
+import 'package:yad/features/registration/registration.dart';
 import 'package:yad/features/registration/models/models.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -11,11 +12,13 @@ part 'registration_event.dart';
 part 'registration_state.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
-  RegistrationBloc({required RegisterBloc registerBloc})
+  RegistrationBloc(RegistrationState initialState) : super(initialState);
+
+  /*RegistrationBloc({required RegisterBloc registerBloc})
       : _registerBloc = registerBloc,
         super(const RegistrationState());
 
-  final RegisterBloc _registerBloc;
+  final RegisterBloc _registerBloc;*/
 
   @override
   Stream<RegistrationState> mapEventToState(
@@ -307,8 +310,9 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   ) async* {
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
+      /*
       try {
-        _registerBloc.register(
+        _registerBloc.//register(
           state.name.value,
           state.phoneNumber,
           state.password1,
@@ -325,6 +329,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       } on Exception catch (_) {
         yield state.copyWith(status: FormzStatus.submissionFailure);
       }
+      */
     }
   }
 }
