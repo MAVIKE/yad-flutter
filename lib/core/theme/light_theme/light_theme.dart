@@ -4,6 +4,7 @@ import 'package:yad/core/theme/i_theme/i_theme.dart';
 part 'light_profile_theme.dart';
 part 'light_login_theme.dart';
 part 'light_dish_card_theme.dart';
+part 'light_dish_list_theme.dart';
 part 'light_app_bar_theme.dart';
 part 'light_input_theme.dart';
 part 'light_data_input_card_theme.dart';
@@ -20,6 +21,7 @@ class LightTheme implements ITheme {
   static LightProfileTheme _profileTheme = LightProfileTheme();
   static LightLoginTheme _loginTheme = LightLoginTheme();
   static LightDishCardTheme _dishCardTheme = LightDishCardTheme();
+  static LightDishListTheme _dishListTheme = LightDishListTheme();
   static LightAppBarTheme _appBarTheme = LightAppBarTheme();
   static LightInputTheme _inputTheme = LightInputTheme();
   static LightDataInputCardTheme _dataInputCardTheme =
@@ -44,8 +46,11 @@ class LightTheme implements ITheme {
   IDishCardTheme get dishCardTheme => _dishCardTheme;
 
   @override
-  IInputTheme get inputTheme => _inputTheme;
+  IDishListTheme get dishListTheme => _dishListTheme;
 
   @override
   IDataInputCardTheme get dataInputCardTheme => _dataInputCardTheme;
+
+  @override
+  IInputTheme get inputTheme => _inputTheme;
 }
