@@ -4,6 +4,8 @@ import 'package:yad/core/theme/i_theme/i_theme.dart';
 part 'light_profile_theme.dart';
 part 'light_login_theme.dart';
 part 'light_dish_card_theme.dart';
+part 'light_app_bar_theme.dart';
+part 'light_input_theme.dart';
 part 'light_data_input_card_theme.dart';
 
 const Color _yellow = Color.fromRGBO(251, 187, 0, 1);
@@ -18,17 +20,10 @@ class LightTheme implements ITheme {
   static LightProfileTheme _profileTheme = LightProfileTheme();
   static LightLoginTheme _loginTheme = LightLoginTheme();
   static LightDishCardTheme _dishCardTheme = LightDishCardTheme();
+  static LightAppBarTheme _appBarTheme = LightAppBarTheme();
+  static LightInputTheme _inputTheme = LightInputTheme();
   static LightDataInputCardTheme _dataInputCardTheme =
-  LightDataInputCardTheme();
-
-  Color get appBarForeground => _purple;
-  Color get appBarBackground => _yellow;
-
-  @override
-  Color get inputBackground => Colors.white;
-
-  @override
-  Color get inputForeground => Colors.black;
+      LightDataInputCardTheme();
 
   @override
   IProfileTheme get profileTheme => _profileTheme;
@@ -37,19 +32,11 @@ class LightTheme implements ITheme {
   ILoginTheme get loginTheme => _loginTheme;
 
   @override
-  AppBarTheme get appBarTheme => AppBarTheme(
-      brightness: Brightness.light,
-      backgroundColor: appBarBackground,
-      foregroundColor: appBarForeground,
-      titleTextStyle: TextStyle(
-          color: appBarForeground,
-          fontFamily: _primaryFontFamily,
-          fontWeight: FontWeight.w700,
-          fontSize: 30));
+  IAppBarTheme get appBarTheme => _appBarTheme;
 
   @override
   ThemeData get themeData => ThemeData(
-      appBarTheme: appBarTheme,
+      appBarTheme: _appBarTheme.flutter,
       primaryColor: _yellow,
       brightness: Brightness.light);
 
@@ -57,6 +44,8 @@ class LightTheme implements ITheme {
   IDishCardTheme get dishCardTheme => _dishCardTheme;
 
   @override
-  IDataInputCardTheme get dataInputCardTheme => _dataInputCardTheme;
+  IInputTheme get inputTheme => _inputTheme;
 
+  @override
+  IDataInputCardTheme get dataInputCardTheme => _dataInputCardTheme;
 }

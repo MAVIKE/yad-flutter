@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yad/core/domain/repos/make_payment/make_payment_repo.dart';
 import 'package:yad/core/domain/repos/make_payment/user_make_payment_repo.dart';
 import '../../core/theme/i_theme/i_theme.dart';
 import '../../core/theme/light_theme/light_theme.dart';
 import 'pages/pages.dart';
 
-
 void runDeliveryUserApp() async {
-  runApp(ProviderScope(child: App()));
+  runApp(App());
 }
 
 class App extends StatelessWidget {
@@ -38,7 +36,6 @@ class AppView extends StatefulWidget {
   @override
   _AppViewState createState() => _AppViewState();
 }
-
 
 class _AppViewState extends State<AppView> {
   //final _navigatorKey = GlobalKey<NavigatorState>();
