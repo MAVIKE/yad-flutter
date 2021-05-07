@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:yad/core/domain/repos/load_dish_list/dish_list_repo.dart';
@@ -21,7 +23,7 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
   @override
   Stream<DishListState> mapEventToState(DishListEvent event) async* {
     if (event is CategoryListRequested) {
-      yield await _mapCategoryListFetchedToState(state);
+      yield* _mapCategoryListFetchedToState(state);
     } else if (event is DishListRequestedByCategoryId) {
       yield await _mapDishListFetchedToState(event, state);
     }
@@ -29,19 +31,25 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
 
   // при получении категорий,
   // делается запрос на получение списка блюд первой категории
-  Future<DishListState> _mapCategoryListFetchedToState(DishListState state) async {
+  Stream<DishListState> _mapCategoryListFetchedToState(DishListState state) async* {
     try {
       final categories = await _fetchCategories(state.restaurantId.id);
       if (categories.isEmpty) {
-        return state.copyWith(status: DishListStatus.failure);
+        yield state.copyWith(status: DishListStatus.failure);
       }
       else {
+        // если удался запрос, возвращаем вначале список категорий,
+        // а потом уже дозапрашиваем список блюд для первой категории
+        yield state.copyWith(
+            status: DishListStatus.success,
+            categories: categories
+        );
         final dishes = await _fetchDishes(state.restaurantId.id, categories[0].id);
         if (dishes.isEmpty) {
-          return state.copyWith(status: DishListStatus.failure);
+          yield state.copyWith(status: DishListStatus.failure);
         }
         else {
-          return state.copyWith(
+          yield state.copyWith(
             status: DishListStatus.success,
             categories: categories,
             dishes: dishes
@@ -49,7 +57,7 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
         }
       }
     } on Exception {
-      return state.copyWith(status: DishListStatus.failure);
+      yield state.copyWith(status: DishListStatus.failure);
     }
   }
 
