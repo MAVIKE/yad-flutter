@@ -1,31 +1,27 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yad/core/theme/i_theme/i_theme.dart';
-import 'package:yad/core/theme/light_theme/light_theme.dart';
+import 'package:bloc/bloc.dart';
+import 'package:yad/apps/delivery_boy/delivery_boy_app.dart';
 
 void main() {
-  runApp(RepositoryProvider<ITheme>(
-    create: (context) => LightTheme(),
-    child: MyApp(),
-  ));
+  Bloc.observer = SimpleBlocObserver();
+  runDeliveryBoyApp();
 }
 
-class MyApp extends StatelessWidget {
+class SimpleBlocObserver extends BlocObserver {
   @override
-  Widget build(BuildContext context) {
-    final theme = context.read<ITheme>();
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: theme.themeData,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("YAD User app"),
-        ),
-        body: Center(
-          child: Text("Template"),
-        ),
-      ),
-    );
+  void onEvent(Bloc bloc, Object? event) {
+    super.onEvent(bloc, event);
+    print(event);
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print(transition);
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    print(error);
+    super.onError(bloc, error, stackTrace);
   }
 }

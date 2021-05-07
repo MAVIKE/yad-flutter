@@ -9,9 +9,8 @@ import '../../core/theme/i_theme/i_theme.dart';
 import '../../core/theme/light_theme/light_theme.dart';
 import 'pages/pages.dart';
 
-
 void runDeliveryUserApp() async {
-  runApp(ProviderScope(child: App()));
+  runApp(App());
 }
 
 class App extends StatelessWidget {
@@ -43,7 +42,6 @@ class AppView extends StatefulWidget {
   @override
   _AppViewState createState() => _AppViewState();
 }
-
 
 class _AppViewState extends State<AppView> {
   //final _navigatorKey = GlobalKey<NavigatorState>();
