@@ -5,18 +5,7 @@ import 'package:yad/features/dish_list/bloc/dish_list_bloc.dart';
 import 'package:yad/features/dish_list/models/category.dart';
 import 'package:yad/features/dish_list/widgets/widgets.dart';
 
-class CategoryScrollList extends StatefulWidget {
-
-  @override
-  _CategoryScrollListState createState() => _CategoryScrollListState();
-}
-
-class _CategoryScrollListState extends State<CategoryScrollList> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
+class CategoryScrollList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +33,5 @@ class _CategoryScrollListState extends State<CategoryScrollList> {
               return const Center(child: CircularProgressIndicator());
           }
         });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }
