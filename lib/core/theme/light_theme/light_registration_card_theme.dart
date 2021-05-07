@@ -1,8 +1,8 @@
 part of 'light_theme.dart';
 
-class LightDataInputCardTheme implements IDataInputCardTheme {
+class LightRegistrationCardTheme implements IRegistrationCardTheme {
   @override
-  double get cardHeight => 362;
+  double get cardHeight => 562;
 
   @override
   double get cardWidth => 330;
@@ -13,7 +13,10 @@ class LightDataInputCardTheme implements IDataInputCardTheme {
       borderRadius: BorderRadius.circular(18.0));
 
   @override
-  double get leftInputWidth => 238;
+  double get inputWidth => 238;
+
+  @override
+  double get inputHeight => 25;
 
   @override
   TextStyle get textStyleHeaderInput => TextStyle(
@@ -23,7 +26,11 @@ class LightDataInputCardTheme implements IDataInputCardTheme {
       fontWeight: FontWeight.w900);
 
   @override
-  double get inputHeight => 25;
+  TextStyle get textStyleHouseNumber => TextStyle(
+      fontSize: 18,
+      color: Color.fromRGBO(65, 14, 130, 1),
+      fontFamily: "Roboto",
+      fontWeight: FontWeight.w900);
 
   @override
   InputDecoration inputDecoration(String hintText, bool invalid) =>
@@ -41,10 +48,13 @@ class LightDataInputCardTheme implements IDataInputCardTheme {
       );
 
   @override
-  double get expirationDateInputWidth => 111;
+  double get streetInputWidth => 166;
 
   @override
-  double get rightInputWidth => 115;
+  double get houseNumberInputWidth => 120;
+
+  @override
+  double get smallInputWidth => 50;
 
   @override
   TextStyle get textStyleButton => TextStyle(
@@ -78,7 +88,7 @@ class LightDataInputCardTheme implements IDataInputCardTheme {
       EdgeInsets.only(left: 8, top: 21);
 
   @override
-  TextStyle get textStylePayment => TextStyle(
+  TextStyle get textStyleRegistration => TextStyle(
         fontSize: 30,
         color: Color.fromRGBO(65, 14, 130, 1),
         fontFamily: "Roboto",
@@ -86,8 +96,8 @@ class LightDataInputCardTheme implements IDataInputCardTheme {
       );
 
   @override
-  EdgeInsetsGeometry get marginPayment => EdgeInsets.only(top: 28);
+  EdgeInsetsGeometry get marginRegistration => EdgeInsets.only(top: 28);
 
   @override
-  EdgeInsetsGeometry get marginTextPayment => EdgeInsets.only(bottom: 11);
+  EdgeInsetsGeometry get marginTextRegistration => EdgeInsets.only(bottom: 11);
 }

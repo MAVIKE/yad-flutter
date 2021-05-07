@@ -6,6 +6,7 @@ part 'i_dish_list_theme.dart';
 part 'i_app_bar_theme.dart';
 part 'i_input_theme.dart';
 part 'i_data_input_card_theme.dart';
+part 'i_registration_card_theme.dart';
 
 abstract class ITheme {
   IProfileTheme get profileTheme;
@@ -16,4 +17,5 @@ abstract class ITheme {
   IDishListTheme get dishListTheme;
   IInputTheme get inputTheme;
   IDataInputCardTheme get dataInputCardTheme;
+  IRegistrationCardTheme get registrationCardTheme;
 }

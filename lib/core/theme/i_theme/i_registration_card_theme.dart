@@ -1,16 +1,18 @@
-part of "i_theme.dart";
+part of 'i_theme.dart';
 
-abstract class IDataInputCardTheme {
+abstract class IRegistrationCardTheme {
   double get cardHeight;
   double get cardWidth;
   BoxDecoration get decorationCard;
-  double get leftInputWidth;
+  double get inputWidth;
   TextStyle get textStyleHeaderInput;
   double get inputHeight;
   InputDecoration inputDecoration(String hintText, bool invalid);
-  double get expirationDateInputWidth;
-  double get rightInputWidth;
+  double get streetInputWidth;
+  double get houseNumberInputWidth;
+  double get smallInputWidth;
   TextStyle get textStyleButton;
+  TextStyle get textStyleHouseNumber;
   double get buttonWidth;
   double get buttonHeight;
   BoxDecoration get decorationButton;
@@ -18,7 +20,7 @@ abstract class IDataInputCardTheme {
   EdgeInsetsGeometry get marginRightInput;
   EdgeInsetsGeometry get marginLeftInput;
   EdgeInsetsGeometry get marginTopLeftInput;
-  TextStyle get textStylePayment;
-  EdgeInsetsGeometry get marginPayment;
-  EdgeInsetsGeometry get marginTextPayment;
+  TextStyle get textStyleRegistration;
+  EdgeInsetsGeometry get marginRegistration;
+  EdgeInsetsGeometry get marginTextRegistration;
 }
