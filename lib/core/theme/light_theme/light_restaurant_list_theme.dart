@@ -1,29 +1,6 @@
 part of 'light_theme.dart';
 
 class LightRestaurantListTheme implements IRestaurantListTheme {
-  @override
-  double get restaurantCategoryWidth => 120;
-
-  @override
-  double get restaurantCategoryHeight => 76;
-
-  @override
-  BoxDecoration get restaurantCategoryDecoration => BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color:Colors.white.withOpacity(0.25),
-          offset: Offset(0.0, 2.0),
-          spreadRadius: 4.0,
-        ),
-      ],
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [Color.fromRGBO(187, 0, 99, 1),
-          Color.fromRGBO(197, 25, 115, 1)],
-      ),
-      borderRadius: BorderRadius.circular(18.0)
-  );
 
   @override
   EdgeInsetsGeometry get restaurantCategoryMargin => EdgeInsets.only(left: 12);
