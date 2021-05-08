@@ -9,6 +9,7 @@ abstract class IRestaurantCardTheme {
   double get photoWidth;
   double get photoHeight;
   BorderRadius get widgetBorderRadius;
+  TextStyle get fontFamily;
   TextStyle get titleTextStyle;
   TextStyle get subtitleTextStyle;
 }
