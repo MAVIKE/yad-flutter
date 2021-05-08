@@ -1,6 +1,6 @@
 part of "i_theme.dart";
 
-abstract class IDishCardTheme {
+abstract class IRestaurantCardTheme {
   double get cardHeight;
   double get cardWidth;
   BoxDecoration get shadowCard;
@@ -9,12 +9,7 @@ abstract class IDishCardTheme {
   double get photoWidth;
   double get photoHeight;
   BorderRadius get widgetBorderRadius;
+  TextStyle get fontFamily;
   TextStyle get titleTextStyle;
   TextStyle get subtitleTextStyle;
-  TextStyle get dishCostTextStyle;
-  BoxConstraints get countButtonShape;
-  Color get countButtonColor;
-  TextStyle get dishCount;
-  TextStyle get orderedTextStyle;
-  TextStyle get orderTextStyle;
 }
