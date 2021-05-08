@@ -7,3 +7,6 @@ abstract class RestaurantListEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class RestaurantListRequested extends RestaurantListEvent {
+  const RestaurantListRequested();}

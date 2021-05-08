@@ -11,7 +11,9 @@ class RestaurantListBloc
   RestaurantListBloc({
     required RestaurantListRepo restaurantListRepo,
   })   : _restaurantListRepo = restaurantListRepo,
-        super(RestaurantListState()) {}
+        super(RestaurantListState());
+
+  final RestaurantListRepo _restaurantListRepo;
 
   @override
   Stream<RestaurantListState> mapEventToState(

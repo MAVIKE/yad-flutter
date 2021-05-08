@@ -6,7 +6,7 @@ import 'package:yad/features/restaurant_list/models/models.dart';
 import 'package:yad/widgets/restaurant_card.dart';
 
 
-class RestaurantsScrollList extends StatefulWidget {
+class RestaurantScrollList extends StatefulWidget {
 
   @override
   _RestaurantScrollListState createState() => _RestaurantScrollListState();

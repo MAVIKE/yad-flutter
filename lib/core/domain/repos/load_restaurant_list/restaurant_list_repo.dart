@@ -4,5 +4,5 @@ import 'package:yad/features/restaurant_list/models/restaurant.dart';
 
 abstract class RestaurantListRepo {
 
-  Future<List<Restaurant>> loadRestaurants({required int restaurantId});
+  Future<List<Restaurant>> loadRestaurants();
 }
