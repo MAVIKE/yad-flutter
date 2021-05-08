@@ -11,7 +11,9 @@ class RestaurantListBloc
   RestaurantListBloc({
     required RestaurantListRepo restaurantListRepo,
   })   : _restaurantListRepo = restaurantListRepo,
-        super(RestaurantListState());
+        super(RestaurantListState()) {
+    add(RestaurantListRequested());
+  }
 
   final RestaurantListRepo _restaurantListRepo;
 
