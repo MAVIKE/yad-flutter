@@ -1,7 +1,6 @@
 part of 'restaurant_list_bloc.dart';
 
 abstract class RestaurantListEvent extends Equatable {
-
   const RestaurantListEvent();
 
   @override
@@ -9,4 +8,5 @@ abstract class RestaurantListEvent extends Equatable {
 }
 
 class RestaurantListRequested extends RestaurantListEvent {
-  const RestaurantListRequested();}
+  const RestaurantListRequested();
+}

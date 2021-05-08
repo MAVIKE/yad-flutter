@@ -5,20 +5,7 @@ import 'package:yad/features/restaurant_list/bloc/restaurant_list_bloc.dart';
 import 'package:yad/features/restaurant_list/models/models.dart';
 import 'package:yad/widgets/restaurant_card.dart';
 
-
-class RestaurantScrollList extends StatefulWidget {
-
-  @override
-  _RestaurantScrollListState createState() => _RestaurantScrollListState();
-}
-
-class _RestaurantScrollListState extends State<RestaurantScrollList> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class RestaurantScrollList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.read<ITheme>();
@@ -38,8 +25,7 @@ class _RestaurantScrollListState extends State<RestaurantScrollList> {
                   child: ListView.builder(
                       itemBuilder: (BuildContext context, int index) {
                         Restaurant restaurant = state.restaurants[index];
-                        return RestaurantCard(
-                            header: restaurant.name);
+                        return RestaurantCard(header: restaurant.name);
                       },
                       itemCount: state.restaurants.length,
                       scrollDirection: Axis.vertical)));
@@ -47,10 +33,5 @@ class _RestaurantScrollListState extends State<RestaurantScrollList> {
           return const Center(child: CircularProgressIndicator());
       }
     });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

@@ -1,7 +1,6 @@
 part of 'restaurant_list_bloc.dart';
 
-
-enum RestaurantListStatus {initial, success, failure}
+enum RestaurantListStatus { initial, success, failure }
 
 class RestaurantListState extends Equatable {
   const RestaurantListState({
@@ -12,10 +11,8 @@ class RestaurantListState extends Equatable {
   final RestaurantListStatus status;
   final List<Restaurant> restaurants;
 
-  RestaurantListState copyWith({
-    RestaurantListStatus? status,
-    List<Restaurant>? restaurants
-  }) {
+  RestaurantListState copyWith(
+      {RestaurantListStatus? status, List<Restaurant>? restaurants}) {
     return RestaurantListState(
       status: status ?? this.status,
       restaurants: restaurants ?? this.restaurants,
