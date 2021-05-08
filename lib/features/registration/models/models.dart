@@ -5,7 +5,6 @@ export 'flat.dart';
 export 'floor.dart';
 export 'house_number.dart';
 export 'name.dart';
-export 'password1.dart';
-export 'password2.dart';
+export 'password.dart';
 export 'phone_number.dart';
 export 'street.dart';

@@ -1,7 +1,8 @@
 import 'dart:async';
+import 'package:yad/core/domain/repos/result.dart';
 
 abstract class RegisterRepo {
-  Future<String> register(
+  Future<Result<void>> register(
       {required String name,
       required String phoneNumber,
       required String password1,

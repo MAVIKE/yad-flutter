@@ -5,8 +5,8 @@ class RegistrationState extends Equatable {
     this.status = FormzStatus.pure,
     this.name = const Name.pure(),
     this.phoneNumber = const PhoneNumber.pure(),
-    this.password1 = const Password1.pure(),
-    this.password2 = const Password2.pure(),
+    this.password1 = const Password.pure(),
+    this.password2 = const Password.pure(),
     this.city = const City.pure(),
     this.street = const Street.pure(),
     this.houseNumber = const HouseNumber.pure(),
@@ -19,8 +19,8 @@ class RegistrationState extends Equatable {
   final FormzStatus status;
   final Name name;
   final PhoneNumber phoneNumber;
-  final Password1 password1;
-  final Password2 password2;
+  final Password password1;
+  final Password password2;
   final City city;
   final Street street;
   final HouseNumber houseNumber;
@@ -33,8 +33,8 @@ class RegistrationState extends Equatable {
     FormzStatus? status,
     Name? name,
     PhoneNumber? phoneNumber,
-    Password1? password1,
-    Password2? password2,
+    Password? password1,
+    Password? password2,
     City? city,
     Street? street,
     HouseNumber? houseNumber,
@@ -43,19 +43,44 @@ class RegistrationState extends Equatable {
     Flat? flat,
     Entrance? entrance,
   }) {
+    final newName = name ?? this.name;
+    final newPhoneNumber = phoneNumber ?? this.phoneNumber;
+    final newPassword1 = password1 ?? this.password1;
+    final newPassword2 = password2 ?? this.password2;
+    final newCity = city ?? this.city;
+    final newStreet = street ?? this.street;
+    final newHouseNumber = houseNumber ?? this.houseNumber;
+    final newBuilding = building ?? this.building;
+    final newFloor = floor ?? this.floor;
+    final newFlat = flat ?? this.flat;
+    final newEntrance = entrance ?? this.entrance;
+
     return RegistrationState(
-      status: status ?? this.status,
-      name: name ?? this.name,
-      phoneNumber: phoneNumber ?? this.phoneNumber,
-      password1: password1 ?? this.password1,
-      password2: password2 ?? this.password2,
-      city: city ?? this.city,
-      street: street ?? this.street,
-      houseNumber: houseNumber ?? this.houseNumber,
-      building: building ?? this.building,
-      floor: floor ?? this.floor,
-      flat: flat ?? this.flat,
-      entrance: entrance ?? this.entrance,
+      status: status ??
+          Formz.validate([
+            newName,
+            newPhoneNumber,
+            newPassword1,
+            newPassword2,
+            newCity,
+            newStreet,
+            newHouseNumber,
+            newBuilding,
+            newFloor,
+            newFlat,
+            newEntrance
+          ]),
+      name: newName,
+      phoneNumber: newPhoneNumber,
+      password1: newPassword1,
+      password2: newPassword2,
+      city: newCity,
+      street: newStreet,
+      houseNumber: newHouseNumber,
+      building: newBuilding,
+      floor: newFloor,
+      flat: newFlat,
+      entrance: newEntrance,
     );
   }
 
