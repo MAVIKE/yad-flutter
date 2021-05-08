@@ -3,17 +3,6 @@ part of 'light_theme.dart';
 class LightRestaurantListTheme implements IRestaurantListTheme {
 
   @override
-  EdgeInsetsGeometry get restaurantCategoryMargin => EdgeInsets.only(left: 12);
-
-  @override
-  TextStyle get textStyleCategoryName => TextStyle(
-      color: Colors.white,
-      fontFamily: "Roboto",
-      fontWeight: FontWeight.bold,
-      fontSize: 20
-  );
-
-  @override
   EdgeInsetsGeometry get marginRestaurantListPage => EdgeInsets.only(top: 8);
 
   @override
