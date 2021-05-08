@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 part 'i_profile_theme.dart';
 part 'i_login_theme.dart';
 part 'i_dish_card_theme.dart';
+part 'i_restaurant_card_theme.dart';
 part 'i_dish_list_theme.dart';
 part 'i_app_bar_theme.dart';
 part 'i_input_theme.dart';
@@ -20,4 +21,5 @@ abstract class ITheme {
   IDataInputCardTheme get dataInputCardTheme;
   IRegistrationCardTheme get registrationCardTheme;
   IRestaurantListTheme get restaurantListTheme;
+  IRestaurantCardTheme get restaurantCardTheme;
 }
