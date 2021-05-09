@@ -31,6 +31,7 @@ class UserRegisterRepo extends RegisterRepo {
     } on DioError catch (e) {
       final code = e.response?.statusCode ?? 1;
       if (code >= 200 && code < 300) {
+        print(code);
         return Result();
       }
       return Err(SimpleFailure(
