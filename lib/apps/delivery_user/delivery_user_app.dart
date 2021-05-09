@@ -10,7 +10,6 @@ import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:yad/core/theme/light_theme/light_theme.dart';
 import 'package:yad/features/auth/auth.dart';
 import 'package:yad/core/domain/repos/load_dish_list/dish_list_repo.dart';
-import 'package:yad/core/domain/repos/load_dish_list/mock_dish_list_repo.dart';
 import 'package:yad/core/domain/repos/make_payment/make_payment_repo.dart';
 import 'package:yad/core/domain/repos/make_payment/user_make_payment_repo.dart';
 import 'pages/pages.dart';

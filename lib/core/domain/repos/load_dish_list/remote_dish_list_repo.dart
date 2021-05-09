@@ -10,10 +10,10 @@ import 'package:dio/dio.dart';
 import 'dish_list_repo.dart';
 
 class RemoteDishListRepository implements DishListRepo {
-  final ApiClient _api;
+  //final ApiClient _api;
   final CategoriesApi _cApi;
 
-  RemoteDishListRepository(this._api) : _cApi = _api.getCategoriesApi();
+  RemoteDishListRepository(_api) : _cApi = _api.getCategoriesApi();
 
   List<DishCategory> convertDomainCategoryToDishListCategory(final data) {
     List<DishCategory> res = [];
