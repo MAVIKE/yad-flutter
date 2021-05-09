@@ -63,6 +63,7 @@ class Password1Input extends StatelessWidget {
               .add(RegistrationPassword1Changed(password1)),
           error: state.password1.errorString,
           label: 'Password',
+          obscureText: true,
         );
       },
     );
@@ -84,6 +85,7 @@ class Password2Input extends StatelessWidget {
               .add(RegistrationPassword2Changed(password2)),
           error: state.password2.errorString,
           label: 'Password',
+          obscureText: true,
         );
       },
     );

@@ -15,7 +15,7 @@ import 'package:yad/core/domain/repos/make_payment/user_make_payment_repo.dart';
 import 'pages/pages.dart';
 
 void runDeliveryUserApp() async {
-  final api = ApiClient();
+  final api = ApiClient(basePathOverride: r'http://161.35.217.187:9001/api/v1');
   runApp(MultiRepositoryProvider(providers: [
     RepositoryProvider.value(
       value: api,
