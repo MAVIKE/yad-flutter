@@ -7,6 +7,17 @@ class HouseNumber extends FormzInput<String, HouseNumberValidationError> {
   const HouseNumber.pure() : super.pure('');
   const HouseNumber.dirty([String value = '']) : super.dirty(value);
 
+  String? get errorString {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
+    if (error == null) {
+      return null;
+    }
+    final name = this.runtimeType.toString();
+    return "$name is invalid";
+  }
+
   @override
   HouseNumberValidationError? validator(String? value) {
     if (value == null) {

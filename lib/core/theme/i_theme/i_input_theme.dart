@@ -6,5 +6,6 @@ abstract class IInputTheme {
   TextStyle get labelTextStyle;
   TextStyle get inputTextStyle;
   TextStyle get hintTextStyle;
+  TextStyle get errorTextStyle;
   double get height;
 }

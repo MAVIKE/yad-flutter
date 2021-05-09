@@ -48,4 +48,6 @@ class DeliveryBoyAuthenticationRepository implements AuthRepo {
     _api.setApiKey("CourierAuth", "Bearer $token");
     return Result();
   }
+
+  String get tokenKey => "YAD DB Auth token";
 }

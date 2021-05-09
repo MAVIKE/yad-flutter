@@ -47,4 +47,6 @@ class UserAuthenticationRepository implements AuthRepo {
     _api.setApiKey("UserAuth", "Bearer $token");
     return Result();
   }
+
+  String get tokenKey => "YAD User Auth token";
 }

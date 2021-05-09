@@ -1,24 +1,31 @@
 import 'dart:async';
 
-//import 'package:yad/features/register/register.dart';
+import 'package:yad/core/domain/repos/register/register_repo.dart';
 import 'package:yad/features/registration/registration.dart';
 import 'package:yad/features/registration/models/models.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:yad/features/registration/models/password1.dart';
+import 'package:yad/features/registration/models/password.dart';
+import 'package:yad/core/domain/repos/auth/auth_repo.dart';
+import 'package:yad/features/auth/auth.dart';
 
 part 'registration_event.dart';
 part 'registration_state.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
-  RegistrationBloc(RegistrationState initialState) : super(initialState);
-
-  /*RegistrationBloc({required RegisterBloc registerBloc})
-      : _registerBloc = registerBloc,
+  RegistrationBloc({
+    required RegisterRepo registerRepo,
+    required AuthBloc authBloc,
+    required AuthRepo authRepo,
+  })   : _authBloc = authBloc,
+        _authRepo = authRepo,
+        _registerRepo = registerRepo,
         super(const RegistrationState());
 
-  final RegisterBloc _registerBloc;*/
+  final AuthBloc _authBloc;
+  final AuthRepo _authRepo;
+  final RegisterRepo _registerRepo;
 
   @override
   Stream<RegistrationState> mapEventToState(
@@ -46,6 +53,8 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       yield _mapFlatChangedToState(event, state);
     } else if (event is RegistrationEntranceChanged) {
       yield _mapEntranceChangedToState(event, state);
+    } else if (event is RegistrationEmailChanged) {
+      yield _mapEmailChangedToState(event, state);
     } else if (event is RegistrationSubmitted) {
       yield* _mapRegistrationSubmittedToState(event, state);
     }
@@ -56,22 +65,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationState state,
   ) {
     final name = Name.dirty(event.name);
-    return state.copyWith(
-      name: name,
-      status: Formz.validate([
-        name,
-        state.phoneNumber,
-        state.password1,
-        state.password2,
-        state.city,
-        state.street,
-        state.houseNumber,
-        state.building,
-        state.floor,
-        state.flat,
-        state.entrance
-      ]),
-    );
+    return state.copyWith(name: name);
   }
 
   RegistrationState _mapPhoneNumberChangedToState(
@@ -79,68 +73,23 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationState state,
   ) {
     final phoneNumber = PhoneNumber.dirty(event.phoneNumber);
-    return state.copyWith(
-      phoneNumber: phoneNumber,
-      status: Formz.validate([
-        state.name,
-        phoneNumber,
-        state.password1,
-        state.password2,
-        state.city,
-        state.street,
-        state.houseNumber,
-        state.building,
-        state.floor,
-        state.flat,
-        state.entrance
-      ]),
-    );
+    return state.copyWith(phoneNumber: phoneNumber);
   }
 
   RegistrationState _mapPassword1ChangedToState(
     RegistrationPassword1Changed event,
     RegistrationState state,
   ) {
-    final password1 = Password1.dirty(event.password1);
-    return state.copyWith(
-      password1: password1,
-      status: Formz.validate([
-        state.name,
-        state.phoneNumber,
-        password1,
-        state.password2,
-        state.city,
-        state.street,
-        state.houseNumber,
-        state.building,
-        state.floor,
-        state.flat,
-        state.entrance
-      ]),
-    );
+    final password1 = Password.dirty(event.password1);
+    return state.copyWith(password1: password1);
   }
 
   RegistrationState _mapPassword2ChangedToState(
     RegistrationPassword2Changed event,
     RegistrationState state,
   ) {
-    final password2 = Password2.dirty(event.password2);
-    return state.copyWith(
-      password2: password2,
-      status: Formz.validate([
-        state.name,
-        state.phoneNumber,
-        state.password1,
-        password2,
-        state.city,
-        state.street,
-        state.houseNumber,
-        state.building,
-        state.floor,
-        state.flat,
-        state.entrance
-      ]),
-    );
+    final password2 = Password.dirty(event.password2);
+    return state.copyWith(password2: password2);
   }
 
   RegistrationState _mapCityChangedToState(
@@ -148,22 +97,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationState state,
   ) {
     final city = City.dirty(event.city);
-    return state.copyWith(
-      city: city,
-      status: Formz.validate([
-        state.name,
-        state.phoneNumber,
-        state.password1,
-        state.password2,
-        city,
-        state.street,
-        state.houseNumber,
-        state.building,
-        state.floor,
-        state.flat,
-        state.entrance
-      ]),
-    );
+    return state.copyWith(city: city);
   }
 
   RegistrationState _mapStreetChangedToState(
@@ -171,22 +105,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationState state,
   ) {
     final street = Street.dirty(event.street);
-    return state.copyWith(
-      street: street,
-      status: Formz.validate([
-        state.name,
-        state.phoneNumber,
-        state.password1,
-        state.password2,
-        state.city,
-        street,
-        state.houseNumber,
-        state.building,
-        state.floor,
-        state.flat,
-        state.entrance
-      ]),
-    );
+    return state.copyWith(street: street);
   }
 
   RegistrationState _mapHouseNumberChangedToState(
@@ -194,22 +113,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationState state,
   ) {
     final houseNumber = HouseNumber.dirty(event.houseNumber);
-    return state.copyWith(
-      houseNumber: houseNumber,
-      status: Formz.validate([
-        state.name,
-        state.phoneNumber,
-        state.password1,
-        state.password2,
-        state.city,
-        state.street,
-        houseNumber,
-        state.building,
-        state.floor,
-        state.flat,
-        state.entrance
-      ]),
-    );
+    return state.copyWith(houseNumber: houseNumber);
   }
 
   RegistrationState _mapBuildingChangedToState(
@@ -217,22 +121,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationState state,
   ) {
     final building = Building.dirty(event.building);
-    return state.copyWith(
-      building: building,
-      status: Formz.validate([
-        state.name,
-        state.phoneNumber,
-        state.password1,
-        state.password2,
-        state.city,
-        state.street,
-        state.houseNumber,
-        building,
-        state.floor,
-        state.flat,
-        state.entrance
-      ]),
-    );
+    return state.copyWith(building: building);
   }
 
   RegistrationState _mapFloorChangedToState(
@@ -240,22 +129,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationState state,
   ) {
     final floor = Floor.dirty(event.floor);
-    return state.copyWith(
-      floor: floor,
-      status: Formz.validate([
-        state.name,
-        state.phoneNumber,
-        state.password1,
-        state.password2,
-        state.city,
-        state.street,
-        state.houseNumber,
-        state.building,
-        floor,
-        state.flat,
-        state.entrance
-      ]),
-    );
+    return state.copyWith(floor: floor);
   }
 
   RegistrationState _mapFlatChangedToState(
@@ -263,22 +137,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationState state,
   ) {
     final flat = Flat.dirty(event.flat);
-    return state.copyWith(
-      flat: flat,
-      status: Formz.validate([
-        state.name,
-        state.phoneNumber,
-        state.password1,
-        state.password2,
-        state.city,
-        state.street,
-        state.houseNumber,
-        state.building,
-        state.floor,
-        flat,
-        state.entrance
-      ]),
-    );
+    return state.copyWith(flat: flat);
   }
 
   RegistrationState _mapEntranceChangedToState(
@@ -286,22 +145,15 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationState state,
   ) {
     final entrance = Entrance.dirty(event.entrance);
-    return state.copyWith(
-      entrance: entrance,
-      status: Formz.validate([
-        state.name,
-        state.phoneNumber,
-        state.password1,
-        state.password2,
-        state.city,
-        state.street,
-        state.houseNumber,
-        state.building,
-        state.floor,
-        state.flat,
-        entrance
-      ]),
-    );
+    return state.copyWith(entrance: entrance);
+  }
+
+  RegistrationState _mapEmailChangedToState(
+    RegistrationEmailChanged event,
+    RegistrationState state,
+  ) {
+    final email = Email.dirty(event.email);
+    return state.copyWith(email: email);
   }
 
   Stream<RegistrationState> _mapRegistrationSubmittedToState(
@@ -310,26 +162,34 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   ) async* {
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
-      /*
-      try {
-        _registerBloc.//register(
-          state.name.value,
-          state.phoneNumber,
-          state.password1,
-          state.password2,
-          state.city,
-          state.street,
-          state.houseNumber,
-          state.building,
-          state.floor,
-          state.flat,
-          state.entrance,
-        );
-        yield state.copyWith(status: FormzStatus.submissionSuccess);
-      } on Exception catch (_) {
-        yield state.copyWith(status: FormzStatus.submissionFailure);
-      }
-      */
+      yield await _registerRepo
+          .register(
+        name: state.name.value,
+        phoneNumber: state.phoneNumber.value,
+        password: state.password1.value,
+        email: state.email.value,
+      )
+          .then(
+        (result) {
+          if (result.error == null) {
+            return _authRepo
+                .signIn(
+                    username: state.phoneNumber.value,
+                    password: state.password1.value)
+                .then((result) {
+              if (result.error == null) {
+                _authBloc.authenticated(result.value!);
+                return state.copyWith(status: FormzStatus.submissionSuccess);
+              } else {
+                return state.copyWith(status: FormzStatus.submissionFailure);
+              }
+            });
+          } else {
+            return state.copyWith(status: FormzStatus.submissionFailure);
+          }
+        },
+        onError: (_) => state.copyWith(status: FormzStatus.submissionFailure),
+      );
     }
   }
 }
