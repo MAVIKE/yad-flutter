@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yad/core/domain/repos/auth/auth_repo.dart';
 import 'package:yad/core/domain/repos/auth/user_auth_repo.dart';
+import 'package:yad/core/domain/repos/load_dish_list/remote_dish_list_repo.dart';
 import 'package:yad/core/domain/repos/register/register_repo.dart';
 import 'package:yad/core/domain/repos/register/user_register_repo.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
@@ -33,7 +34,7 @@ void runDeliveryUserApp() async {
       create: (context) => UserMakePaymentRepository(),
     ),
     RepositoryProvider<DishListRepo>(
-      create: (context) => MockDishListRepository(),
+      create: (context) => RemoteDishListRepository(api),
     ),
   ], child: App()));
 }

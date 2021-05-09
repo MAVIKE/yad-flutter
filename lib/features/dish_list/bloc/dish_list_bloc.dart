@@ -77,12 +77,16 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
   }
 
   Future<List<DishCategory>> _fetchCategories(int restaurantId) async {
-    return await _dishListRepo.loadCategories(restaurantId: restaurantId);
+    final data = await _dishListRepo.loadCategories(restaurantId: restaurantId);
+    final categories = data.value;
+    return categories == null ? [] : categories;
   }
 
   Future<List<Dish>> _fetchDishes(int restaurantId, int categoryId) async {
-    return await _dishListRepo.loadDishes(restaurantId: restaurantId,
+    final data = await _dishListRepo.loadDishes(restaurantId: restaurantId,
         categoryId: categoryId);
+    final dishes = data.value;
+    return dishes == null ? [] : dishes;
   }
 
 
