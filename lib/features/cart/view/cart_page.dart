@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yad/features/cart/bloc/cart_list_bloc.dart';
+import 'package:yad/features/cart/view/cart_proceed_part.dart';
 import 'package:yad/features/cart/view/cart_scroll_list.dart';
 
 class CartPage extends StatelessWidget {
@@ -15,17 +16,18 @@ class CartPage extends StatelessWidget {
         child: Align(
             alignment: Alignment.topCenter,
             child: Container(
-              margin: theme.dishListTheme.marginDishListPage,
+              margin: theme.cartTheme.marginCartPage,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      margin: theme.dishListTheme.marginRestaurantName,
+                      margin: theme.cartTheme.marginTitle,
                       child: Text(
                         "Cart",
-                        style: theme.dishListTheme.textStyleRestaurantName,
+                        style: theme.cartTheme.styleTitle,
                       )),
                   CartScrollList(),
+                  CartProceedPart(),
                 ],
               ),
             )));

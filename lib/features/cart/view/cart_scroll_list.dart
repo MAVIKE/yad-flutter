@@ -30,7 +30,7 @@ class _CartScrollList extends State<CartScrollList> {
           return Expanded(
               child: Container(
                   width: theme.dishCardTheme.cardWidth,
-                  margin: theme.dishListTheme.marginDishList,
+                  margin: theme.cartTheme.marginDishList,
                   child: ListView.builder(
                       itemBuilder: (BuildContext context, int index) {
                         Dish dish = state.cart.dishes[index];
