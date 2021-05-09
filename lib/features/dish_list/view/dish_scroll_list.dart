@@ -7,17 +7,14 @@ import 'package:yad/features/dish_list/models/models.dart';
 import 'package:yad/widgets/dish_card.dart';
 
 class DishScrollList extends StatefulWidget {
-
   final int restaurantId;
 
   DishScrollList(this.restaurantId);
-
   @override
   _DishScrollListState createState() => _DishScrollListState(restaurantId);
 }
 
 class _DishScrollListState extends State<DishScrollList> {
-
   final int restaurantId;
 
   _DishScrollListState(this.restaurantId);
@@ -63,5 +60,4 @@ class _DishScrollListState extends State<DishScrollList> {
   void dispose() {
     super.dispose();
   }
-
 }

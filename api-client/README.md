@@ -69,6 +69,7 @@ Class | Method | HTTP request | Description
 *CategoriesApi* | [**restaurantsRidMenuCidDelete**](doc/CategoriesApi.md#restaurantsridmenuciddelete) | **delete** /restaurants/{rid}/menu/{cid} | Delete Category
 *CouriersApi* | [**couriersCidGet**](doc/CouriersApi.md#courierscidget) | **get** /couriers/{cid} | Get Courier By Id
 *CouriersApi* | [**couriersCidPut**](doc/CouriersApi.md#courierscidput) | **put** /couriers/{cid} | Update Courier
+*CouriersApi* | [**couriersCurrentGet**](doc/CouriersApi.md#courierscurrentget) | **get** /couriers/current | Get Current Courier Id
 *CouriersApi* | [**couriersSignInPost**](doc/CouriersApi.md#courierssigninpost) | **post** /couriers/sign-in | Courier SignIn
 *CouriersApi* | [**couriersSignUpPost**](doc/CouriersApi.md#courierssignuppost) | **post** /couriers/sign-up | Courier SignUp
 *OrdersApi* | [**couriersCidOrdersGet**](doc/OrdersApi.md#courierscidordersget) | **get** /couriers/{cid}/orders | Get Active Order
@@ -97,6 +98,7 @@ Class | Method | HTTP request | Description
 *RestaurantsApi* | [**restaurantsRidPut**](doc/RestaurantsApi.md#restaurantsridput) | **put** /restaurants/{rid} | Update Restaurant
 *RestaurantsApi* | [**restaurantsSignInPost**](doc/RestaurantsApi.md#restaurantssigninpost) | **post** /restaurants/sign-in | Restaurant SignIn
 *RestaurantsApi* | [**restaurantsSignUpPost**](doc/RestaurantsApi.md#restaurantssignuppost) | **post** /restaurants/sign-up | Restaurant SignUp
+*UsersApi* | [**usersCurrentGet**](doc/UsersApi.md#userscurrentget) | **get** /users/current | Get Current User Id
 *UsersApi* | [**usersSignInPost**](doc/UsersApi.md#userssigninpost) | **post** /users/sign-in | User SignIn
 *UsersApi* | [**usersSignUpPost**](doc/UsersApi.md#userssignuppost) | **post** /users/sign-up | User SignUp
 *UsersApi* | [**usersUidGet**](doc/UsersApi.md#usersuidget) | **get** /users/{uid} | Get User By Id

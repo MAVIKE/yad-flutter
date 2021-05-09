@@ -4,7 +4,7 @@ abstract class Failure extends Equatable {
   const Failure();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [code, reason];
 
   String get reason;
   int get code;
@@ -37,7 +37,12 @@ class SimpleFailure extends Failure {
 
   @override
   int get code => _code;
+}
+
+class AuthFailure extends Failure {
+  @override
+  String get reason => "Unauthorized";
 
   @override
-  List<Object> get props => [_code, _reason];
+  int get code => 401;
 }

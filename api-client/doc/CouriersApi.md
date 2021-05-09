@@ -11,6 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**couriersCidGet**](CouriersApi.md#courierscidget) | **get** /couriers/{cid} | Get Courier By Id
 [**couriersCidPut**](CouriersApi.md#courierscidput) | **put** /couriers/{cid} | Update Courier
+[**couriersCurrentGet**](CouriersApi.md#courierscurrentget) | **get** /couriers/current | Get Current Courier Id
 [**couriersSignInPost**](CouriersApi.md#courierssigninpost) | **post** /couriers/sign-in | Courier SignIn
 [**couriersSignUpPost**](CouriersApi.md#courierssignuppost) | **post** /couriers/sign-up | Courier SignUp
 
@@ -119,6 +120,49 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **couriersCurrentGet**
+> V1IdResponse couriersCurrentGet()
+
+Get Current Courier Id
+
+get current courier id
+
+### Example 
+```dart
+import 'package:api_client/api.dart';
+// TODO Configure API key authorization: CourierAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('CourierAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('CourierAuth').apiKeyPrefix = 'Bearer';
+
+var api_instance = new CouriersApi();
+
+try { 
+    var result = api_instance.couriersCurrentGet();
+    print(result);
+} catch (e) {
+    print('Exception when calling CouriersApi->couriersCurrentGet: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**V1IdResponse**](V1IdResponse.md)
+
+### Authorization
+
+[CourierAuth](../README.md#CourierAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **couriersSignInPost**
 > V1TokenResponse couriersSignInPost(input)
 
@@ -163,7 +207,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **couriersSignUpPost**
-> V1TokenResponse couriersSignUpPost(input)
+> V1IdResponse couriersSignUpPost(input)
 
 Courier SignUp
 
@@ -192,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**V1TokenResponse**](V1TokenResponse.md)
+[**V1IdResponse**](V1IdResponse.md)
 
 ### Authorization
 

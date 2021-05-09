@@ -9,6 +9,7 @@ import 'package:dio/dio.dart';
 
 import 'package:api_client/src/model/v1_response.dart';
 import 'package:api_client/src/model/v1_token_response.dart';
+import 'package:api_client/src/model/v1_id_response.dart';
 import 'package:api_client/src/model/v1_courier_sign_up_input.dart';
 import 'package:api_client/src/model/v1_courier_sign_in_input.dart';
 import 'package:api_client/src/model/v1_courier_update.dart';
@@ -202,6 +203,80 @@ class CouriersApi {
     );
   }
 
+  /// Get Current Courier Id
+  ///
+  /// get current courier id
+  Future<Response<V1IdResponse>> couriersCurrentGet({
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/couriers/current';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'CourierAuth',
+            'keyName': 'Authorization',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{};
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1IdResponse _responseData;
+
+    try {
+      const _responseType = FullType(V1IdResponse);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as V1IdResponse;
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<V1IdResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Courier SignIn
   ///
   /// courier sign in
@@ -291,7 +366,7 @@ class CouriersApi {
   /// Courier SignUp
   ///
   /// courier sign up
-  Future<Response<V1TokenResponse>> couriersSignUpPost({
+  Future<Response<V1IdResponse>> couriersSignUpPost({
     required V1CourierSignUpInput input,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -345,14 +420,14 @@ class CouriersApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1TokenResponse _responseData;
+    V1IdResponse _responseData;
 
     try {
-      const _responseType = FullType(V1TokenResponse);
+      const _responseType = FullType(V1IdResponse);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as V1TokenResponse;
+      ) as V1IdResponse;
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -362,7 +437,7 @@ class CouriersApi {
       );
     }
 
-    return Response<V1TokenResponse>(
+    return Response<V1IdResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

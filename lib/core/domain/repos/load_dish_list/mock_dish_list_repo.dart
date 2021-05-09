@@ -6,27 +6,27 @@ import '../result.dart';
 import 'dish_list_repo.dart';
 
 class MockDishListRepository implements DishListRepo {
-
   // заполнял всякой ерундой, чтоб посмотреть, как выглядеть будет
   @override
   Future<Result<List<DishCategory>>> loadCategories({
     required int restaurantId,
   }) async {
     return await Future.delayed(
-      const Duration(milliseconds: 300),
-          () => Ok([DishCategory(id: 1, categoryTitle: 'Бургеры'),
-            DishCategory(id: 2, categoryTitle: 'Пицца'),
-            DishCategory(id: 3, categoryTitle: 'Салаты'),
-            DishCategory(id: 4, categoryTitle: 'Суши'),
-            DishCategory(id: 5, categoryTitle: 'Wok')],
-    ));
+        const Duration(milliseconds: 300),
+        () => Ok(
+              [
+                DishCategory(id: 1, categoryTitle: 'Бургеры'),
+                DishCategory(id: 2, categoryTitle: 'Пицца'),
+                DishCategory(id: 3, categoryTitle: 'Салаты'),
+                DishCategory(id: 4, categoryTitle: 'Суши'),
+                DishCategory(id: 5, categoryTitle: 'Wok')
+              ],
+            ));
   }
 
   @override
-  Future<Result<List<Dish>>> loadDishes({
-    required int restaurantId,
-    required int categoryId
-  }) async {
+  Future<Result<List<Dish>>> loadDishes(
+      {required int restaurantId, required int categoryId}) async {
     if (categoryId == 1) {
       return await Future.delayed(
         const Duration(milliseconds: 300),
@@ -107,6 +107,5 @@ class MockDishListRepository implements DishListRepo {
           ]
       ));
     }
-
   }
 }

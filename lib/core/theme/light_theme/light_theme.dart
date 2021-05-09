@@ -12,6 +12,7 @@ part 'light_data_input_card_theme.dart';
 part 'light_registration_card_theme.dart';
 part 'light_restaurant_list_theme.dart';
 part 'light_restaurant_card_theme.dart';
+part 'light_db_main_theme.dart';
 part 'light_cart_theme.dart';
 
 const Color _yellow = Color.fromRGBO(251, 187, 0, 1);
@@ -37,6 +38,7 @@ class LightTheme implements ITheme {
       LightRestaurantListTheme();
   static LightRestaurantCardTheme _restaurantCardTheme =
       LightRestaurantCardTheme();
+  static LightDbMainTheme _dbMainTheme = LightDbMainTheme();
   static LightCartTheme _cartTheme = LightCartTheme();
 
   @override
@@ -74,6 +76,9 @@ class LightTheme implements ITheme {
 
   @override
   IRestaurantCardTheme get restaurantCardTheme => _restaurantCardTheme;
+
+  @override
+  IDbMainTheme get dbMainTheme => _dbMainTheme;
 
   @override
   ICartTheme get cartTheme => _cartTheme;

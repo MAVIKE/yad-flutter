@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum CvcCvvValidationError {empty, invalid, small, big}
+enum CvcCvvValidationError { empty, invalid, small, big }
 
 class CvcCvv extends FormzInput<String, CvcCvvValidationError> {
   const CvcCvv.pure() : super.pure('');
@@ -16,14 +16,12 @@ class CvcCvv extends FormzInput<String, CvcCvvValidationError> {
       return CvcCvvValidationError.empty;
     } else {
       int parseValue = int.parse(value);
-      if (parseValue is ! int) {
+      if (parseValue is! int) {
         return CvcCvvValidationError.invalid;
-      }
-      else {
+      } else {
         if (parseValue < 100) {
           return CvcCvvValidationError.small;
-        }
-        else if (parseValue > 999) {
+        } else if (parseValue > 999) {
           return CvcCvvValidationError.big;
         }
       }

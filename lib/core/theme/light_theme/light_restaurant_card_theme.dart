@@ -35,8 +35,8 @@ class LightRestaurantCardTheme implements IRestaurantCardTheme {
   @override
   BorderRadius get widgetBorderRadius => BorderRadius.circular(12.0);
 
-  @override get fontFamily => TextStyle(
-    fontFamily: "Roboto");
+  @override
+  get fontFamily => TextStyle(fontFamily: "Roboto");
 
   @override
   TextStyle get titleTextStyle => TextStyle(

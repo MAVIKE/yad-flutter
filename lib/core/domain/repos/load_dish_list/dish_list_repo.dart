@@ -10,8 +10,6 @@ abstract class DishListRepo {
     required int restaurantId,
   });
 
-  Future<Result<List<Dish>>> loadDishes({
-    required int restaurantId,
-    required int categoryId
-  });
+  Future<Result<List<Dish>>> loadDishes(
+      {required int restaurantId, required int categoryId});
 }

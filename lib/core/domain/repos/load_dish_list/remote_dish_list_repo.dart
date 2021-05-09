@@ -42,43 +42,39 @@ class RemoteDishListRepository implements DishListRepo {
     required int restaurantId,
   }) async {
     try {
-    final String rId = restaurantId.toString();
-      final response = await _cApi.restaurantsRidCategoriesGet(rid: rId, );
+      final String rId = restaurantId.toString();
+      final response = await _cApi.restaurantsRidCategoriesGet(
+        rid: rId,
+      );
       final firstCategory = response.data?[0].restaurantId;
       if (firstCategory != null) {
         return Ok(convertDomainCategoryToDishListCategory(response.data));
-      }
-      else {
+      } else {
         return Err(
             SimpleFailure(response.statusCode ?? 1, "Response data is null"));
       }
-    }
-    on DioError catch (e) {
+    } on DioError catch (e) {
       return Err(SimpleFailure(e.response?.statusCode ?? 1,
           e.response?.data.toString() ?? "Unknown loadCategories error"));
     }
   }
 
   @override
-  Future<Result<List<Dish>>> loadDishes({
-    required int restaurantId,
-    required int categoryId
-  }) async {
+  Future<Result<List<Dish>>> loadDishes(
+      {required int restaurantId, required int categoryId}) async {
     try {
       final String rId = restaurantId.toString();
       final String cId = categoryId.toString();
-      final response = await _cApi.restaurantsRidCategoriesCidMenuGet(rid: rId,
-          cid: cId);
+      final response =
+          await _cApi.restaurantsRidCategoriesCidMenuGet(rid: rId, cid: cId);
       final firstMenu = response.data?[0].id;
       if (firstMenu != null) {
         return Ok(convertDomainMenuItemToDishList(response.data, categoryId));
-      }
-      else {
+      } else {
         return Err(
             SimpleFailure(response.statusCode ?? 1, "Response data is null"));
       }
-    }
-    on DioError catch (e) {
+    } on DioError catch (e) {
       return Err(SimpleFailure(e.response?.statusCode ?? 1,
           e.response?.data.toString() ?? "Unknown loadDishes error"));
     }

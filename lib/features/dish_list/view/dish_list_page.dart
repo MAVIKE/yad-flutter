@@ -5,9 +5,7 @@ import 'package:yad/features/dish_list/bloc/dish_list_bloc.dart';
 import 'package:yad/features/dish_list/view/category_scroll_list.dart';
 import 'package:yad/features/dish_list/view/dish_scroll_list.dart';
 
-
 class DishListPage extends StatelessWidget {
-
   final String restaurantName;
   final int restaurantId;
 
