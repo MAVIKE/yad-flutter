@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yad/features/dish_list/bloc/dish_list_bloc.dart';
 import 'package:yad/features/dish_list/view/category_scroll_list.dart';
 import 'package:yad/features/dish_list/view/dish_scroll_list.dart';
 

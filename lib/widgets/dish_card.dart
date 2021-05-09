@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
-import 'package:yad/core/theme/light_theme/light_theme.dart';
 import 'package:yad/features/cart/bloc/cart_list_bloc.dart';
-import 'package:yad/features/dish_list/bloc/dish_list_bloc.dart';
 import 'package:yad/features/dish_list/models/dish.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -136,7 +134,7 @@ class _CountingDishesState extends State<_CountingDishes> {
 }
 
 class _OrderedOrNot extends StatelessWidget {
-  Dish dish;
+  final Dish dish;
   final ITheme lightTheme;
 
   _OrderedOrNot({required this.dish, required this.lightTheme});

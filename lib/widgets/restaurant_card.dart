@@ -4,7 +4,6 @@ import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:yad/features/cart/cart.dart';
 import 'package:yad/features/dish_list/bloc/dish_list_bloc.dart';
 import 'package:yad/features/dish_list/view/dish_list_page.dart';
-import 'package:yad/widgets/dish_card.dart';
 import 'package:yad/widgets/yad_scaffold.dart';
 
 class RestaurantCard extends StatelessWidget {
