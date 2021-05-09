@@ -6,7 +6,6 @@ import 'package:yad/features/payment/widgets/widgets.dart';
 
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 
-
 class PaymentForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -31,8 +30,7 @@ class PaymentForm extends StatelessWidget {
           children: [
             SizedBox(
                 width: theme.dataInputCardTheme.leftInputWidth,
-                child:
-                Container(
+                child: Container(
                     margin: theme.dataInputCardTheme.marginTopLeftInput,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,13 +41,10 @@ class PaymentForm extends StatelessWidget {
                         ),
                         CardNumberInput()
                       ],
-                    )
-                )
-            ),
+                    ))),
             SizedBox(
               width: theme.dataInputCardTheme.leftInputWidth,
-              child:
-              Container(
+              child: Container(
                   margin: theme.dataInputCardTheme.marginLeftInput,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,27 +61,22 @@ class PaymentForm extends StatelessWidget {
                         ],
                       )
                     ],
-                  )
-              ),
+                  )),
             ),
             SizedBox(
               width: theme.dataInputCardTheme.leftInputWidth,
-              child:
-              Container(
+              child: Container(
                   margin: theme.dataInputCardTheme.marginLeftInput,
-                  child:
-                  Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Card holder',
-                        style:
-                        theme.dataInputCardTheme.textStyleHeaderInput,
+                        style: theme.dataInputCardTheme.textStyleHeaderInput,
                       ),
                       CardHolderInput()
                     ],
-                  )
-              ),
+                  )),
             ),
             Align(
                 alignment: Alignment.centerRight,
@@ -101,13 +91,8 @@ class PaymentForm extends StatelessWidget {
                         ),
                         CvcCvvInput()
                       ],
-                    )
-                )
-            ),
-            Align(
-                alignment: Alignment.center,
-                child: PayButton()
-            )
+                    ))),
+            Align(alignment: Alignment.center, child: PayButton())
           ],
         ),
       ),

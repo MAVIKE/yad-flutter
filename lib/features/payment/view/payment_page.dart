@@ -8,15 +8,12 @@ import 'payment_form.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 
 class PaymentPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => MakePaymentBloc(
-            makePaymentRepo: RepositoryProvider.of(context)
-        ),
-      child:
-          BlocProvider(
+        create: (context) =>
+            MakePaymentBloc(makePaymentRepo: RepositoryProvider.of(context)),
+        child: BlocProvider(
             create: (context) {
               return PaymentBloc(
                 makePaymentBloc: BlocProvider.of<MakePaymentBloc>(context),
@@ -25,23 +22,26 @@ class PaymentPage extends StatelessWidget {
             child: Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                    margin: context.read<ITheme>().dataInputCardTheme.marginPayment,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                            margin: context.read<ITheme>().dataInputCardTheme.marginTextPayment,
-                            child: Text(
-                              'Enter card',
-                              style: context.read<ITheme>().dataInputCardTheme.textStylePayment,
-                            )
-                        ),
-                        PaymentForm()
-                      ],
-                    ),
-                )
-            )
-          )
-    );
+                  margin:
+                      context.read<ITheme>().dataInputCardTheme.marginPayment,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          margin: context
+                              .read<ITheme>()
+                              .dataInputCardTheme
+                              .marginTextPayment,
+                          child: Text(
+                            'Enter card',
+                            style: context
+                                .read<ITheme>()
+                                .dataInputCardTheme
+                                .textStylePayment,
+                          )),
+                      PaymentForm()
+                    ],
+                  ),
+                ))));
   }
 }

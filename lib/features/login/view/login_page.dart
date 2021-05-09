@@ -1,11 +1,16 @@
 import 'package:yad/features/login/bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:yad/widgets/yad_scaffold.dart';
 import 'login_form.dart';
 
 class LoginPage extends StatelessWidget {
   static Route route(bool isCourier) {
-    return MaterialPageRoute<void>(builder: (_) => LoginPage());
+    return MaterialPageRoute<void>(
+        builder: (_) => YadScaffold(
+              isCourier: isCourier,
+              body: LoginPage(),
+            ));
   }
 
   @override

@@ -18,8 +18,8 @@ class MakePaymentPayRequested extends MakePaymentEvent {
   final String cvcCvv;
 
   @override
-  List<Object> get props => [cardNumber, expirationMonth, expirationYear,
-    cardHolder, cvcCvv];
+  List<Object> get props =>
+      [cardNumber, expirationMonth, expirationYear, cardHolder, cvcCvv];
 }
 
 class MakePaymentPayApproved extends MakePaymentEvent {}

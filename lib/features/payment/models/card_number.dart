@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum CardNumberValidationError { empty, short, long, invalid}
+enum CardNumberValidationError { empty, short, long, invalid }
 
 class CardNumber extends FormzInput<String, CardNumberValidationError> {
   const CardNumber.pure() : super.pure('');
@@ -18,7 +18,7 @@ class CardNumber extends FormzInput<String, CardNumberValidationError> {
       return CardNumberValidationError.short;
     } else if (value.length > 16) {
       return CardNumberValidationError.long;
-    } else if (int.parse(value) is ! int) {
+    } else if (int.parse(value) is! int) {
       return CardNumberValidationError.invalid;
     }
     return null;
