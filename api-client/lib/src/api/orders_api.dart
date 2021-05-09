@@ -27,7 +27,7 @@ class OrdersApi {
   /// Get Active Order
   ///
   /// get active order for courier
-  Future<Response<V1Response>> couriersCidOrdersGet({
+  Future<Response<DomainOrder>> couriersCidOrdersGet({
     required String cid,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -71,14 +71,14 @@ class OrdersApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1Response _responseData;
+    DomainOrder _responseData;
 
     try {
-      const _responseType = FullType(V1Response);
+      const _responseType = FullType(DomainOrder);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as V1Response;
+      ) as DomainOrder;
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -88,7 +88,7 @@ class OrdersApi {
       );
     }
 
-    return Response<V1Response>(
+    return Response<DomainOrder>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
