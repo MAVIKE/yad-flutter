@@ -18,3 +18,12 @@ class AuthAuthenticated extends AuthEvent {
 class AuthUnauthenticated extends AuthEvent {}
 
 class AuthSignoutRequested extends AuthEvent {}
+
+class AuthSigninRequested extends AuthEvent {
+  final String phoneNumber;
+  final String password;
+  AuthSigninRequested(this.phoneNumber, this.password);
+
+  @override
+  List<Object> get props => [phoneNumber, password];
+}
