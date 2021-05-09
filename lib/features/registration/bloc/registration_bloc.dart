@@ -19,12 +19,10 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     required AuthBloc authBloc,
     required AuthRepo authRepo,
   })   : _authBloc = authBloc,
-        _authRepo = authRepo,
         _registerRepo = registerRepo,
         super(const RegistrationState());
 
   final AuthBloc _authBloc;
-  final AuthRepo _authRepo;
   final RegisterRepo _registerRepo;
 
   @override
@@ -172,19 +170,11 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           .then(
         (result) {
           if (result.error == null) {
-            return _authRepo
-                .signIn(
-                    username: state.phoneNumber.value,
-                    password: state.password1.value)
-                .then((result) {
-              if (result.error == null) {
-                _authBloc.authenticated(result.value!);
-                return state.copyWith(status: FormzStatus.submissionSuccess);
-              } else {
-                return state.copyWith(status: FormzStatus.submissionFailure);
-              }
-            });
+            _authBloc.requestSignin(
+                state.phoneNumber.value, state.password1.value);
+            return state.copyWith(status: FormzStatus.submissionSuccess);
           } else {
+            print(result.error);
             return state.copyWith(status: FormzStatus.submissionFailure);
           }
         },
