@@ -27,12 +27,9 @@ class RemoteDishListRepository implements DishListRepo {
   List<Dish> convertDomainMenuItemToDishList(final data, int categoryId) {
     List<Dish> res = [];
     for (var data_i in data) {
-      final dish = Dish(
-          id: data_i.id,
-          title: data_i.title,
-          description: data_i.description,
-          price: data_i.price.toDouble(),
-          categoryId: categoryId);
+      final dish = Dish(id: data_i.id, title: data_i.title,
+          description: data_i.description, price: data_i.price.toDouble(),
+          categoryId: categoryId, restaurantId: data_i.restaurantId);
       res.add(dish);
     }
     return res;

@@ -1,63 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:yad/core/theme/light_theme/light_theme.dart';
+import 'package:yad/core/theme/i_theme/i_theme.dart';
+import 'package:yad/features/cart/bloc/cart_list_bloc.dart';
+import 'package:yad/features/dish_list/models/dish.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DishCard extends StatelessWidget {
-  final String header;
-  final String description;
+  final Dish dish;
   final bool isCountingDishes;
-  final double dishCost;
-  final ImageProvider _photo;
-  final LightTheme _lightTheme;
 
-  DishCard({
-    required this.header,
-    required this.description,
-    required this.isCountingDishes,
-    required this.dishCost,
-    ImageProvider? photo,
-  })  : _photo = photo ?? AssetImage('assets/food_example.jpg'),
-        _lightTheme = LightTheme();
+  DishCard({required this.dish,
+    required this.isCountingDishes
+  });
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.read<ITheme>();
     return Container(
-      height: _lightTheme.dishCardTheme.cardHeight,
-      width: _lightTheme.dishCardTheme.cardWidth,
-      decoration: _lightTheme.dishCardTheme.shadowCard,
+      height: theme.dishCardTheme.cardHeight,
+      width: theme.dishCardTheme.cardWidth,
+      decoration: theme.dishCardTheme.shadowCard,
       child: Card(
-        color: _lightTheme.dishCardTheme.colorCard,
-        shape: _lightTheme.dishCardTheme.shapeCard,
+        color: theme.dishCardTheme.colorCard,
+        shape: theme.dishCardTheme.shapeCard,
         child: ListTile(
           leading: Container(
-            width: _lightTheme.dishCardTheme.photoWidth,
-            height: _lightTheme.dishCardTheme.photoHeight,
+            width: theme.dishCardTheme.photoWidth,
+            height: theme.dishCardTheme.photoHeight,
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
-              borderRadius: _lightTheme.dishCardTheme.widgetBorderRadius,
+              borderRadius: theme.dishCardTheme.widgetBorderRadius,
               image: DecorationImage(
-                image: _photo,
+                image: dish.photo ?? AssetImage('assets/food_example.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           title: Text(
-            this.header,
+            dish.title,
             textAlign: TextAlign.left,
-            style: _lightTheme.dishCardTheme.titleTextStyle,
+            style: theme.dishCardTheme.titleTextStyle,
           ),
           subtitle: Column(
             children: [
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  this.description,
+                  dish.description,
                   textAlign: TextAlign.left,
-                  style: _lightTheme.dishCardTheme.subtitleTextStyle,
+                  style: theme.dishCardTheme.subtitleTextStyle,
                 ),
               ),
               isCountingDishes
-                  ? _CountingDishes(this._lightTheme, dishCost: this.dishCost)
-                  : _OrderedOrNot(this._lightTheme, dishCost: this.dishCost),
+                  ? _CountingDishes(lightTheme: theme, dish: dish)
+                  : _OrderedOrNot(lightTheme: theme, dish: dish),
             ],
           ),
         ),
@@ -67,31 +62,35 @@ class DishCard extends StatelessWidget {
 }
 
 class _CountingDishes extends StatefulWidget {
-  final double dishCost;
+  final Dish dish;
   final int dishesCount;
-  final LightTheme lightTheme;
+  final ITheme lightTheme;
 
-  _CountingDishes(this.lightTheme, {this.dishCost = 0.0, this.dishesCount = 0});
+  _CountingDishes({required this.lightTheme, required this.dish, this.dishesCount = 0});
 
   @override
   _CountingDishesState createState() =>
-      _CountingDishesState(dishCost, dishesCount, lightTheme);
+      _CountingDishesState(dishesCount: dishesCount,
+          lightTheme: lightTheme, dish: dish);
 }
 
 class _CountingDishesState extends State<_CountingDishes> {
-  double dishCost;
+  final Dish dish;
   int dishesCount;
-  final LightTheme lightTheme;
+  final ITheme lightTheme;
 
-  _CountingDishesState(this.dishCost, this.dishesCount, this.lightTheme);
+  _CountingDishesState({required this.dishesCount,
+    required this.lightTheme,
+    required this.dish});
 
   @override
   Widget build(BuildContext context) {
+    final cartListBloc = context.read<CartListBloc>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '\$ ' + (dishCost * dishesCount).toString(),
+          '\$ ' + (dish.price * dishesCount).toString(),
           textAlign: TextAlign.left,
           style: lightTheme.dishCardTheme.dishCostTextStyle,
         ),
@@ -101,6 +100,9 @@ class _CountingDishesState extends State<_CountingDishes> {
                 setState(() {
                   if (dishesCount > 0) {
                     dishesCount -= 1;
+                  }
+                  else {
+                    cartListBloc.add(CartDropDish(dish));
                   }
                 });
               },
@@ -131,54 +133,42 @@ class _CountingDishesState extends State<_CountingDishes> {
   }
 }
 
-class _OrderedOrNot extends StatefulWidget {
-  final double dishCost;
-  final bool isOrdered;
-  final LightTheme lightTheme;
+class _OrderedOrNot extends StatelessWidget {
+  final Dish dish;
+  final ITheme lightTheme;
 
-  _OrderedOrNot(
-    this.lightTheme, {
-    this.dishCost = 0.0,
-    this.isOrdered = false,
-  });
-
-  @override
-  _OrderedOrNotState createState() =>
-      _OrderedOrNotState(dishCost, isOrdered, lightTheme);
-}
-
-class _OrderedOrNotState extends State<_OrderedOrNot> {
-  double dishCost;
-  bool isOrdered;
-  final LightTheme lightTheme;
-
-  _OrderedOrNotState(this.dishCost, this.isOrdered, this.lightTheme);
+  _OrderedOrNot({required this.dish, required this.lightTheme});
 
   @override
   Widget build(BuildContext context) {
+    final cartListBloc = context.read<CartListBloc>();
+    bool isOrdered = cartListBloc.state.cart.dishes.contains(dish);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '\$ $dishCost',
+          '\$ ${dish.price}',
           textAlign: TextAlign.left,
           style: lightTheme.dishCardTheme.dishCostTextStyle,
         ),
         TextButton(
             onPressed: () {
-              setState(() {
-                this.isOrdered = !this.isOrdered;
-              });
+                if (!isOrdered) {
+                  cartListBloc.add(CartAddDish(dish));
+                }
+                else {
+                  cartListBloc.add(CartDropDish(dish));
+                }
             },
-            child: this.isOrdered
+            child: isOrdered
                 ? Text(
-                    'Ordered',
-                    style: lightTheme.dishCardTheme.orderedTextStyle,
-                  )
+              'Ordered',
+              style: lightTheme.dishCardTheme.orderedTextStyle,
+            )
                 : Text(
-                    'Order',
-                    style: lightTheme.dishCardTheme.orderTextStyle,
-                  ))
+              'Order',
+              style: lightTheme.dishCardTheme.orderTextStyle,
+            ))
       ],
     );
   }

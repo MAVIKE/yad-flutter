@@ -24,6 +24,24 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
     if (event is CartListRequested) {
       yield* _mapCartListRequestedToState(state);
     }
+    else if (event is CartAddDish) {
+      yield* _mapCartAddDish(state, event);
+    }
+    else if (event is CartDropDish) {
+      yield* _mapCartDropDish(state, event);
+    }
+  }
+
+  Stream<CartListState> _mapCartAddDish(CartListState state, CartAddDish event)
+  async* {
+    _cartRepo.addDish(event.dish);
+    yield* _mapCartListRequestedToState(state);
+  }
+
+  Stream<CartListState> _mapCartDropDish(CartListState state, CartDropDish event)
+  async* {
+    _cartRepo.dropDish(event.dish);
+    yield* _mapCartListRequestedToState(state);
   }
 
   Stream<CartListState> _mapCartListRequestedToState(
