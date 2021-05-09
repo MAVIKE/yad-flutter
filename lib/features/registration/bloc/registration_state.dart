@@ -14,6 +14,7 @@ class RegistrationState extends Equatable {
     this.floor = const Floor.pure(),
     this.flat = const Flat.pure(),
     this.entrance = const Entrance.pure(),
+    this.email = const Email.pure(),
   });
 
   final FormzStatus status;
@@ -28,6 +29,7 @@ class RegistrationState extends Equatable {
   final Floor floor;
   final Flat flat;
   final Entrance entrance;
+  final Email email;
 
   RegistrationState copyWith({
     FormzStatus? status,
@@ -42,6 +44,7 @@ class RegistrationState extends Equatable {
     Floor? floor,
     Flat? flat,
     Entrance? entrance,
+    Email? email,
   }) {
     final newName = name ?? this.name;
     final newPhoneNumber = phoneNumber ?? this.phoneNumber;
@@ -54,6 +57,7 @@ class RegistrationState extends Equatable {
     final newFloor = floor ?? this.floor;
     final newFlat = flat ?? this.flat;
     final newEntrance = entrance ?? this.entrance;
+    final newEmail = email ?? this.email;
 
     return RegistrationState(
       status: status ??
@@ -62,13 +66,16 @@ class RegistrationState extends Equatable {
             newPhoneNumber,
             newPassword1,
             newPassword2,
+            newEmail,
+            /*
             newCity,
             newStreet,
             newHouseNumber,
             newBuilding,
             newFloor,
             newFlat,
-            newEntrance
+            newEntrance,
+            */
           ]),
       name: newName,
       phoneNumber: newPhoneNumber,
@@ -81,6 +88,7 @@ class RegistrationState extends Equatable {
       floor: newFloor,
       flat: newFlat,
       entrance: newEntrance,
+      email: newEmail,
     );
   }
 
@@ -97,6 +105,7 @@ class RegistrationState extends Equatable {
         building,
         floor,
         flat,
-        entrance
+        entrance,
+        email,
       ];
 }

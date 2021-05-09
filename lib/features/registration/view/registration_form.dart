@@ -10,6 +10,7 @@ class RegistrationForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.read<ITheme>();
+    final cardTheme = theme.registrationCardTheme;
     return BlocListener<RegistrationBloc, RegistrationState>(
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
@@ -21,159 +22,54 @@ class RegistrationForm extends StatelessWidget {
         }
       },
       child: Container(
-        height: theme.registrationCardTheme.cardHeight,
-        width: theme.dataInputCardTheme.cardWidth,
-        decoration: theme.dataInputCardTheme.decorationCard,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-                width: theme.registrationCardTheme.inputWidth,
-                child: Container(
-                    margin: theme.registrationCardTheme.marginTopLeftInput,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Name',
-                          style:
-                              theme.registrationCardTheme.textStyleHeaderInput,
-                        ),
-                        NameInput(),
-                      ],
-                    ))),
-            SizedBox(
-              width: theme.registrationCardTheme.inputWidth,
-              child: Container(
-                  margin: theme.registrationCardTheme.marginLeftInput,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Phone number',
-                        style: theme.registrationCardTheme.textStyleHeaderInput,
-                      ),
-                      PhoneNumberInput(),
-                    ],
-                  )),
-            ),
-            SizedBox(
-                width: theme.registrationCardTheme.inputWidth,
-                child: Container(
-                    margin: theme.registrationCardTheme.marginLeftInput,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Password',
-                          style:
-                              theme.registrationCardTheme.textStyleHeaderInput,
-                        ),
-                        Password1Input(),
-                      ],
-                    ))),
-            SizedBox(
-                width: theme.registrationCardTheme.inputWidth,
-                child: Container(
-                    margin: theme.registrationCardTheme.marginLeftInput,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Password',
-                          style:
-                              theme.registrationCardTheme.textStyleHeaderInput,
-                        ),
-                        Password2Input(),
-                      ],
-                    ))),
-            SizedBox(
-              width: theme.registrationCardTheme.inputWidth,
-              child: Container(
-                  margin: theme.registrationCardTheme.marginLeftInput,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'City',
-                        style: theme.registrationCardTheme.textStyleHeaderInput,
-                      ),
-                      CityInput(),
-                    ],
-                  )),
-            ),
-            Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      'Street',
-                      style: theme.registrationCardTheme.textStyleHeaderInput,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 110),
-                      child: Text(
-                        'House number',
-                        style: theme.registrationCardTheme.textStyleHouseNumber,
-                      ),
-                    )
-                  ],
-                )),
-            Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Row(
+        padding: cardTheme.pagePadding,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Sign In",
+                  style: cardTheme.titleTextStyle,
+                ),
+              ),
+              const Padding(padding: EdgeInsets.only(top: 10)),
+              Container(
+                decoration: cardTheme.cardDecoration,
+                padding: cardTheme.cardPadding,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    StreetInput(),
-                    HouseNumberInput(),
+                    NameInput(),
+                    PhoneNumberInput(),
+                    EmailInput(),
+                    Password1Input(),
+                    Password2Input(),
+                    /*
+                    CityInput(),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        StreetInput(),
+                        HouseNumberInput(),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        BuildingInput(),
+                        FloorInput(),
+                        FlatInput(),
+                        EntranceInput(),
+                      ],
+                    ),
+                    */
+                    RegisterButton()
                   ],
-                )),
-            Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      'Building',
-                      style: theme.registrationCardTheme.textStyleHouseNumber,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 20),
-                      child: Text(
-                        'Floor',
-                        style: theme.registrationCardTheme.textStyleHouseNumber,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 48),
-                      child: Text(
-                        'Flat',
-                        style: theme.registrationCardTheme.textStyleHouseNumber,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 20),
-                      child: Text(
-                        'Entrance',
-                        style: theme.registrationCardTheme.textStyleHouseNumber,
-                      ),
-                    )
-                  ],
-                )),
-            Container(
-              margin: EdgeInsets.only(left: 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BuildingInput(),
-                  FloorInput(),
-                  FlatInput(),
-                  EntranceInput(),
-                ],
+                ),
               ),
-            ),
-            Align(alignment: Alignment.center, child: RegisterButton())
-          ],
+            ],
+          ),
         ),
       ),
     );

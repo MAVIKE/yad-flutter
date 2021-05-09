@@ -2,11 +2,12 @@ import 'package:api_client/api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yad/core/domain/repos/auth/auth_repo.dart';
-import 'package:yad/core/domain/repos/auth/delivery_boy_auth_repo.dart';
+import 'package:yad/core/domain/repos/auth/user_auth_repo.dart';
+import 'package:yad/core/domain/repos/register/register_repo.dart';
+import 'package:yad/core/domain/repos/register/user_register_repo.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:yad/core/theme/light_theme/light_theme.dart';
 import 'package:yad/features/auth/auth.dart';
-import 'package:yad/features/login/login.dart';
 import 'package:yad/core/domain/repos/load_dish_list/dish_list_repo.dart';
 import 'package:yad/core/domain/repos/load_dish_list/mock_dish_list_repo.dart';
 import 'package:yad/core/domain/repos/make_payment/make_payment_repo.dart';
@@ -23,7 +24,10 @@ void runDeliveryUserApp() async {
       value: LightTheme(),
     ),
     RepositoryProvider<AuthRepo>.value(
-      value: DeliveryBoyAuthenticationRepository(api),
+      value: UserAuthenticationRepository(api),
+    ),
+    RepositoryProvider<RegisterRepo>.value(
+      value: UserRegisterRepo(api),
     ),
     RepositoryProvider<MakePaymentRepo>(
       create: (context) => UserMakePaymentRepository(),
@@ -80,7 +84,7 @@ class _AppViewState extends State<AppView> {
                 break;
               case AuthStatus.unauthenticated:
                 _navigator.pushAndRemoveUntil<void>(
-                  LoginPage.route(true),
+                  LoginRegisterRoute.route(),
                   (route) => false,
                 );
                 break;

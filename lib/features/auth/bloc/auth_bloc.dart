@@ -17,7 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     (() async {
       // Ищем токен в хранилище и ставим, если нашелся.
       final instance = await SharedPreferences.getInstance();
-      final token = instance.getString("token");
+      final token = instance.getString(_authRepo.tokenKey);
       if (token != null) {
         _authRepo.setToken(token);
         authenticated(token);
@@ -56,13 +56,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<AuthState> _mapAuthAuthenticated(AuthAuthenticated event) async {
     final instance = await SharedPreferences.getInstance();
-    instance.setString("token", event.token);
+    instance.setString(_authRepo.tokenKey, event.token);
     return AuthState.authenticated(event.token);
   }
 
   Future<AuthState> _mapAuthSignoutRequested(AuthSignoutRequested event) async {
     final instance = await SharedPreferences.getInstance();
-    instance.remove("token");
+    instance.remove(_authRepo.tokenKey);
     return await _authRepo.signOut().then((result) {
       return result.error == null
           ? AuthState.unauthenticated()

@@ -10,4 +10,6 @@ abstract class AuthRepo {
   Future<Result<void>> signOut();
 
   Future<Result<void>> setToken(String token);
+
+  String get tokenKey;
 }

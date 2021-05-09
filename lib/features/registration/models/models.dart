@@ -8,3 +8,4 @@ export 'name.dart';
 export 'password.dart';
 export 'phone_number.dart';
 export 'street.dart';
+export 'email.dart';

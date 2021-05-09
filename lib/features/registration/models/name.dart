@@ -7,6 +7,17 @@ class Name extends FormzInput<String, NameValidationError> {
   const Name.pure() : super.pure('');
   const Name.dirty([String value = '']) : super.dirty(value);
 
+  String? get errorString {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
+    if (error == null) {
+      return null;
+    }
+    final name = this.runtimeType.toString();
+    return "$name is invalid";
+  }
+
   @override
   NameValidationError? validator(String? value) {
     if (value == null) {

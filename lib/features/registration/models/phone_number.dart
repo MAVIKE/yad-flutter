@@ -7,6 +7,17 @@ class PhoneNumber extends FormzInput<String, PhoneNumberValidationError> {
   const PhoneNumber.pure() : super.pure('');
   const PhoneNumber.dirty([String value = '']) : super.dirty(value);
 
+  String? get errorString {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
+    if (error == null) {
+      return null;
+    }
+    final name = this.runtimeType.toString();
+    return "$name is invalid";
+  }
+
   @override
   PhoneNumberValidationError? validator(String? value) {
     if (value == null) {

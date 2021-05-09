@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:yad/core/domain/repos/register/register_repo.dart';
 import 'package:yad/features/registration/registration.dart';
 import 'package:yad/features/registration/models/models.dart';
 import 'package:bloc/bloc.dart';
@@ -13,13 +14,18 @@ part 'registration_event.dart';
 part 'registration_state.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
-  RegistrationBloc({required AuthBloc authBloc, required AuthRepo authRepo})
-      : _authBloc = authBloc,
+  RegistrationBloc({
+    required RegisterRepo registerRepo,
+    required AuthBloc authBloc,
+    required AuthRepo authRepo,
+  })   : _authBloc = authBloc,
         _authRepo = authRepo,
+        _registerRepo = registerRepo,
         super(const RegistrationState());
 
   final AuthBloc _authBloc;
   final AuthRepo _authRepo;
+  final RegisterRepo _registerRepo;
 
   @override
   Stream<RegistrationState> mapEventToState(
@@ -47,6 +53,8 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       yield _mapFlatChangedToState(event, state);
     } else if (event is RegistrationEntranceChanged) {
       yield _mapEntranceChangedToState(event, state);
+    } else if (event is RegistrationEmailChanged) {
+      yield _mapEmailChangedToState(event, state);
     } else if (event is RegistrationSubmitted) {
       yield* _mapRegistrationSubmittedToState(event, state);
     }
@@ -140,12 +148,48 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     return state.copyWith(entrance: entrance);
   }
 
+  RegistrationState _mapEmailChangedToState(
+    RegistrationEmailChanged event,
+    RegistrationState state,
+  ) {
+    final email = Email.dirty(event.email);
+    return state.copyWith(email: email);
+  }
+
   Stream<RegistrationState> _mapRegistrationSubmittedToState(
     RegistrationSubmitted event,
     RegistrationState state,
   ) async* {
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
+      yield await _registerRepo
+          .register(
+        name: state.name.value,
+        phoneNumber: state.phoneNumber.value,
+        password: state.password1.value,
+        email: state.email.value,
+      )
+          .then(
+        (result) {
+          if (result.error == null) {
+            return _authRepo
+                .signIn(
+                    username: state.phoneNumber.value,
+                    password: state.password1.value)
+                .then((result) {
+              if (result.error == null) {
+                _authBloc.authenticated(result.value!);
+                return state.copyWith(status: FormzStatus.submissionSuccess);
+              } else {
+                return state.copyWith(status: FormzStatus.submissionFailure);
+              }
+            });
+          } else {
+            return state.copyWith(status: FormzStatus.submissionFailure);
+          }
+        },
+        onError: (_) => state.copyWith(status: FormzStatus.submissionFailure),
+      );
     }
   }
 }

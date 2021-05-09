@@ -7,6 +7,17 @@ class City extends FormzInput<String, CityValidationError> {
   const City.pure() : super.pure('');
   const City.dirty([String value = '']) : super.dirty(value);
 
+  String? get errorString {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
+    if (error == null) {
+      return null;
+    }
+    final name = this.runtimeType.toString();
+    return "$name is invalid";
+  }
+
   @override
   CityValidationError? validator(String? value) {
     if (value == null) {

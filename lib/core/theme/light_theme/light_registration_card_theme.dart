@@ -2,21 +2,7 @@ part of 'light_theme.dart';
 
 class LightRegistrationCardTheme implements IRegistrationCardTheme {
   @override
-  double get cardHeight => 562;
-
-  @override
-  double get cardWidth => 330;
-
-  @override
-  BoxDecoration get decorationCard => BoxDecoration(
-      color: Color.fromRGBO(251, 187, 0, 1),
-      borderRadius: BorderRadius.circular(18.0));
-
-  @override
-  double get inputWidth => 238;
-
-  @override
-  double get inputHeight => 25;
+  double get inputWidth => 278;
 
   @override
   TextStyle get textStyleHeaderInput => TextStyle(
@@ -27,34 +13,19 @@ class LightRegistrationCardTheme implements IRegistrationCardTheme {
 
   @override
   TextStyle get textStyleHouseNumber => TextStyle(
-      fontSize: 18,
+      fontSize: 16,
       color: Color.fromRGBO(65, 14, 130, 1),
       fontFamily: "Roboto",
       fontWeight: FontWeight.w900);
 
   @override
-  InputDecoration inputDecoration(String hintText, bool invalid) =>
-      InputDecoration(
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderSide:
-              invalid ? BorderSide(color: Colors.redAccent) : BorderSide.none,
-          borderRadius: BorderRadius.circular(18.0),
-        ),
-        filled: true,
-        labelStyle: TextStyle(fontSize: 12),
-        labelText: '$hintText',
-        //errorText: invalid ? 'invalid ' + '$hintText' : null,
-      );
+  double get streetInputWidth => 138;
 
   @override
-  double get streetInputWidth => 166;
+  double get houseNumberInputWidth => 140;
 
   @override
-  double get houseNumberInputWidth => 120;
-
-  @override
-  double get smallInputWidth => 50;
+  double get smallInputWidth => 70;
 
   @override
   TextStyle get textStyleButton => TextStyle(
@@ -78,26 +49,21 @@ class LightRegistrationCardTheme implements IRegistrationCardTheme {
   EdgeInsetsGeometry get marginButton => EdgeInsets.only(bottom: 11);
 
   @override
-  EdgeInsetsGeometry get marginRightInput => EdgeInsets.only(right: 32);
+  EdgeInsets get pagePadding => EdgeInsets.only(left: 17, right: 28);
 
   @override
-  EdgeInsetsGeometry get marginLeftInput => EdgeInsets.only(left: 8);
+  EdgeInsets get cardPadding => EdgeInsets.all(10);
 
   @override
-  EdgeInsetsGeometry get marginTopLeftInput =>
-      EdgeInsets.only(left: 8, top: 21);
-
-  @override
-  TextStyle get textStyleRegistration => TextStyle(
-        fontSize: 30,
-        color: Color.fromRGBO(65, 14, 130, 1),
-        fontFamily: "Roboto",
-        fontWeight: FontWeight.bold,
+  BoxDecoration get cardDecoration => BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: _yellow,
       );
 
   @override
-  EdgeInsetsGeometry get marginRegistration => EdgeInsets.only(top: 28);
-
-  @override
-  EdgeInsetsGeometry get marginTextRegistration => EdgeInsets.only(bottom: 11);
+  TextStyle get titleTextStyle => TextStyle(
+      fontFamily: _primaryFontFamily,
+      fontSize: 30,
+      fontWeight: FontWeight.w700,
+      color: _purple);
 }

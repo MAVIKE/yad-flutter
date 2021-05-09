@@ -106,6 +106,15 @@ class RegistrationEntranceChanged extends RegistrationEvent {
   List<Object> get props => [entrance];
 }
 
+class RegistrationEmailChanged extends RegistrationEvent {
+  const RegistrationEmailChanged(this.email);
+
+  final String email;
+
+  @override
+  List<Object> get props => [email];
+}
+
 class RegistrationSubmitted extends RegistrationEvent {
   const RegistrationSubmitted();
 }

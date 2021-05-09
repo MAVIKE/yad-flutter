@@ -7,6 +7,17 @@ class Building extends FormzInput<String, BuildingValidationError> {
   const Building.pure() : super.pure('');
   const Building.dirty([String value = '']) : super.dirty(value);
 
+  String? get errorString {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
+    if (error == null) {
+      return null;
+    }
+    final name = this.runtimeType.toString();
+    return "$name is invalid";
+  }
+
   @override
   BuildingValidationError? validator(String? value) {
     if (value == null) {
