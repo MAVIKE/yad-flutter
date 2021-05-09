@@ -63,14 +63,14 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
       final dishes =
           await _fetchDishes(state.restaurantId.id, event.categoryId);
       if (dishes.isEmpty) {
-        return state.copyWith(status: DishListStatus.failure);
+        return state.copyWith(status: DishListStatus.failure, dishes: []);
       }
       return state.copyWith(
         status: DishListStatus.success,
         dishes: dishes,
       );
     } on Exception {
-      return state.copyWith(status: DishListStatus.failure);
+      return state.copyWith(status: DishListStatus.failure, dishes: []);
     }
   }
 

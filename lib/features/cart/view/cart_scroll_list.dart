@@ -35,10 +35,9 @@ class _CartScrollList extends State<CartScrollList> {
                       itemBuilder: (BuildContext context, int index) {
                         Dish dish = state.cart.dishes[index];
                         return DishCard(
-                            header: dish.title,
-                            description: dish.description,
+                            dish: dish,
                             isCountingDishes: true,
-                            dishCost: dish.price);
+                        );
                       },
                       itemCount: state.cart.dishes.length,
                       scrollDirection: Axis.vertical)));

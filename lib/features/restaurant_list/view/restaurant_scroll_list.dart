@@ -25,7 +25,8 @@ class RestaurantScrollList extends StatelessWidget {
                   child: ListView.builder(
                       itemBuilder: (BuildContext context, int index) {
                         Restaurant restaurant = state.restaurants[index];
-                        return RestaurantCard(header: restaurant.name);
+                        return RestaurantCard(header: restaurant.name,
+                          restaurantId: restaurant.id,);
                       },
                       itemCount: state.restaurants.length,
                       scrollDirection: Axis.vertical)));
