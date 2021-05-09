@@ -29,7 +29,7 @@ class RegistrationForm extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Sign In",
+                  "Registration",
                   style: cardTheme.titleTextStyle,
                 ),
               ),
