@@ -19,14 +19,7 @@ class DishListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.read<ITheme>();
-    return BlocProvider(
-        create: (context) =>
-        DishListBloc(
-            dishListRepo: RepositoryProvider.of(context),
-            restaurantId: restaurantId
-        ),
-        child:
-        Align(alignment: Alignment.topCenter, child: Container(
+    return Align(alignment: Alignment.topCenter, child: Container(
           margin: theme.dishListTheme.marginDishListPage,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,10 +32,9 @@ class DishListPage extends StatelessWidget {
                   )
               ),
               CategoryScrollList(),
-              DishScrollList()
+              DishScrollList(restaurantId)
             ],
           ),
-        )
         )
     );
   }

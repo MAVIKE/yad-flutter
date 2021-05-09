@@ -16,42 +16,46 @@ class MockCartRepo implements CartRepo {
                   description: 'Traditional Ukranian dish, '
                       'Soup with meat anvegetables',
                   price: 12.00,
-                  categoryId: 1),
+                  categoryId: 1, restaurantId: 1),
               Dish(
                   id: 2,
                   title: 'Smoking beaf2',
                   description: 'Traditional Ukranian dish, '
                       'Soup with meat anvegetables',
                   price: 13.00,
-                  categoryId: 1),
+                  categoryId: 1, restaurantId: 1),
               Dish(
                   id: 3,
                   title: 'Smoking beaf3',
                   description: 'Traditional Ukranian dish, '
                       'Soup with meat anvegetables',
                   price: 14.00,
-                  categoryId: 1),
+                  categoryId: 1, restaurantId: 1),
               Dish(
                   id: 4,
                   title: 'Smoking beaf4',
                   description: 'Traditional Ukranian dish, '
                       'Soup with meat anvegetables',
                   price: 15.00,
-                  categoryId: 1),
+                  categoryId: 1, restaurantId: 1),
               Dish(
                   id: 4,
                   title: 'Smoking beaf5',
                   description: 'Traditional Ukranian dish, '
                       'Soup with meat anvegetables',
                   price: 15.00,
-                  categoryId: 1),
+                  categoryId: 1, restaurantId: 1),
               Dish(
                   id: 4,
                   title: 'Smoking beaf6',
                   description: 'Traditional Ukranian dish, '
                       'Soup with meat anvegetables',
                   price: 15.00,
-                  categoryId: 1),
+                  categoryId: 1, restaurantId: 1),
             ]));
   }
+
+  void addDish(Dish dish) {}
+
+  void dropDish(Dish dish) {}
 }

@@ -8,3 +8,21 @@ abstract class CartListEvent extends Equatable {
 }
 
 class CartListRequested extends CartListEvent {}
+
+class CartAddDish extends CartListEvent {
+  const CartAddDish(this.dish);
+
+  final Dish dish;
+
+  @override
+  List<Object> get props => [dish];
+}
+
+class CartDropDish extends CartListEvent {
+  const CartDropDish(this.dish);
+
+  final Dish dish;
+
+  @override
+  List<Object> get props => [dish];
+}
