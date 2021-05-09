@@ -1,9 +1,10 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum ExpirationMonthValidationError { empty, invalid, small, big}
+enum ExpirationMonthValidationError { empty, invalid, small, big }
 
-class ExpirationMonth extends FormzInput<String, ExpirationMonthValidationError> {
+class ExpirationMonth
+    extends FormzInput<String, ExpirationMonthValidationError> {
   const ExpirationMonth.pure() : super.pure('');
   const ExpirationMonth.dirty([String value = '']) : super.dirty(value);
 
@@ -14,17 +15,14 @@ class ExpirationMonth extends FormzInput<String, ExpirationMonthValidationError>
     }
     if (value.isEmpty) {
       return ExpirationMonthValidationError.empty;
-    }
-    else {
+    } else {
       int parseValue = int.parse(value);
-      if (parseValue is ! int) {
+      if (parseValue is! int) {
         return ExpirationMonthValidationError.invalid;
-      }
-      else {
+      } else {
         if (parseValue < 1) {
           return ExpirationMonthValidationError.small;
-        }
-        else if (parseValue > 12) {
+        } else if (parseValue > 12) {
           return ExpirationMonthValidationError.big;
         }
       }

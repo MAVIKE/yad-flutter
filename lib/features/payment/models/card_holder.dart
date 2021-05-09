@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 import 'dart:core';
 
-enum CardHolderValidationError {empty, invalid}
+enum CardHolderValidationError { empty, invalid }
 
 class CardHolder extends FormzInput<String, CardHolderValidationError> {
   const CardHolder.pure() : super.pure('');

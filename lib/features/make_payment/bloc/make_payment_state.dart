@@ -1,11 +1,6 @@
 part of 'make_payment_bloc.dart';
 
-enum MakePaymentStatus {
-  unknown,
-  payApproved,
-  payFailed,
-  paymentInProgress
-}
+enum MakePaymentStatus { unknown, payApproved, payFailed, paymentInProgress }
 
 class MakePaymentState extends Equatable {
   const MakePaymentState._({

@@ -9,11 +9,10 @@ part 'dish_list_event.dart';
 part 'dish_list_state.dart';
 
 class DishListBloc extends Bloc<DishListEvent, DishListState> {
-
   DishListBloc({
     required DishListRepo dishListRepo,
     required int restaurantId,
-  }) : _dishListRepo = dishListRepo,
+  })   : _dishListRepo = dishListRepo,
         super(DishListState(restaurantId: RestaurantId(id: restaurantId))) {
     this.add(CategoryListRequested());
   }
@@ -31,29 +30,26 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
 
   // при получении категорий,
   // делается запрос на получение списка блюд первой категории
-  Stream<DishListState> _mapCategoryListFetchedToState(DishListState state) async* {
+  Stream<DishListState> _mapCategoryListFetchedToState(
+      DishListState state) async* {
     try {
       final categories = await _fetchCategories(state.restaurantId.id);
       if (categories.isEmpty) {
         yield state.copyWith(status: DishListStatus.failure);
-      }
-      else {
+      } else {
         // если удался запрос, возвращаем вначале список категорий,
         // а потом уже дозапрашиваем список блюд для первой категории
         yield state.copyWith(
-            status: DishListStatus.success,
-            categories: categories
-        );
-        final dishes = await _fetchDishes(state.restaurantId.id, categories[0].id);
+            status: DishListStatus.success, categories: categories);
+        final dishes =
+            await _fetchDishes(state.restaurantId.id, categories[0].id);
         if (dishes.isEmpty) {
           yield state.copyWith(status: DishListStatus.failure);
-        }
-        else {
+        } else {
           yield state.copyWith(
-            status: DishListStatus.success,
-            categories: categories,
-            dishes: dishes
-          );
+              status: DishListStatus.success,
+              categories: categories,
+              dishes: dishes);
         }
       }
     } on Exception {
@@ -61,9 +57,11 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
     }
   }
 
-  Future<DishListState> _mapDishListFetchedToState(DishListRequestedByCategoryId event, DishListState state) async {
+  Future<DishListState> _mapDishListFetchedToState(
+      DishListRequestedByCategoryId event, DishListState state) async {
     try {
-      final dishes = await _fetchDishes(state.restaurantId.id, event.categoryId);
+      final dishes =
+          await _fetchDishes(state.restaurantId.id, event.categoryId);
       if (dishes.isEmpty) {
         return state.copyWith(status: DishListStatus.failure);
       }
@@ -77,13 +75,15 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
   }
 
   Future<List<DishCategory>> _fetchCategories(int restaurantId) async {
-    return await _dishListRepo.loadCategories(restaurantId: restaurantId);
+    final data = await _dishListRepo.loadCategories(restaurantId: restaurantId);
+    final categories = data.value;
+    return categories == null ? [] : categories;
   }
 
   Future<List<Dish>> _fetchDishes(int restaurantId, int categoryId) async {
-    return await _dishListRepo.loadDishes(restaurantId: restaurantId,
-        categoryId: categoryId);
+    final data = await _dishListRepo.loadDishes(
+        restaurantId: restaurantId, categoryId: categoryId);
+    final dishes = data.value;
+    return dishes == null ? [] : dishes;
   }
-
-
 }

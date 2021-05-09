@@ -6,32 +6,30 @@ import 'package:yad/features/dish_list/models/category.dart';
 import 'package:yad/features/dish_list/widgets/widgets.dart';
 
 class CategoryScrollList extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DishListBloc, DishListState>(
-        builder: (context, state) {
-          switch (state.status) {
-            case DishListStatus.failure:
-              return const Center(child: Text('failed to fetch categories'));
-            case DishListStatus.success:
-              if (state.categories.isEmpty) {
-                return const Center(child: Text('no categories'));
-              }
-              return Container(height: context.read<ITheme>().dishListTheme.dishCategoryHeight,
-                  child: ListView.builder(
-                    itemBuilder: (BuildContext context, int index) {
-                      DishCategory category = state.categories[index];
-                      return DishCategoryWidget(
-                          categoryTitle: category.categoryTitle,
-                          categoryId: category.id);
-                    },
-                    itemCount: state.categories.length,
-                      scrollDirection: Axis.horizontal
-                  ));
-            default:
-              return const Center(child: CircularProgressIndicator());
+    return BlocBuilder<DishListBloc, DishListState>(builder: (context, state) {
+      switch (state.status) {
+        case DishListStatus.failure:
+          return const Center(child: Text('failed to fetch categories'));
+        case DishListStatus.success:
+          if (state.categories.isEmpty) {
+            return const Center(child: Text('no categories'));
           }
-        });
+          return Container(
+              height: context.read<ITheme>().dishListTheme.dishCategoryHeight,
+              child: ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    DishCategory category = state.categories[index];
+                    return DishCategoryWidget(
+                        categoryTitle: category.categoryTitle,
+                        categoryId: category.id);
+                  },
+                  itemCount: state.categories.length,
+                  scrollDirection: Axis.horizontal));
+        default:
+          return const Center(child: CircularProgressIndicator());
+      }
+    });
   }
 }

@@ -5,11 +5,8 @@ import 'package:yad/features/dish_list/bloc/dish_list_bloc.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 
 class DishCategoryWidget extends StatelessWidget {
-
-  DishCategoryWidget({
-  required String categoryTitle,
-    required int categoryId
-  }) : _categoryTitle = categoryTitle,
+  DishCategoryWidget({required String categoryTitle, required int categoryId})
+      : _categoryTitle = categoryTitle,
         _categoryId = categoryId;
 
   final String _categoryTitle;
@@ -33,12 +30,11 @@ class DishCategoryWidget extends StatelessWidget {
                 style: theme.dishListTheme.textStyleCategoryName,
               ),
               onPressed: () {
-                context.read<DishListBloc>().add(
-                    DishListRequestedByCategoryId(_categoryId)
-                );
+                context
+                    .read<DishListBloc>()
+                    .add(DishListRequestedByCategoryId(_categoryId));
               },
-            )
-        );
+            ));
       },
     );
   }

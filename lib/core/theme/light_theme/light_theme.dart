@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 
 part 'light_profile_theme.dart';
@@ -12,6 +13,7 @@ part 'light_registration_card_theme.dart';
 part 'light_restaurant_list_theme.dart';
 part 'light_restaurant_card_theme.dart';
 part 'light_db_main_theme.dart';
+part 'light_cart_theme.dart';
 
 const Color _yellow = Color.fromRGBO(251, 187, 0, 1);
 const Color _orange = Color.fromRGBO(248, 113, 34, 1);
@@ -37,6 +39,7 @@ class LightTheme implements ITheme {
   static LightRestaurantCardTheme _restaurantCardTheme =
       LightRestaurantCardTheme();
   static LightDbMainTheme _dbMainTheme = LightDbMainTheme();
+  static LightCartTheme _cartTheme = LightCartTheme();
 
   @override
   IProfileTheme get profileTheme => _profileTheme;
@@ -76,4 +79,7 @@ class LightTheme implements ITheme {
 
   @override
   IDbMainTheme get dbMainTheme => _dbMainTheme;
+
+  @override
+  ICartTheme get cartTheme => _cartTheme;
 }

@@ -1,8 +1,6 @@
 part of 'dish_list_bloc.dart';
 
-
 abstract class DishListEvent extends Equatable {
-
   const DishListEvent();
 
   @override

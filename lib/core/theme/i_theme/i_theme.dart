@@ -10,6 +10,7 @@ part 'i_data_input_card_theme.dart';
 part 'i_registration_card_theme.dart';
 part 'i_restaurant_list_theme.dart';
 part 'i_db_main_theme.dart';
+part 'i_cart_theme.dart';
 
 abstract class ITheme {
   IProfileTheme get profileTheme;
@@ -24,4 +25,5 @@ abstract class ITheme {
   IRestaurantListTheme get restaurantListTheme;
   IRestaurantCardTheme get restaurantCardTheme;
   IDbMainTheme get dbMainTheme;
+  ICartTheme get cartTheme;
 }

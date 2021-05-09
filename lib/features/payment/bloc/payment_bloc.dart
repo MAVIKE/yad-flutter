@@ -11,17 +11,16 @@ part 'payment_event.dart';
 part 'payment_state.dart';
 
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
-  PaymentBloc({
-    required MakePaymentBloc makePaymentBloc
-  })   : _makePaymentBloc = makePaymentBloc,
+  PaymentBloc({required MakePaymentBloc makePaymentBloc})
+      : _makePaymentBloc = makePaymentBloc,
         super(const PaymentState());
 
   final MakePaymentBloc _makePaymentBloc;
 
   @override
   Stream<PaymentState> mapEventToState(
-      PaymentEvent event,
-      ) async* {
+    PaymentEvent event,
+  ) async* {
     if (event is PaymentCardNumberChanged) {
       yield _mapCardNumberChangedToState(event, state);
     } else if (event is PaymentExpirationMonthChanged) {
@@ -38,69 +37,94 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   }
 
   PaymentState _mapCardNumberChangedToState(
-      PaymentCardNumberChanged event,
-      PaymentState state,
-      ) {
+    PaymentCardNumberChanged event,
+    PaymentState state,
+  ) {
     final cardNumber = CardNumber.dirty(event.cardNumber);
     return state.copyWith(
       cardNumber: cardNumber,
-      status: Formz.validate([cardNumber, state.expirationMonth,
-        state.expirationYear, state.cardHolder, state.cvcCvv]),
+      status: Formz.validate([
+        cardNumber,
+        state.expirationMonth,
+        state.expirationYear,
+        state.cardHolder,
+        state.cvcCvv
+      ]),
     );
   }
 
   PaymentState _mapExpirationMonthChangedToState(
-      PaymentExpirationMonthChanged event,
-      PaymentState state,
-      ) {
+    PaymentExpirationMonthChanged event,
+    PaymentState state,
+  ) {
     final expirationMonth = ExpirationMonth.dirty(event.expirationMonth);
     return state.copyWith(
       expirationMonth: expirationMonth,
-      status: Formz.validate([state.cardNumber, expirationMonth,
-        state.expirationYear, state.cardHolder, state.cvcCvv]),
+      status: Formz.validate([
+        state.cardNumber,
+        expirationMonth,
+        state.expirationYear,
+        state.cardHolder,
+        state.cvcCvv
+      ]),
     );
   }
 
   PaymentState _mapExpirationYearChangedToState(
-      PaymentExpirationYearChanged event,
-      PaymentState state,
-      ) {
+    PaymentExpirationYearChanged event,
+    PaymentState state,
+  ) {
     final expirationYear = ExpirationYear.dirty(event.expirationYear);
     return state.copyWith(
       expirationYear: expirationYear,
-      status: Formz.validate([state.cardNumber, state.expirationMonth,
-        expirationYear, state.cardHolder, state.cvcCvv]),
+      status: Formz.validate([
+        state.cardNumber,
+        state.expirationMonth,
+        expirationYear,
+        state.cardHolder,
+        state.cvcCvv
+      ]),
     );
   }
 
   PaymentState _mapCardHolderChangedToState(
-      PaymentCardHolderChanged event,
-      PaymentState state,
-      ) {
+    PaymentCardHolderChanged event,
+    PaymentState state,
+  ) {
     final cardHolder = CardHolder.dirty(event.cardHolder);
     return state.copyWith(
       cardHolder: cardHolder,
-      status: Formz.validate([state.cardNumber, state.expirationMonth,
-        state.expirationYear, cardHolder, state.cvcCvv]),
+      status: Formz.validate([
+        state.cardNumber,
+        state.expirationMonth,
+        state.expirationYear,
+        cardHolder,
+        state.cvcCvv
+      ]),
     );
   }
 
   PaymentState _mapCvcCvvChangedToState(
-      PaymentCvcCvvChanged event,
-      PaymentState state,
-      ) {
+    PaymentCvcCvvChanged event,
+    PaymentState state,
+  ) {
     final cvcCvv = CvcCvv.dirty(event.cvcCvv);
     return state.copyWith(
       cvcCvv: cvcCvv,
-      status: Formz.validate([state.cardNumber, state.expirationMonth,
-        state.expirationYear, state.cardHolder, cvcCvv]),
+      status: Formz.validate([
+        state.cardNumber,
+        state.expirationMonth,
+        state.expirationYear,
+        state.cardHolder,
+        cvcCvv
+      ]),
     );
   }
 
   Stream<PaymentState> _mapPaymentSubmittedToState(
-      PaymentSubmitted event,
-      PaymentState state,
-      ) async* {
+    PaymentSubmitted event,
+    PaymentState state,
+  ) async* {
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
       try {

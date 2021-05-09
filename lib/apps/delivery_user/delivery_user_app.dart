@@ -3,19 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yad/core/domain/repos/auth/auth_repo.dart';
 import 'package:yad/core/domain/repos/auth/user_auth_repo.dart';
+import 'package:yad/core/domain/repos/cart/cart_repo.dart';
+import 'package:yad/core/domain/repos/cart/mock_cart_repo.dart';
+import 'package:yad/core/domain/repos/load_dish_list/remote_dish_list_repo.dart';
 import 'package:yad/core/domain/repos/register/register_repo.dart';
 import 'package:yad/core/domain/repos/register/user_register_repo.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:yad/core/theme/light_theme/light_theme.dart';
 import 'package:yad/features/auth/auth.dart';
 import 'package:yad/core/domain/repos/load_dish_list/dish_list_repo.dart';
-import 'package:yad/core/domain/repos/load_dish_list/mock_dish_list_repo.dart';
 import 'package:yad/core/domain/repos/make_payment/make_payment_repo.dart';
 import 'package:yad/core/domain/repos/make_payment/user_make_payment_repo.dart';
 import 'pages/pages.dart';
 
 void runDeliveryUserApp() async {
-  final api = ApiClient();
+  final api = ApiClient(basePathOverride: r'http://161.35.217.187:9001/api/v1');
   runApp(MultiRepositoryProvider(providers: [
     RepositoryProvider.value(
       value: api,
@@ -33,8 +35,9 @@ void runDeliveryUserApp() async {
       create: (context) => UserMakePaymentRepository(),
     ),
     RepositoryProvider<DishListRepo>(
-      create: (context) => MockDishListRepository(),
+      create: (context) => RemoteDishListRepository(api),
     ),
+    RepositoryProvider<CartRepo>(create: (context) => MockCartRepo())
   ], child: App()));
 }
 

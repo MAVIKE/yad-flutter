@@ -28,8 +28,8 @@ class MakePaymentBloc extends Bloc<MakePaymentEvent, MakePaymentState> {
 
   void pay(String cardNumber, String expirationMonth, String expirationYear,
       String cardHolder, String cvcCvv) {
-    add(MakePaymentPayRequested(cardNumber, expirationMonth, expirationYear,
-        cardHolder, cvcCvv));
+    add(MakePaymentPayRequested(
+        cardNumber, expirationMonth, expirationYear, cardHolder, cvcCvv));
   }
 
   void payApproved() {
@@ -42,8 +42,8 @@ class MakePaymentBloc extends Bloc<MakePaymentEvent, MakePaymentState> {
 
   @override
   Stream<MakePaymentState> mapEventToState(
-      MakePaymentEvent event,
-      ) async* {
+    MakePaymentEvent event,
+  ) async* {
     if (event is MakePaymentPayRequested) {
       yield MakePaymentState.paymentInProgress();
       yield await _mapMakePaymentPayRequested(event);
@@ -54,13 +54,16 @@ class MakePaymentBloc extends Bloc<MakePaymentEvent, MakePaymentState> {
     }
   }
 
-  Future<MakePaymentState> _mapMakePaymentPayRequested(MakePaymentPayRequested
-  event) async {
+  Future<MakePaymentState> _mapMakePaymentPayRequested(
+      MakePaymentPayRequested event) async {
     return await _makePaymentRepo
-        .pay(cardNumber: event.cardNumber, expirationMonth: event.expirationMonth,
-        expirationYear: event.expirationYear, cardHolder: event.cardHolder,
-        cvcCvv: event.cvcCvv)
+        .pay(
+            cardNumber: event.cardNumber,
+            expirationMonth: event.expirationMonth,
+            expirationYear: event.expirationYear,
+            cardHolder: event.cardHolder,
+            cvcCvv: event.cvcCvv)
         .then((_) => MakePaymentState.payApproved(),
-        onError: (_) => MakePaymentState.payFailed());
+            onError: (_) => MakePaymentState.payFailed());
   }
 }

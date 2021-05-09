@@ -36,6 +36,6 @@ class PaymentState extends Equatable {
   }
 
   @override
-  List<Object> get props => [status, cardNumber, expirationMonth,
-    expirationYear, cardHolder, cvcCvv];
+  List<Object> get props =>
+      [status, cardNumber, expirationMonth, expirationYear, cardHolder, cvcCvv];
 }

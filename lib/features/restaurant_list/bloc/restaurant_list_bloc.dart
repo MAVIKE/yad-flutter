@@ -42,6 +42,8 @@ class RestaurantListBloc
   }
 
   Future<List<Restaurant>> _fetchRestaurants() async {
-    return await _restaurantListRepo.loadRestaurants();
+    final data = await _restaurantListRepo.loadRestaurants();
+    final restaurants = data.value;
+    return restaurants == null ? [] : restaurants;
   }
 }
