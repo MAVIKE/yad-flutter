@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:api_client/api_client.dart';
-import 'package:dio/dio.dart';
-import 'package:yad/core/domain/repos/failure.dart';
 import 'package:yad/core/domain/repos/result.dart';
 
 import 'auth_repo.dart';
@@ -21,20 +19,15 @@ class DeliveryBoyAuthenticationRepository implements AuthRepo {
     final input = V1CourierSignInInputBuilder()
       ..phone = username
       ..password = password;
-    try {
-      final response = await _cApi.couriersSignInPost(input: input.build());
-      final token = response.data?.token;
-      if (token != null) {
-        _api.setApiKey("CourierAuth", "Bearer $token");
-        return Ok(token);
-      } else {
-        return Err(
-            SimpleFailure(response.statusCode ?? 1, "Response data is null"));
+    return await _cApi.couriersSignInPost(input: input.build()).then((value) {
+      final result = resultFromResponse(value);
+      final token = result.value?.token;
+      if (token == null) {
+        return result.to();
       }
-    } on DioError catch (e) {
-      return Err(SimpleFailure(e.response?.statusCode ?? 1,
-          e.response?.data.toString() ?? "Unknown auth error"));
-    }
+      _api.setApiKey("CourierAuth", "Bearer $token");
+      return Ok(token);
+    }, onError: (e) => resultFromError(e).to<String>());
   }
 
   @override
@@ -50,4 +43,18 @@ class DeliveryBoyAuthenticationRepository implements AuthRepo {
   }
 
   String get tokenKey => "YAD DB Auth token";
+
+  @override
+  Future<Result<int>> currentId() async {
+    return await _cApi.couriersCurrentGet().then((value) async {
+      final result = resultFromResponse(value);
+      final id = result.value;
+      if (id == null) {
+        return result.to<int>();
+      }
+      return Ok(id.id ?? 0);
+    }, onError: (e) async {
+      return resultFromError(e).to<int>();
+    });
+  }
 }

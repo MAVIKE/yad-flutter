@@ -10,4 +10,11 @@ class MockWorkStatusRepo extends WorkStatusRepo {
       return Result();
     });
   }
+
+  @override
+  Future<Result<int>> current() {
+    return Future.delayed(Duration(seconds: 1), () {
+      return Ok(0);
+    });
+  }
 }

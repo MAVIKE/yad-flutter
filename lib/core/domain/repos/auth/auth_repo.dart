@@ -11,5 +11,7 @@ abstract class AuthRepo {
 
   Future<Result<void>> setToken(String token);
 
+  Future<Result<int>> currentId();
+
   String get tokenKey;
 }

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yad/core/domain/repos/auth/auth_repo.dart';
 import 'package:yad/core/domain/repos/auth/delivery_boy_auth_repo.dart';
-import 'package:yad/core/domain/repos/orders_repo/mock_orders_repo.dart';
+import 'package:yad/core/domain/repos/orders_repo/courier_orders_repo.dart';
 import 'package:yad/core/domain/repos/orders_repo/orders_repo.dart';
-import 'package:yad/core/domain/repos/work_status_repo/mock_work_status_repo.dart';
+import 'package:yad/core/domain/repos/work_status_repo/remote_work_status_repo.dart';
 import 'package:yad/core/domain/repos/work_status_repo/work_status_repo.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:yad/core/theme/light_theme/light_theme.dart';
@@ -15,6 +15,7 @@ import 'pages/pages.dart';
 
 void runDeliveryBoyApp() async {
   final api = ApiClient();
+  final authRepo = DeliveryBoyAuthenticationRepository(api);
   runApp(MultiRepositoryProvider(providers: [
     RepositoryProvider.value(
       value: api,
@@ -23,13 +24,13 @@ void runDeliveryBoyApp() async {
       value: LightTheme(),
     ),
     RepositoryProvider<AuthRepo>.value(
-      value: DeliveryBoyAuthenticationRepository(api),
+      value: authRepo,
     ),
     RepositoryProvider<WorkStatusRepo>.value(
-      value: MockWorkStatusRepo(),
+      value: RemoteWorkStatusRepo(api, authRepo),
     ),
     RepositoryProvider<OrdersRepo>.value(
-      value: MockOrdersRepo(),
+      value: CourierOrdersRepo(api, authRepo),
     ),
   ], child: App()));
 }
