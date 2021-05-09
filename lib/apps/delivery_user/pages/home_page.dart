@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yad/features/payment/payment.dart';
-
+import 'package:yad/widgets/yad_scaffold.dart';
 
 class HomePage extends StatelessWidget {
   static Route route() {
@@ -9,8 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+    return YadScaffold(
       body: PaymentPage(),
     );
   }

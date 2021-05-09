@@ -7,6 +7,17 @@ class Entrance extends FormzInput<String, EntranceValidationError> {
   const Entrance.pure() : super.pure('');
   const Entrance.dirty([String value = '']) : super.dirty(value);
 
+  String? get errorString {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
+    if (error == null) {
+      return null;
+    }
+    final name = this.runtimeType.toString();
+    return "$name is invalid";
+  }
+
   @override
   EntranceValidationError? validator(String? value) {
     if (value == null) {

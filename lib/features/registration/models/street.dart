@@ -7,6 +7,17 @@ class Street extends FormzInput<String, StreetValidationError> {
   const Street.pure() : super.pure('');
   const Street.dirty([String value = '']) : super.dirty(value);
 
+  String? get errorString {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
+    if (error == null) {
+      return null;
+    }
+    final name = this.runtimeType.toString();
+    return "$name is invalid";
+  }
+
   @override
   StreetValidationError? validator(String? value) {
     if (value == null) {

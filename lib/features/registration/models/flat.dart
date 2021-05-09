@@ -7,6 +7,17 @@ class Flat extends FormzInput<String, FlatValidationError> {
   const Flat.pure() : super.pure('');
   const Flat.dirty([String value = '']) : super.dirty(value);
 
+  String? get errorString {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
+    if (error == null) {
+      return null;
+    }
+    final name = this.runtimeType.toString();
+    return "$name is invalid";
+  }
+
   @override
   FlatValidationError? validator(String? value) {
     if (value == null) {

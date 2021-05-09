@@ -2,6 +2,7 @@
     package="com.example.yad">
    <application
         android:label="yad"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -7,6 +7,17 @@ class Floor extends FormzInput<String, FloorValidationError> {
   const Floor.pure() : super.pure('');
   const Floor.dirty([String value = '']) : super.dirty(value);
 
+  String? get errorString {
+    if (status == FormzInputStatus.pure) {
+      return null;
+    }
+    if (error == null) {
+      return null;
+    }
+    final name = this.runtimeType.toString();
+    return "$name is invalid";
+  }
+
   @override
   FloorValidationError? validator(String? value) {
     if (value == null) {

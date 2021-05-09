@@ -11,6 +11,7 @@ class RegisterButton extends StatelessWidget {
     return BlocBuilder<RegistrationBloc, RegistrationState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
+        print(state.status);
         final theme = context.read<ITheme>();
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()

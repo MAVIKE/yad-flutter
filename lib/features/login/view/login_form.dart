@@ -11,43 +11,32 @@ class LoginForm extends StatelessWidget {
     final theme = context.read<ITheme>();
     final loginTheme = theme.loginTheme;
 
-    return BlocListener<LoginBloc, LoginState>(
-      listener: (context, state) {
-        if (state.status.isSubmissionFailure) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              const SnackBar(content: Text('Authentication Failure')),
-            );
-        }
-      },
-      child: Container(
-        padding: loginTheme.pagePadding,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Sign In",
-                  style: loginTheme.titleTextStyle,
-                ),
+    return Container(
+      padding: loginTheme.pagePadding,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Sign In",
+                style: loginTheme.titleTextStyle,
               ),
-              const Padding(padding: EdgeInsets.only(top: 10)),
-              Container(
-                decoration: loginTheme.cardDecoration,
-                padding: loginTheme.cardPadding,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _UsernameInput(),
-                    _PasswordInput(),
-                    _LoginButton(),
-                  ],
-                ),
+            ),
+            const Padding(padding: EdgeInsets.only(top: 10)),
+            Container(
+              decoration: loginTheme.cardDecoration,
+              padding: loginTheme.cardPadding,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _UsernameInput(),
+                  _PasswordInput(),
+                  _LoginButton(),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

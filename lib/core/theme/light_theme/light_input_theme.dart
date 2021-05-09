@@ -30,4 +30,11 @@ class LightInputTheme implements IInputTheme {
       fontFamily: _primaryFontFamily,
       fontWeight: FontWeight.w900,
       fontSize: 26);
+
+  @override
+  TextStyle get errorTextStyle => TextStyle(
+      color: _purple,
+      fontFamily: _primaryFontFamily,
+      fontWeight: FontWeight.w700,
+      fontSize: 14);
 }
