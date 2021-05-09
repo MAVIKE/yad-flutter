@@ -13,11 +13,17 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required AuthBloc authBloc, required AuthRepo authRepo})
       : _authBloc = authBloc,
-        _authRepo = authRepo,
-        super(const LoginState());
+        super(const LoginState()) {
+    _authBloc.stream.listen((event) {
+      if (event.status == AuthStatus.failure) {
+        add(LoginFailed());
+      } else if (event.status == AuthStatus.authenticated) {
+        add(LoginSuccessful());
+      }
+    });
+  }
 
   final AuthBloc _authBloc;
-  final AuthRepo _authRepo;
 
   @override
   Stream<LoginState> mapEventToState(
@@ -29,6 +35,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield _mapPasswordChangedToState(event, state);
     } else if (event is LoginSubmitted) {
       yield* _mapLoginSubmittedToState(event, state);
+    } else if (event is LoginFailed) {
+      yield state.copyWith(status: FormzStatus.submissionFailure);
+    } else if (event is LoginSuccessful) {
+      yield state.copyWith(status: FormzStatus.submissionSuccess);
     }
   }
 
@@ -57,18 +67,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginState state,
   ) async* {
     if (state.status.isValidated) {
-      yield state.copyWith(status: FormzStatus.submissionInProgress);
-      final result = await _authRepo.signIn(
-        username: state.phoneNumber.value,
-        password: state.password.value,
-      );
-      final token = result.value;
-      if (token != null) {
-        yield state.copyWith(status: FormzStatus.submissionSuccess);
-        _authBloc.authenticated(token);
-      } else {
-        yield state.copyWith(status: FormzStatus.submissionFailure);
-      }
+      _authBloc.requestSignin(state.phoneNumber.value, state.password.value);
     }
   }
 }

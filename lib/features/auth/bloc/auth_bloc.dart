@@ -41,6 +41,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     add(AuthSignoutRequested());
   }
 
+  void requestSignin(String phoneNumber, String password) {
+    add(AuthSigninRequested(phoneNumber, password));
+  }
+
   @override
   Stream<AuthState> mapEventToState(
     AuthEvent event,
@@ -51,7 +55,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       yield AuthState.unauthenticated();
     } else if (event is AuthAuthenticated) {
       yield await _mapAuthAuthenticated(event);
+    } else if (event is AuthSigninRequested) {
+      yield await _mapAuthSigninRequested(event);
     }
+  }
+
+  Future<AuthState> _mapAuthSigninRequested(AuthSigninRequested event) async {
+    final instance = await SharedPreferences.getInstance();
+    return await _authRepo
+        .signIn(username: event.phoneNumber, password: event.password)
+        .then((result) {
+      final token = result.value;
+      if (token == null) {
+        return AuthState.failure(result.error?.reason ?? 'Unknown failure');
+      } else {
+        instance.setString(_authRepo.tokenKey, token);
+        return AuthState.authenticated(token);
+      }
+    }, onError: (_) {
+      return AuthState.unknown();
+    });
   }
 
   Future<AuthState> _mapAuthAuthenticated(AuthAuthenticated event) async {
