@@ -9,11 +9,55 @@ All URIs are relative to *http://localhost:9000/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**usersCurrentGet**](UsersApi.md#userscurrentget) | **get** /users/current | Get Current User Id
 [**usersSignInPost**](UsersApi.md#userssigninpost) | **post** /users/sign-in | User SignIn
 [**usersSignUpPost**](UsersApi.md#userssignuppost) | **post** /users/sign-up | User SignUp
 [**usersUidGet**](UsersApi.md#usersuidget) | **get** /users/{uid} | Get User By Id
 [**usersUidPut**](UsersApi.md#usersuidput) | **put** /users/{uid} | Update User
 
+
+# **usersCurrentGet**
+> V1IdResponse usersCurrentGet()
+
+Get Current User Id
+
+get current user id
+
+### Example 
+```dart
+import 'package:api_client/api.dart';
+// TODO Configure API key authorization: UserAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('UserAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('UserAuth').apiKeyPrefix = 'Bearer';
+
+var api_instance = new UsersApi();
+
+try { 
+    var result = api_instance.usersCurrentGet();
+    print(result);
+} catch (e) {
+    print('Exception when calling UsersApi->usersCurrentGet: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**V1IdResponse**](V1IdResponse.md)
+
+### Authorization
+
+[UserAuth](../README.md#UserAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **usersSignInPost**
 > V1TokenResponse usersSignInPost(input)
@@ -59,7 +103,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **usersSignUpPost**
-> V1TokenResponse usersSignUpPost(input)
+> V1IdResponse usersSignUpPost(input)
 
 User SignUp
 
@@ -88,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**V1TokenResponse**](V1TokenResponse.md)
+[**V1IdResponse**](V1IdResponse.md)
 
 ### Authorization
 

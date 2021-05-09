@@ -85,9 +85,7 @@ class RestaurantsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<DomainRestaurant>;
-    } catch (error, s) {
-      print(error);
-      print(s);
+    } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
