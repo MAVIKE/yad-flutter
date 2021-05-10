@@ -29,18 +29,49 @@ class WorkStatusBloc extends Bloc<WorkStatusEvent, WorkStatusState> {
     if (event is WorkStatusChanged) {
       yield* _mapWorkStatusChangedToState(event);
     } else if (event is _WorkStatusInit) {
-      yield WorkStatusState(status: WorkStatus.working);
+      yield* _mapWorkStatusInitToState();
+    }
+  }
+
+  Stream<WorkStatusState> _mapWorkStatusInitToState() async* {
+    final result = await _repo.current();
+    final status = result.value;
+    if (status == null) {
+      print("Work status init error: $result");
+    } else {
+      switch (status) {
+        case 0:
+          yield WorkStatusState(status: WorkStatus.not_working);
+          break;
+        default:
+          yield WorkStatusState(status: WorkStatus.working);
+      }
     }
   }
 
   Stream<WorkStatusState> _mapWorkStatusChangedToState(
       WorkStatusChanged event) async* {
-    final result = await _repo.update(workStatus: event.status.index);
+    final result = await _repo.update(workStatus: statusToId(event.status));
     if (result.error is AuthFailure) {
       _authBloc.unauthenticated();
     }
     if (result.error == null) {
       yield WorkStatusState(status: event.status);
+    } else {
+      print("Work status change error: $result");
     }
+  }
+}
+
+int statusToId(WorkStatus status) {
+  switch (status) {
+    case WorkStatus.initial:
+      return 0;
+    case WorkStatus.working:
+      return 1;
+    case WorkStatus.not_working:
+      return 0;
+    default:
+      return 0;
   }
 }

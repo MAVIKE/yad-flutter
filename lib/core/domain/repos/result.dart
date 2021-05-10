@@ -35,6 +35,8 @@ Result<T> resultFromResponse<T>(Response<T> response) {
     final data = response.data;
     if (data != null) {
       return Ok(data);
+    } else {
+      return Result();
     }
   }
   return Err(failureFromResponse(response));

@@ -17,7 +17,7 @@ class MockOrdersRepo extends OrdersRepo {
         return Ok([
           Order(
             id: 1275,
-            status: "Cooking",
+            statusId: 0,
             from: "Moscow",
             to: "Petersburg",
           )
@@ -26,13 +26,13 @@ class MockOrdersRepo extends OrdersRepo {
         return Ok([
           Order(
             id: 1275,
-            status: "Cooking",
+            statusId: 0,
             from: "Moscow",
             to: "Petersburg",
           ),
           Order(
             id: 1276,
-            status: "Cooking",
+            statusId: 0,
             from: "Moscow",
             to: "Petersburg",
           )

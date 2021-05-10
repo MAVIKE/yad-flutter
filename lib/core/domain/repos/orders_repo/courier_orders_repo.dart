@@ -23,9 +23,10 @@ class CourierOrdersRepo extends OrdersRepo {
     final idResult = await _authRepo.currentId();
     final id = idResult.value;
     if (id == null) {
+      print("Fetch id failed $idResult");
       return idResult.to();
     }
-    return _ordersApi.couriersCidOrdersGet(cid: id.toString()).then(
+    return await _ordersApi.couriersCidOrdersGet(cid: id.toString()).then(
         (value) async {
       final result = resultFromResponse(value);
       final order = result.value;
@@ -34,29 +35,35 @@ class CourierOrdersRepo extends OrdersRepo {
       }
       final userResult = await _usersApi
           .usersUidGet(uid: order.userId.toString())
-          .then((value) => resultFromResponse(value));
+          .then((value) => resultFromResponse(value),
+              onError: (e) => resultFromError(e).to<DomainUser>());
       final user = userResult.value;
       if (user == null) {
-        return userResult.to();
+        print("Fetch user failed: $userResult");
       }
-      final uLat = user.location?.latitude;
-      final uLon = user.location?.latitude;
+      final uLat = user?.location?.latitude;
+      final uLon = user?.location?.latitude;
+      final uAddress =
+          (uLat == null || uLon == null) ? "Unknown address" : "$uLat, $uLon";
       final restaurantResult = await _restaurantsApi
           .restaurantsRidGet(rid: order.restaurantId.toString())
-          .then((value) => resultFromResponse(value));
+          .then((value) => resultFromResponse(value),
+              onError: (e) => resultFromError(e).to<DomainRestaurant>());
       final restaurant = restaurantResult.value;
       if (restaurant == null) {
-        return restaurantResult.to();
+        print("Fetch restaurant failed: $restaurantResult");
       }
-      final rLat = restaurant.location?.latitude;
-      final rLon = restaurant.location?.longitude;
+      final rLat = restaurant?.location?.latitude;
+      final rLon = restaurant?.location?.longitude;
+      final rAddress =
+          (rLat == null || rLon == null) ? "Unknown address" : "$rLat, $rLon";
 
       return Ok([
         Order(
           id: order.id ?? 0,
-          status: order.status.toString(),
-          from: "$rLat, $rLon",
-          to: "$uLat, $uLon",
+          statusId: order.status ?? 0,
+          from: rAddress,
+          to: uAddress,
         )
       ]);
     }, onError: (e) async {
