@@ -54,7 +54,19 @@ class LightProfileTheme implements IProfileTheme {
   EdgeInsetsGeometry get marginInputs => EdgeInsets.only(left: 15);
 
   @override
-  EdgeInsetsGeometry get marginInputsRight => EdgeInsets.only(right: 77);
+  EdgeInsetsGeometry get marginInputsRight => EdgeInsets.only(right: 75);
+
+  @override
+  EdgeInsetsGeometry get marginOrdersRight => EdgeInsets.only(right: 130);
+
+  @override
+  EdgeInsetsGeometry get marginStageLeft => EdgeInsets.only(left: 50);
+
+  @override
+  EdgeInsetsGeometry get marginDishLeft => EdgeInsets.only(left: 2);
+
+  @override
+  EdgeInsetsGeometry get marginInputsLeft => EdgeInsets.only(left: 2);
 
   @override
   TextStyle get styleFormsTitle => TextStyle(
@@ -69,4 +81,32 @@ class LightProfileTheme implements IProfileTheme {
       fontFamily: _primaryFontFamily,
       fontWeight: FontWeight.w900,
       fontSize: 30);
+
+  @override
+  TextStyle get styleOrderTitle => TextStyle(
+      color: background,
+      fontFamily: _primaryFontFamily,
+      fontWeight: FontWeight.w900,
+      fontSize: 24);
+
+  @override
+  TextStyle get styleStageTitle => TextStyle(
+      color: background,
+      fontFamily: _primaryFontFamily,
+      fontWeight: FontWeight.w700,
+      fontSize: 12);
+
+  @override
+  TextStyle get styleDishTitle => TextStyle(
+      color: foreground,
+      fontFamily: _primaryFontFamily,
+      fontWeight: FontWeight.w700,
+      fontSize: 15);
+
+  @override
+  TextStyle get styleHouseNumberTitle => TextStyle(
+      color: foreground,
+      fontFamily: _primaryFontFamily,
+      fontWeight: FontWeight.w700,
+      fontSize: 25);
 }

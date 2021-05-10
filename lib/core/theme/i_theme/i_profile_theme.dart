@@ -22,7 +22,15 @@ abstract class IProfileTheme {
   EdgeInsetsGeometry get marginForm;
   EdgeInsetsGeometry get marginInputs;
   EdgeInsetsGeometry get marginInputsRight;
+  EdgeInsetsGeometry get marginOrdersRight;
+  EdgeInsetsGeometry get marginStageLeft;
+  EdgeInsetsGeometry get marginDishLeft;
+  EdgeInsetsGeometry get marginInputsLeft;
 
   TextStyle get styleFormsTitle;
   TextStyle get styleTitle;
+  TextStyle get styleOrderTitle;
+  TextStyle get styleStageTitle;
+  TextStyle get styleDishTitle;
+  TextStyle get styleHouseNumberTitle;
 }

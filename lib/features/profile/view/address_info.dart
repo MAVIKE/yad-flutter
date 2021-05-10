@@ -25,27 +25,68 @@ class AddressInfo extends StatelessWidget {
               borderRadius: theme.profileTheme.formsBorderRadius),
           body: Container(
             margin: theme.profileTheme.marginInputs,
-            child: Column(children: [
-              Container(
-                margin: theme.profileTheme.marginInputsRight,
-                child: YadInput(
-                  label: "Name",
-                ),
-              ),
-              SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: Row(
+            child: Container(
+              margin: theme.profileTheme.marginInputsRight,
+              child: Column(
+                children: [
+                  YadInput(
+                    label: "City",
+                  ),
+                  YadInput(
+                    label: "Street",
+                  ),
+                  Row(
                     children: [
-                      YadInput(
-                        label: "Street",
-                      ),
-                      YadInput(
-                        label: "House",
-                      )
+                      Expanded(child: YadInput(
+                        label: "House number",
+                      )),
+                      Expanded(child: YadInput(
+                        label: "Building number",
+                      )),
                     ],
-                  ))
-            ]),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(child: YadInput(
+                        label: "Floor",
+                      )),
+                      Expanded(child: YadInput(
+                        label: "Flat",
+                      )),
+                    ],
+                  ),
+                  YadInput(
+                    label: "Entrance",
+                  )
+                ],
+              ),
+              /*
+              child: Column(
+                children: [
+                  YadInput(
+                    label: "City",
+                  ),
+                  YadInput(
+                    label: "Street",
+                  ),
+                  YadInput(
+                    label: "House number",
+                  ),
+                  YadInput(
+                    label: "Building",
+                  ),
+                  YadInput(
+                    label: "Floor",
+                  ),
+                  YadInput(
+                    label: "Flat",
+                  ),
+                  YadInput(
+                    label: "Entrance",
+                  ),
+                ],
+              ),*/
+            ),
           ),
         ));
   }
