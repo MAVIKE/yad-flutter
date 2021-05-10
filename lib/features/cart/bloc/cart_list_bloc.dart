@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yad/core/domain/repos/cart/cart_repo.dart';
 import 'package:yad/features/cart/models/models.dart';
 import 'package:yad/features/dish_list/models/models.dart';
 
@@ -10,14 +9,10 @@ part 'cart_list_event.dart';
 part 'cart_list_state.dart';
 
 class CartListBloc extends Bloc<CartListEvent, CartListState> {
-  CartListBloc({
-    required CartRepo cartRepo,
-  })   : _cartRepo = cartRepo,
-        super(CartListState()) {
+  CartListBloc() : super(CartListState()) {
     this.add(CartListRequested());
   }
 
-  final CartRepo _cartRepo;
 
   @override
   Stream<CartListState> mapEventToState(CartListEvent event) async* {
@@ -30,35 +25,86 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
     else if (event is CartDropDish) {
       yield* _mapCartDropDish(state, event);
     }
+    else if (event is CartIncrementDishCount) {
+      yield* _mapCartIncrementDishCount(state, event);
+    }
+    else if (event is CartDecrementDishCount) {
+      yield* _mapCartDecrementDishCount(state, event);
+    }
   }
 
   Stream<CartListState> _mapCartAddDish(CartListState state, CartAddDish event)
   async* {
-    _cartRepo.addDish(event.dish);
-    yield* _mapCartListRequestedToState(state);
+    OrderItem item = OrderItem(dish: event.dish);
+    List<OrderItem> items = List<OrderItem>.from(state.cart.items);
+    items.add(item);
+    yield state.copyWith(status: CartListStatus.success,
+        cart: Cart(items: items));
+  }
+
+  OrderItem? findDishWithSameId(List<OrderItem> items, int dishId) {
+    for (var item in items) {
+      if (item.dish.id == dishId) {
+        return item;
+      }
+    }
+    return null;
   }
 
   Stream<CartListState> _mapCartDropDish(CartListState state, CartDropDish event)
   async* {
-    _cartRepo.dropDish(event.dish);
-    yield* _mapCartListRequestedToState(state);
-  }
+    List<OrderItem> items = List<OrderItem>.from(state.cart.items);
 
-  Stream<CartListState> _mapCartListRequestedToState(
-      CartListState state) async* {
-    try {
-      final cart = await _fetchCart();
-      if (cart.dishes.isEmpty) {
-        yield state.copyWith(status: CartListStatus.failure);
-      } else {
-        yield state.copyWith(status: CartListStatus.success, cart: cart);
-      }
-    } on Exception {
+    // находим dish с тем же id и возвращаем orderItem
+    OrderItem? item = findDishWithSameId(items, event.dish.id);
+    if (item != null) {
+      items.remove(item);
+      yield state.copyWith(status: CartListStatus.success,
+          cart: Cart(items: items));
+    }
+    else {
       yield state.copyWith(status: CartListStatus.failure);
     }
   }
 
-  Future<Cart> _fetchCart() async {
-    return await _cartRepo.loadCart();
+  Stream<CartListState> _mapCartIncrementDishCount(CartListState state, CartIncrementDishCount event)
+  async* {
+    List<OrderItem> items = List<OrderItem>.from(state.cart.items);
+    // находим dish с тем же id и возвращаем orderItem
+    OrderItem? item = findDishWithSameId(items, event.dish.id);
+    if (item != null) {
+      items.remove(item);
+      items.add(OrderItem(dish: item.dish, dishCount: item.dishCount + 1));
+      yield state.copyWith(status: CartListStatus.success,
+          cart: Cart(items: items));
+    }
+    else {
+      yield state.copyWith(status: CartListStatus.failure);
+    }
+  }
+
+  Stream<CartListState> _mapCartDecrementDishCount(CartListState state, CartDecrementDishCount event)
+  async* {
+    List<OrderItem> items = List<OrderItem>.from(state.cart.items);
+    // находим dish с тем же id и возвращаем orderItem
+    OrderItem? item = findDishWithSameId(items, event.dish.id);
+    if (item != null) {
+      items.remove(item);
+      items.add(OrderItem(dish: item.dish, dishCount: item.dishCount - 1));
+      yield state.copyWith(status: CartListStatus.success,
+          cart: Cart(items: items));
+    }
+    else {
+      yield state.copyWith(status: CartListStatus.failure);
+    }
+  }
+
+  Stream<CartListState> _mapCartListRequestedToState(
+      CartListState state) async* {
+      if (state.cart.items.isEmpty) {
+        yield state.copyWith(status: CartListStatus.failure);
+      } else {
+        yield state.copyWith(status: CartListStatus.success);
+      }
   }
 }
