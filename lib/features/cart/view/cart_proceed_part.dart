@@ -20,7 +20,7 @@ class _CartProceedPart extends State<CartProceedPart> {
     return BlocBuilder<CartListBloc, CartListState>(builder: (context, state) {
       switch (state.status) {
         case CartListStatus.success:
-          if (state.cart.dishes.isEmpty) {
+          if (state.cart.items.isEmpty) {
             return const Center(child: Text('Your cart is empty'));
           }
           return Container(
@@ -46,7 +46,7 @@ class _CartProceedPart extends State<CartProceedPart> {
                           margin: theme.cartTheme.marginTotalValue,
                           child: Align(
                               alignment: Alignment.centerRight,
-                              child: Text("\$ ${state.cart.price}",
+                              child: Text("\$ ${state.cart.totalPrice}",
                                   style: theme.cartTheme.styleButtonText)),
                         ),
                       ],

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:yad/features/cart/bloc/cart_list_bloc.dart';
+import 'package:yad/features/cart/models/models.dart';
 import 'package:yad/features/dish_list/models/dish.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DishCard extends StatelessWidget {
   final Dish dish;
+  final int dishCount;
   final bool isCountingDishes;
 
   DishCard({required this.dish,
-    required this.isCountingDishes
+    required this.isCountingDishes, this.dishCount = -1
   });
 
   @override
@@ -51,7 +53,7 @@ class DishCard extends StatelessWidget {
                 ),
               ),
               isCountingDishes
-                  ? _CountingDishes(lightTheme: theme, dish: dish)
+                  ? _CountingDishes(lightTheme: theme, dish: dish, dishCount: dishCount)
                   : _OrderedOrNot(lightTheme: theme, dish: dish),
             ],
           ),
@@ -63,23 +65,23 @@ class DishCard extends StatelessWidget {
 
 class _CountingDishes extends StatefulWidget {
   final Dish dish;
-  final int dishesCount;
+  final int dishCount;
   final ITheme lightTheme;
 
-  _CountingDishes({required this.lightTheme, required this.dish, this.dishesCount = 0});
+  _CountingDishes({required this.lightTheme, required this.dish, required this.dishCount});
 
   @override
   _CountingDishesState createState() =>
-      _CountingDishesState(dishesCount: dishesCount,
+      _CountingDishesState(dishCount: dishCount,
           lightTheme: lightTheme, dish: dish);
 }
 
 class _CountingDishesState extends State<_CountingDishes> {
   final Dish dish;
-  int dishesCount;
+  int dishCount;
   final ITheme lightTheme;
 
-  _CountingDishesState({required this.dishesCount,
+  _CountingDishesState({required this.dishCount,
     required this.lightTheme,
     required this.dish});
 
@@ -90,7 +92,7 @@ class _CountingDishesState extends State<_CountingDishes> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '\$ ' + (dish.price * dishesCount).toString(),
+          '\$ ' + (dish.price * dishCount).toString(),
           textAlign: TextAlign.left,
           style: lightTheme.dishCardTheme.dishCostTextStyle,
         ),
@@ -98,8 +100,9 @@ class _CountingDishesState extends State<_CountingDishes> {
           RawMaterialButton(
               onPressed: () {
                 setState(() {
-                  if (dishesCount > 0) {
-                    dishesCount -= 1;
+                  if (dishCount > 0) {
+                    cartListBloc.add(CartDecrementDishCount(dish));
+                    dishCount -= 1;
                   }
                   else {
                     cartListBloc.add(CartDropDish(dish));
@@ -114,7 +117,8 @@ class _CountingDishesState extends State<_CountingDishes> {
           RawMaterialButton(
               onPressed: () {
                 setState(() {
-                  dishesCount += 1;
+                  dishCount += 1;
+                  cartListBloc.add(CartIncrementDishCount(dish));
                 });
               },
               constraints: lightTheme.dishCardTheme.countButtonShape,
@@ -123,7 +127,7 @@ class _CountingDishesState extends State<_CountingDishes> {
                   borderRadius: lightTheme.dishCardTheme.widgetBorderRadius),
               child: Icon(Icons.add, size: 26, color: Colors.white)),
           Text(
-            '$dishesCount',
+            '$dishCount',
             textAlign: TextAlign.right,
             style: lightTheme.dishCardTheme.dishCount,
           ),
@@ -139,10 +143,19 @@ class _OrderedOrNot extends StatelessWidget {
 
   _OrderedOrNot({required this.dish, required this.lightTheme});
 
+  bool _containsDishWithSameId(List<OrderItem> items, int dishId) {
+    for (var item in items) {
+      if (item.dish.id == dishId) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final cartListBloc = context.read<CartListBloc>();
-    bool isOrdered = cartListBloc.state.cart.dishes.contains(dish);
+    bool isOrdered = _containsDishWithSameId(cartListBloc.state.cart.items, dish.id);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

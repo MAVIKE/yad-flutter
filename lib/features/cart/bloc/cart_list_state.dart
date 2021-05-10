@@ -5,7 +5,7 @@ enum CartListStatus { initial, success, failure }
 class CartListState extends Equatable {
   const CartListState(
       {this.status = CartListStatus.initial,
-      this.cart = const Cart(dishes: <Dish>[])});
+      this.cart = const Cart(items: <OrderItem>[])});
 
   final CartListStatus status;
   final Cart cart;
@@ -23,7 +23,7 @@ class CartListState extends Equatable {
   @override
   String toString() {
     return '''CartListState { 
-    status: $status, posts: ${cart.dishes.length} }''';
+    status: $status, posts: ${cart.items.length} }''';
   }
 
   @override

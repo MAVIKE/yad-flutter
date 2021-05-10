@@ -26,3 +26,21 @@ class CartDropDish extends CartListEvent {
   @override
   List<Object> get props => [dish];
 }
+
+class CartIncrementDishCount extends CartListEvent {
+  const CartIncrementDishCount(this.dish);
+
+  final Dish dish;
+
+  @override
+  List<Object> get props => [dish];
+}
+
+class CartDecrementDishCount extends CartListEvent {
+  const CartDecrementDishCount(this.dish);
+
+  final Dish dish;
+
+  @override
+  List<Object> get props => [dish];
+}

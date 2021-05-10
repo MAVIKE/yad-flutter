@@ -52,9 +52,7 @@ class RestaurantCard extends StatelessWidget {
                                 dishListRepo: RepositoryProvider.of(context),
                                 restaurantId: restaurantId
                             )),
-                        BlocProvider(create: (context) => CartListBloc(
-                          cartRepo: RepositoryProvider.of(context),
-                        )),
+                        BlocProvider(create: (context) => CartListBloc()),
                       ],
                         child:
                         PageView(
