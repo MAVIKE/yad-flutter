@@ -44,6 +44,12 @@ class CouriersApi {
         'secure': <Map<String, String>>[
           {
             'type': 'apiKey',
+            'name': 'CourierAuth',
+            'keyName': 'Authorization',
+            'where': 'header',
+          },
+          {
+            'type': 'apiKey',
             'name': 'RestaurantAuth',
             'keyName': 'Authorization',
             'where': 'header',
