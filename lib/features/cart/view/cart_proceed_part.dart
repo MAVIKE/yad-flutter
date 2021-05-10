@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yad/features/cart/bloc/cart_list_bloc.dart';
+import 'package:yad/features/payment/view/payment_page.dart';
+import 'package:yad/widgets/yad_scaffold.dart';
 
 class CartProceedPart extends StatefulWidget {
   @override
@@ -60,7 +62,15 @@ class _CartProceedPart extends State<CartProceedPart> {
                           decoration: theme.cartTheme.decorationButton,
                           margin: theme.cartTheme.marginButton,
                           child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {
+                                Navigator.push(
+                                  context, MaterialPageRoute(
+                                    builder: (context) =>
+                                  YadScaffold(
+                                  isCourier: false,
+                                  body: PaymentPage(items: state.cart.items)))
+                                )
+                              },
                               child: Text("Proceed",
                                   style: theme.cartTheme.styleButtonText)),
                         )

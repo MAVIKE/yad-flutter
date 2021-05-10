@@ -8,6 +8,7 @@ class PaymentState extends Equatable {
     this.expirationYear = const ExpirationYear.pure(),
     this.cardHolder = const CardHolder.pure(),
     this.cvcCvv = const CvcCvv.pure(),
+    required this.items
   });
 
   final FormzStatus status;
@@ -16,6 +17,7 @@ class PaymentState extends Equatable {
   final ExpirationYear expirationYear;
   final CardHolder cardHolder;
   final CvcCvv cvcCvv;
+  final List<OrderItem> items;
 
   PaymentState copyWith({
     FormzStatus? status,
@@ -32,10 +34,12 @@ class PaymentState extends Equatable {
       expirationYear: expirationYear ?? this.expirationYear,
       cardHolder: cardHolder ?? this.cardHolder,
       cvcCvv: cvcCvv ?? this.cvcCvv,
+      items: items
     );
   }
 
   @override
   List<Object> get props =>
-      [status, cardNumber, expirationMonth, expirationYear, cardHolder, cvcCvv];
+      [status, cardNumber, expirationMonth, expirationYear, cardHolder, cvcCvv,
+        items];
 }

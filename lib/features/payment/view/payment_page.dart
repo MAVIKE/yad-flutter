@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yad/features/cart/cart.dart';
 
 import 'package:yad/features/payment/bloc/payment_bloc.dart';
 import 'package:yad/features/make_payment/make_payment.dart';
@@ -8,6 +9,11 @@ import 'payment_form.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 
 class PaymentPage extends StatelessWidget {
+
+  final List<OrderItem> items;
+
+  PaymentPage({required this.items});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -17,6 +23,7 @@ class PaymentPage extends StatelessWidget {
             create: (context) {
               return PaymentBloc(
                 makePaymentBloc: BlocProvider.of<MakePaymentBloc>(context),
+                items: items
               );
             },
             child: Align(

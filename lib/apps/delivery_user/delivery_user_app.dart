@@ -32,7 +32,7 @@ void runDeliveryUserApp() async {
       value: UserRegisterRepo(api),
     ),
     RepositoryProvider<MakePaymentRepo>(
-      create: (context) => UserMakePaymentRepository(),
+      create: (context) => UserMakePaymentRepository(api),
     ),
     RepositoryProvider<RestaurantListRepo>(
       create: (context) => RemoteRestaurantListRepository(api),
