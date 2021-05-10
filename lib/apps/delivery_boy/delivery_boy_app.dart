@@ -14,7 +14,7 @@ import 'package:yad/features/login/login.dart';
 import 'pages/pages.dart';
 
 void runDeliveryBoyApp() async {
-  final api = ApiClient();
+  final api = ApiClient(basePathOverride: r'http://161.35.217.187:9001/api/v1');
   final authRepo = DeliveryBoyAuthenticationRepository(api);
   runApp(MultiRepositoryProvider(providers: [
     RepositoryProvider.value(

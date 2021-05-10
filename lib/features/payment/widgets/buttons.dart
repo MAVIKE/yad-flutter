@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:yad/apps/delivery_user/pages/home_page.dart';
 import 'package:yad/features/payment/bloc/payment_bloc.dart';
 
 import '../../../core/theme/i_theme/i_theme.dart';
@@ -12,7 +13,15 @@ class PayButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         final theme = context.read<ITheme>();
-        return state.status.isSubmissionInProgress
+        if (state.status.isSubmissionSuccess) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomePage()
+              )
+          );
+        }
+        return state.status.isSubmissionInProgress || state.status.isSubmissionSuccess
             ? const CircularProgressIndicator()
             : Container(
                 width: theme.dataInputCardTheme.buttonWidth,
