@@ -19,16 +19,26 @@ class RemoteWorkStatusRepo extends WorkStatusRepo {
     print(idResult);
     final id = idResult.value;
     if (id == null) {
+      print("Fetch id error: $idResult");
       return idResult.to();
     }
-    final input = V1CourierUpdateBuilder()..workingStatus = workStatus;
-    return await _couriersApi
+    final address = V1LocationInputBuilder()
+      ..latitude = 1
+      ..longitude = 1;
+    final input = V1CourierUpdateBuilder()
+      ..workingStatus = workStatus
+      ..address = address;
+    final result = await _couriersApi
         .couriersCidPut(cid: id.toString(), input: input.build())
         .then((value) async {
-      return resultFromResponse(value).to();
+      return resultFromResponse(value);
     }, onError: (e) {
-      return resultFromError(e).to<void>();
+      return resultFromError(e).to<V1Response>();
     });
+    if (result.error == null) {
+      print("Change work status error: $result");
+    }
+    return result.to();
   }
 
   @override
@@ -43,12 +53,12 @@ class RemoteWorkStatusRepo extends WorkStatusRepo {
         .then((value) async {
       return resultFromResponse(value);
     }, onError: (e) {
-      return resultFromError(e).to<int>();
+      return resultFromError(e).to<DomainCourier>();
     });
     final courier = courierResult.value;
     if (courier == null) {
-      return courierResult.to();
+      print("Fetch courier error: $courierResult");
     }
-    return Ok(courier.workingStatus ?? 0);
+    return Ok(courier?.workingStatus ?? 0);
   }
 }

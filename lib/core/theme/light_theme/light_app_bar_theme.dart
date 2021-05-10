@@ -10,14 +10,14 @@ class LightAppBarTheme implements IAppBarTheme {
       color: foreground,
       fontFamily: _primaryFontFamily,
       fontWeight: FontWeight.w700,
-      fontSize: 30);
+      fontSize: 26);
 
   @override
   TextStyle get subtitleTextStyle => TextStyle(
       color: foreground,
       fontFamily: _primaryFontFamily,
       fontWeight: FontWeight.w700,
-      fontSize: 20);
+      fontSize: 16);
 
   AppBarTheme get flutter => AppBarTheme(
       brightness: Brightness.light,
