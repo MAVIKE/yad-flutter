@@ -16,8 +16,5 @@ class HomePage extends StatelessWidget {
         YadScaffold(body: RestaurantListPage()),
       ],
     );
-    return YadScaffold(
-      body: RestaurantListPage(),
-    );
   }
 }
