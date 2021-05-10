@@ -17,7 +17,7 @@ part 'light_cart_theme.dart';
 
 const Color _yellow = Color.fromRGBO(251, 187, 0, 1);
 const Color _orange = Color.fromRGBO(248, 113, 34, 1);
-const Color _darkPink = Color.fromRGBO(248, 113, 34, 1);
+const Color _darkPink = Color.fromRGBO(0xB6, 0x0F, 0x6D, 1);
 const Color _purple = Color.fromRGBO(65, 14, 130, 1);
 const String _primaryFontFamily = "Roboto";
 
