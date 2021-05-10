@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:yad/core/theme/i_theme/i_theme.dart';
 import 'package:yad/widgets/yad_expansion_tile.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yad/widgets/yad_input.dart';
 
 class OrdersInfo extends StatelessWidget {
   @override
@@ -29,20 +28,20 @@ class OrdersInfo extends StatelessWidget {
             child: Column(
               children: [
                 Row(
-                //margin: theme.profileTheme.marginOrdersRight,
-                children: [
-                  Text(
-                    "Order #124",
-                    style: theme.profileTheme.styleOrderTitle,
-                  ),
-                  Container(
-                    margin: theme.profileTheme.marginStageLeft,
-                      child: Text(
-                    "Cooking",
-                    style: theme.profileTheme.styleStageTitle,
-                  ))
-                ],
-            ),
+                  //margin: theme.profileTheme.marginOrdersRight,
+                  children: [
+                    Text(
+                      "Order #124",
+                      style: theme.profileTheme.styleOrderTitle,
+                    ),
+                    Container(
+                        margin: theme.profileTheme.marginStageLeft,
+                        child: Text(
+                          "Cooking",
+                          style: theme.profileTheme.styleStageTitle,
+                        ))
+                  ],
+                ),
                 Text(
                   "Smoking beaf                            \$ 12.00",
                   style: theme.profileTheme.styleDishTitle,
@@ -73,8 +72,8 @@ class OrdersInfo extends StatelessWidget {
                   "Burger                                       \$ 3.00",
                   style: theme.profileTheme.styleDishTitle,
                 ),
-          ],
-          ),
+              ],
+            ),
           ),
         ),
       ),

@@ -37,20 +37,24 @@ class AddressInfo extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Expanded(child: YadInput(
+                      Expanded(
+                          child: YadInput(
                         label: "House number",
                       )),
-                      Expanded(child: YadInput(
+                      Expanded(
+                          child: YadInput(
                         label: "Building number",
                       )),
                     ],
                   ),
                   Row(
                     children: [
-                      Expanded(child: YadInput(
+                      Expanded(
+                          child: YadInput(
                         label: "Floor",
                       )),
-                      Expanded(child: YadInput(
+                      Expanded(
+                          child: YadInput(
                         label: "Flat",
                       )),
                     ],
