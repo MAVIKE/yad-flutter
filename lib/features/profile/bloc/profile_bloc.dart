@@ -7,7 +7,7 @@ part 'profile_event.dart';
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  ProfileBloc() : super(ProfileState()) {}
+  ProfileBloc() : super(ProfileState());
 
   @override
   Stream<ProfileState> mapEventToState(ProfileEvent event) async* {}
