@@ -26,6 +26,10 @@ get courier by id
 ### Example 
 ```dart
 import 'package:api_client/api.dart';
+// TODO Configure API key authorization: CourierAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('CourierAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('CourierAuth').apiKeyPrefix = 'Bearer';
 // TODO Configure API key authorization: RestaurantAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('RestaurantAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -58,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[RestaurantAuth](../README.md#RestaurantAuth), [UserAuth](../README.md#UserAuth)
+[CourierAuth](../README.md#CourierAuth), [RestaurantAuth](../README.md#RestaurantAuth), [UserAuth](../README.md#UserAuth)
 
 ### HTTP request headers
 

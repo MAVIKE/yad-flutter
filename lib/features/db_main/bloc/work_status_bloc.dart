@@ -35,6 +35,9 @@ class WorkStatusBloc extends Bloc<WorkStatusEvent, WorkStatusState> {
 
   Stream<WorkStatusState> _mapWorkStatusInitToState() async* {
     final result = await _repo.current();
+    if (result.error is AuthFailure) {
+      _authBloc.unauthenticated();
+    }
     final status = result.value;
     if (status == null) {
       print("Work status init error: $result");
