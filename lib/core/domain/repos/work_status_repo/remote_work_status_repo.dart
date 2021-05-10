@@ -58,7 +58,8 @@ class RemoteWorkStatusRepo extends WorkStatusRepo {
     final courier = courierResult.value;
     if (courier == null) {
       print("Fetch courier error: $courierResult");
+      return courierResult.to();
     }
-    return Ok(courier?.workingStatus ?? 0);
+    return Ok(courier.workingStatus ?? 0);
   }
 }
