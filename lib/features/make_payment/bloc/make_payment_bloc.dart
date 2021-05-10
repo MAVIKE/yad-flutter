@@ -4,6 +4,7 @@ import 'package:yad/core/domain/repos/make_payment/make_payment_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yad/features/cart/models/models.dart';
 
 part 'make_payment_event.dart';
 part 'make_payment_state.dart';
@@ -27,9 +28,10 @@ class MakePaymentBloc extends Bloc<MakePaymentEvent, MakePaymentState> {
   final MakePaymentRepo _makePaymentRepo;
 
   void pay(String cardNumber, String expirationMonth, String expirationYear,
-      String cardHolder, String cvcCvv) {
+      String cardHolder, String cvcCvv, List<OrderItem> items) {
     add(MakePaymentPayRequested(
-        cardNumber, expirationMonth, expirationYear, cardHolder, cvcCvv));
+        cardNumber, expirationMonth, expirationYear, cardHolder, cvcCvv,
+    items));
   }
 
   void payApproved() {
@@ -62,7 +64,8 @@ class MakePaymentBloc extends Bloc<MakePaymentEvent, MakePaymentState> {
             expirationMonth: event.expirationMonth,
             expirationYear: event.expirationYear,
             cardHolder: event.cardHolder,
-            cvcCvv: event.cvcCvv)
+            cvcCvv: event.cvcCvv,
+            items: event.items)
         .then((_) => MakePaymentState.payApproved(),
             onError: (_) => MakePaymentState.payFailed());
   }

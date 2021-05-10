@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:yad/features/cart/models/models.dart';
 import 'package:yad/features/make_payment/make_payment.dart';
 import 'package:yad/features/payment/payment.dart';
 import 'package:yad/features/payment/models/models.dart';
@@ -11,9 +12,10 @@ part 'payment_event.dart';
 part 'payment_state.dart';
 
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
-  PaymentBloc({required MakePaymentBloc makePaymentBloc})
+  PaymentBloc({required MakePaymentBloc makePaymentBloc,
+    required List<OrderItem> items})
       : _makePaymentBloc = makePaymentBloc,
-        super(const PaymentState());
+        super(PaymentState(items: (items)));
 
   final MakePaymentBloc _makePaymentBloc;
 
@@ -134,6 +136,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
           state.expirationYear.value,
           state.cardHolder.value,
           state.cvcCvv.value,
+          state.items
         );
         yield state.copyWith(status: FormzStatus.submissionSuccess);
       } on Exception catch (_) {
