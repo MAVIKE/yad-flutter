@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 
 # **couriersCidOrdersGet**
-> V1Response couriersCidOrdersGet(cid)
+> DomainOrder couriersCidOrdersGet(cid)
 
 Get Active Order
 
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**V1Response**](V1Response.md)
+[**DomainOrder**](DomainOrder.md)
 
 ### Authorization
 

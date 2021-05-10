@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:dio/dio.dart';
 
 abstract class Failure extends Equatable {
   const Failure();
@@ -45,4 +46,12 @@ class AuthFailure extends Failure {
 
   @override
   int get code => 401;
+}
+
+Failure failureFromResponse(Response response) {
+  if (response.statusCode == 401) {
+    return AuthFailure();
+  } else {
+    return SimpleFailure(response.statusCode ?? 1, response.data.toString());
+  }
 }

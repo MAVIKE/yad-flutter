@@ -1,4 +1,5 @@
 import 'package:yad/core/domain/repos/failure.dart';
+import 'package:dio/dio.dart';
 
 class Result<T> {
   T? _value;
@@ -10,6 +11,14 @@ class Result<T> {
   Failure? get error => _error;
 
   T? get value => _value;
+
+  Result<S> to<S>() {
+    return Result(error: this.error);
+  }
+
+  String toString() {
+    return "Result($_value, $_error)";
+  }
 }
 
 class Ok<T> extends Result<T> {
@@ -18,4 +27,25 @@ class Ok<T> extends Result<T> {
 
 class Err<T> extends Result<T> {
   Err(Failure error) : super(error: error);
+}
+
+Result<T> resultFromResponse<T>(Response<T> response) {
+  final code = response.statusCode ?? 1;
+  if (code >= 200 && code < 300) {
+    final data = response.data;
+    if (data != null) {
+      return Ok(data);
+    }
+  }
+  return Err(failureFromResponse(response));
+}
+
+Result<T> resultFromError<T>(dynamic error) {
+  if (error is DioError) {
+    final response = error.response;
+    if (response is Response<T>) {
+      return resultFromResponse(response);
+    }
+  }
+  return Err(SimpleFailure(1, error.toString()));
 }
